@@ -1,39 +1,73 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import type { PageData } from './$types';
 
 	import QrScanner from 'qr-scanner';
 
-    let videoElem: HTMLVideoElement;
-    let qrScanner: QrScanner;
-    let token = '';
+	import { set } from '../../storage';
+	import { sha1 } from '../../crypto';
 
-    function onResult(result: QrScanner.ScanResult) {
-        console.log('decoded qr code:', result);
-        token = result.data;
-    }
+	type Toast = {
+		type: 'success' | 'error';
+		message: string;
+	};
 
+	let videoElem: HTMLVideoElement;
+	let qrScanner: QrScanner;
+	let token = '';
+	let toasts: ArrayLike<Toast> = [];
 
-    onMount(() => {
-        videoElem = document.querySelector('video') as HTMLVideoElement;
-        console.log(videoElem);
-        qrScanner = new QrScanner(videoElem, onResult, {
-            highlightScanRegion: true,
-            highlightCodeOutline: true,
+	function onResult(result: QrScanner.ScanResult) {
+		token = result.data;
+		console.log('Detected token:', token);
+		let hash = sha1(token);
+		set(hash, token);
+		console.log('Saved token under hash:', hash);
+		toasts = [
+			{
+				type: 'success',
+				message: 'Stamp Saved!'
+			}
+		];
+		qrScanner.destroy();
+		setTimeout(() => {
+			toasts = [];
+		}, 3000);
+	}
+
+	onMount(() => {
+		videoElem = document.querySelector('video') as HTMLVideoElement;
+		qrScanner = new QrScanner(videoElem, onResult, {
+			highlightScanRegion: true,
+			highlightCodeOutline: true
+		});
 	});
-
-    })
 
 	export let data: PageData;
 </script>
 
-<h1 class="text-4xl">Scanner</h1>
-<p>Detected code: {token}</p>
-
-<button on:click={() => qrScanner.start()} class="p-4 text-xl">Start</button>
-<button on:click={() => qrScanner.destroy()} class="p-4 text-xl">Stop</button>
-
-<div id="scanner-preview-area" class="min-h-screen bg-slate-800">
-    <video></video>
+<div class="toast toast-bottom toast-center">
+	{#each toasts as { type, message }}
+		<div class="alert alert-{type}" transition:fade>
+			<div>
+				<span>{message}</span>
+			</div>
+		</div>
+	{/each}
 </div>
 
+<div class="space-y-4">
+	<h1 class="text-4xl text-center text-primary font-bold">Scanner</h1>
+	<p class="text-xl text-center px-2">Press Start, and scan the QR code of the stamp!</p>
+
+	<div class="flex flex-col space-y-4 mx-6">
+		<button on:click={() => qrScanner.start()} class="btn btn-primary">Start</button>
+		<button on:click={() => qrScanner.pause()} class="btn btn-error">Stop</button>
+	</div>
+
+	<div id="scanner-preview-area" class="min-h-screen bg-slate-800">
+		<!-- svelte-ignore a11y-media-has-caption -->
+		<video />
+	</div>
+</div>
