@@ -3,7 +3,9 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      wordBreak: ['break-word'],
+    },
   },
   plugins: [require('daisyui')],
   daisyui: {

@@ -36,10 +36,11 @@
 <div class="divider w-10/12 mx-auto" />
 
 <div class="flex justify-center">
-	<button
+	<a
+    href="/result"
 		class="btn btn-success btn-xl"
 		class:btn-disabled={!isQuestCompleted}
 		tabindex="-1"
-		aria-disabled="true">Complete</button
+		aria-disabled="true">{isQuestCompleted ? 'Complete quest' : 'Collect more stamps'}</a
 	>
 </div>
