@@ -20,6 +20,7 @@
 
 	function onResult(result: QrScanner.ScanResult) {
 		token = result.data;
+    qrScanner.pause();
 		console.log('Detected token:', token);
 		let hash = sha1(token);
 		set(hash, token);
@@ -30,7 +31,6 @@
 				message: 'Stamp Saved!'
 			}
 		];
-		qrScanner.destroy();
 		setTimeout(() => {
 			toasts = [];
 		}, 3000);
