@@ -1,10 +1,11 @@
+import type { Stamp } from './custom.d';
 /**
  * @file This file contains all the constants used in the application.
  */
 
 // Stamp ralley partner stamp information.
 // Each hash is the SHA1 hash of the stamp UUID token.
-export const expectedStamps = [
+export const expectedStamps: Stamp[] = [
 	{
 		hash: '37d895725ad8aa8bba87a139710e909b46cb753e',
 		id: 1,

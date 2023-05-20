@@ -1,17 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 	import type { PageData } from './$types';
 
 	import QrScanner from 'qr-scanner';
 
 	import { set } from '../../storage';
 	import { sha1 } from '../../crypto';
-
-	type Toast = {
-		type: 'success' | 'error';
-		message: string;
-	};
+	import ToastComponent from '$lib/components/Toast.svelte';
+	import type { Toast } from '../../custom';
 
 	let videoElem: HTMLVideoElement;
 	let qrScanner: QrScanner;
@@ -33,7 +29,7 @@
 		];
 		setTimeout(() => {
 			toasts = [];
-		}, 3000);
+		}, 4000);
 	}
 
 	onMount(() => {
@@ -48,12 +44,8 @@
 </script>
 
 <div class="toast toast-bottom toast-center">
-	{#each toasts as { type, message }}
-		<div class="alert alert-{type}" transition:fade>
-			<div>
-				<span>{message}</span>
-			</div>
-		</div>
+	{#each toasts as toast}
+		<ToastComponent {...toast}></ToastComponent>
 	{/each}
 </div>
 
