@@ -5,7 +5,7 @@
 	import type { Stamp } from '../custom';
 	import { get } from '../storage';
 
-	import {Icon} from '@steeze-ui/svelte-icon';
+	import { Icon } from '@steeze-ui/svelte-icon';
 
 	import { CheckCircle } from '@steeze-ui/heroicons';
 
@@ -39,13 +39,14 @@
 
 <div class="divider w-10/12 mx-auto" />
 
-<div class="flex justify-center">
+<div class="flex justify-center mb-4">
 	<a
-    href="/result"
+		href="/result"
 		class="btn btn-success btn-xl gap-2 rounded-full"
 		class:btn-disabled={!isQuestCompleted}
 		tabindex="-1"
-		aria-disabled="true">
+		aria-disabled="true"
+	>
 		<Icon src={CheckCircle} theme="solid" class="color-gray-900 h-8 w-8" />
 		{isQuestCompleted ? 'Complete quest' : 'Collect more stamps'}</a
 	>

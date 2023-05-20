@@ -1,20 +1,4 @@
-# create-svelte
-
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
+# Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
@@ -36,3 +20,11 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Setup
+
+The way the quest works, is that the app has a hardcoded array of stamps to be collected in `const.ts`. Those stamps are then displayed in the root view.
+
+Each Stamp in the real world is a **UUID token** encoded as a **QR code**. The expected stamps contain the **SHA1 hashes** of the UUIDs, so that the app can verify that the scanned stamp is the correct one.
+
+Once all stamps are collected, the app displays a **secret code** that can be used to claim the prize. The code is a checksum of the stamp token UUIDs in the order they appear in the `const.ts` file using **SHA-256**. The code is encoded as a QR code, so that it can be easily scanned and will be visible in `/result`.
