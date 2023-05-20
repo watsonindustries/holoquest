@@ -28,7 +28,7 @@
 <h1 class="text-4xl font-bold text-center text-primary">Reward Collection</h1>
 
 <div class="flex flex-col justify-center">
-	<canvas id="canvas" class="mx-auto" />
+	<canvas id="canvas" class="mx-auto my-4" />
 	<div class="max-w-xs font-mono text-center break-words mx-auto">{checkSum}</div>
 </div>
 

@@ -1,4 +1,8 @@
 <script lang="ts">
+	import { Icon } from '@steeze-ui/svelte-icon';
+
+	//import as many icons from a Icon Pack
+	import { Home, QrCode, QuestionMarkCircle } from '@steeze-ui/heroicons';
 </script>
 
 <div class="navbar bg-base-100">
@@ -23,16 +27,28 @@
 				tabindex="0"
 				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 			>
-				<li><a href="/">Home</a></li>
-				<li><a href="/scanner">Scanner</a></li>
+				<li><a href="/"><Icon src={Home} theme="solid" class="color-gray-900 w-4" />Home</a></li>
+				<li>
+					<a href="/scanner">
+						<Icon src={QrCode} theme="solid" class="color-gray-900 w-4" />Scanner
+					</a>
+				</li>
+				<li>
+					<a href="/about">
+						<Icon src={QuestionMarkCircle} theme="solid" class="color-gray-900 w-4" />About
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>
 	<div class="navbar-center">
-		<a class="btn btn-ghost normal-case text-xl text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary" href="/">HoloQuest</a>
+		<a
+			class="btn btn-ghost normal-case text-xl text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary"
+			href="/">HoloQuest</a
+		>
 	</div>
 	<div class="navbar-end">
-		<button class="btn btn-ghost btn-circle">
+		<!-- <button class="btn btn-ghost btn-circle">
 			<div class="indicator">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +65,6 @@
 				>
 				<span class="badge badge-xs badge-primary indicator-item" />
 			</div>
-		</button>
+		</button> -->
 	</div>
 </div>

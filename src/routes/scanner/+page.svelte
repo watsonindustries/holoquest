@@ -9,6 +9,10 @@
 	import ToastComponent from '$lib/components/Toast.svelte';
 	import type { Toast } from '../../custom';
 
+	import { Icon } from '@steeze-ui/svelte-icon';
+
+	import { QrCode, StopCircle } from '@steeze-ui/heroicons';
+
 	let videoElem: HTMLVideoElement;
 	let qrScanner: QrScanner;
 	let token = '';
@@ -17,10 +21,8 @@
 	function onResult(result: QrScanner.ScanResult) {
 		token = result.data;
     qrScanner.pause();
-		console.log('Detected token:', token);
 		let hash = sha1(token);
 		set(hash, token);
-		console.log('Saved token under hash:', hash);
 		toasts = [
 			{
 				type: 'success',
@@ -51,11 +53,15 @@
 
 <div class="space-y-4">
 	<h1 class="text-4xl text-center text-primary font-bold">Scanner</h1>
-	<p class="text-xl text-center px-2">Press Start, and scan the QR code of the stamp!</p>
+	<p class="text-xl text-center px-2">Press Scan, and scan the QR code of the stamp!</p>
 
-	<div class="flex flex-col space-y-4 mx-6">
-		<button on:click={() => qrScanner.start()} class="btn btn-primary">Start</button>
-		<button on:click={() => qrScanner.pause()} class="btn btn-error">Stop</button>
+	<div class="flex flex-col space-y-4 justify-center">
+		<button on:click={() => qrScanner.start()} class="btn btn-primary rounded-full gap-2 w-6/12 mx-auto">
+			<Icon src={QrCode} theme="solid" class="color-gray-900 h-8 w-8" />
+			Scan</button>
+		<button on:click={() => qrScanner.pause()} class="btn btn-error rounded-full gap-2 w-6/12 mx-auto">
+			<Icon src={StopCircle} theme="solid" class="color-gray-900 h-8 w-8" />
+			Stop</button>
 	</div>
 
 	<div id="scanner-preview-area" class="min-h-screen bg-slate-800">

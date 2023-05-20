@@ -5,6 +5,10 @@
 	import type { Stamp } from '../custom';
 	import { get } from '../storage';
 
+	import {Icon} from '@steeze-ui/svelte-icon';
+
+	import { CheckCircle } from '@steeze-ui/heroicons';
+
 	let isQuestCompleted = false;
 
 	function isStampCollected(stamp: Stamp) {
@@ -38,9 +42,11 @@
 <div class="flex justify-center">
 	<a
     href="/result"
-		class="btn btn-success btn-xl"
+		class="btn btn-success btn-xl gap-2 rounded-full"
 		class:btn-disabled={!isQuestCompleted}
 		tabindex="-1"
-		aria-disabled="true">{isQuestCompleted ? 'Complete quest' : 'Collect more stamps'}</a
+		aria-disabled="true">
+		<Icon src={CheckCircle} theme="solid" class="color-gray-900 h-8 w-8" />
+		{isQuestCompleted ? 'Complete quest' : 'Collect more stamps'}</a
 	>
 </div>
