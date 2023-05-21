@@ -2,9 +2,9 @@
 	export let id: number;
 	export let name: string;
 	export let collected = false;
-	
+
 	const PLACEHOLDER_STAMP_IMG =
-	'https://4.bp.blogspot.com/-ZMzPgyP64Zg/WFuJyby0eDI/AAAAAAABAmk/I_UtFowN0ecaQiqgYGpTsKGTqFzMLESdwCLcB/s800/nenga_hanko_kingashinnen_maru.png';
+		'https://4.bp.blogspot.com/-ZMzPgyP64Zg/WFuJyby0eDI/AAAAAAABAmk/I_UtFowN0ecaQiqgYGpTsKGTqFzMLESdwCLcB/s800/nenga_hanko_kingashinnen_maru.png';
 
 	export let img = PLACEHOLDER_STAMP_IMG;
 </script>
@@ -15,7 +15,7 @@
 			{#if collected}
 				<img src={img} alt={name} class="w-16 h-16 rounded-full" />
 			{:else}
-			<span class="text-6xl text-secondary font-sans font-semibold">?</span>
+				<span class="text-6xl text-secondary font-sans font-semibold">?</span>
 			{/if}
 		</div>
 	</div>

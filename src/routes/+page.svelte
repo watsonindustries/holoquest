@@ -3,7 +3,6 @@
 	import { onMount } from 'svelte';
 	import { expectedStamps } from '../const';
 	import type { Stamp } from '../custom';
-	import { get } from '../storage';
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 
@@ -11,15 +10,19 @@
 
 	let isQuestCompleted = false;
 
-	function isStampCollected(stamp: Stamp) {
-		return get(stamp.hash) !== null;
-	}
+	let isStampCollected = function (_stamp: Stamp) {
+		return false;
+	};
 
 	function isAllStampsCollected() {
 		return expectedStamps.every(isStampCollected);
 	}
 
 	onMount(() => {
+		isStampCollected = function (stamp: Stamp) {
+			return localStorage.getItem(stamp.hash) !== null;
+		};
+
 		if (isAllStampsCollected()) {
 			console.log('All stamps collected!');
 			isQuestCompleted = true;

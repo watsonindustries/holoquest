@@ -1,18 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { PageData } from './$types';
 
 	import QRCode from 'qrcode';
 	import { expectedStamps } from '../../const';
-	import { get } from '../../storage';
 	import { calculateTokenChecksum } from '../../crypto';
 
-	let tokens = expectedStamps.map((stamp) => stamp.hash)?.map((hash) => get(hash)) as string[];
-	let checkSum = calculateTokenChecksum(tokens);
-
-	console.log('checksum:', checkSum);
+	let checkSum = '';
 
 	onMount(() => {
+		let tokens = expectedStamps
+			.map((stamp) => stamp.hash)
+			?.map((hash) => localStorage.getItem(hash)) as string[];
+		checkSum = calculateTokenChecksum(tokens);
+
+		console.log('checksum:', checkSum);
+
 		let canvas = document.getElementById('canvas') as HTMLCanvasElement;
 		let size = Math.floor(window.innerWidth * 0.9);
 		canvas.width = size;
@@ -21,8 +23,6 @@
 			if (error) console.error(error);
 		});
 	});
-
-	export let data: PageData;
 </script>
 
 <h1 class="text-4xl font-bold text-center text-primary">Reward Collection</h1>

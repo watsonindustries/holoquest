@@ -9,12 +9,12 @@ export const expectedStamps: Stamp[] = [
 	{
 		hash: '37d895725ad8aa8bba87a139710e909b46cb753e',
 		id: 1,
-		name: 'Stamp 1',
+		name: 'Stamp 1'
 	},
 	{
 		id: 2,
 		name: 'Stamp 2',
-		hash: '26f34a24468d310ae469fcde15fef83ed9d3297d',
+		hash: '26f34a24468d310ae469fcde15fef83ed9d3297d'
 	},
 	{
 		id: 3,

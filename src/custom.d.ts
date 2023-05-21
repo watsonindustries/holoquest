@@ -1,7 +1,7 @@
 export type Stamp = {
-	id: number,
-	name: string,
-	hash: string,
+	id: number;
+	name: string;
+	hash: string;
 };
 
 export type Toast = {

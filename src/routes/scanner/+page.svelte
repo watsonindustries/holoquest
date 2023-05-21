@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { PageData } from './$types';
 
 	import QrScanner from 'qr-scanner';
 
-	import { set } from '../../storage';
 	import { sha1 } from '../../crypto';
 	import ToastComponent from '$lib/components/Toast.svelte';
 	import type { Toast } from '../../custom';
@@ -20,9 +18,9 @@
 
 	function onResult(result: QrScanner.ScanResult) {
 		token = result.data;
-    qrScanner.pause();
+		qrScanner.pause();
 		let hash = sha1(token);
-		set(hash, token);
+		localStorage.setItem(hash, token);
 		toasts = [
 			{
 				type: 'success',
@@ -41,13 +39,11 @@
 			highlightCodeOutline: true
 		});
 	});
-
-	export let data: PageData;
 </script>
 
 <div class="toast toast-bottom toast-center">
 	{#each toasts as toast}
-		<ToastComponent {...toast}></ToastComponent>
+		<ToastComponent {...toast} />
 	{/each}
 </div>
 
@@ -56,12 +52,20 @@
 	<p class="text-xl text-center px-2">Press Scan, and scan the QR code of the stamp!</p>
 
 	<div class="flex flex-col space-y-4 justify-center">
-		<button on:click={() => qrScanner.start()} class="btn btn-primary rounded-full gap-2 w-6/12 mx-auto">
+		<button
+			on:click={() => qrScanner.start()}
+			class="btn btn-primary rounded-full gap-2 w-6/12 mx-auto"
+		>
 			<Icon src={QrCode} theme="solid" class="color-gray-900 h-8 w-8" />
-			Scan</button>
-		<button on:click={() => qrScanner.pause()} class="btn btn-error rounded-full gap-2 w-6/12 mx-auto">
+			Scan</button
+		>
+		<button
+			on:click={() => qrScanner.pause()}
+			class="btn btn-error rounded-full gap-2 w-6/12 mx-auto"
+		>
 			<Icon src={StopCircle} theme="solid" class="color-gray-900 h-8 w-8" />
-			Stop</button>
+			Stop</button
+		>
 	</div>
 
 	<div id="scanner-preview-area" class="min-h-screen bg-slate-800">

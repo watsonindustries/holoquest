@@ -1,11 +1,13 @@
 <script lang="ts">
-    import type { LayoutData } from './$types';
-    import '../app.css';
+	import '../app.css';
+
 	import NavBar from '$lib/components/NavBar.svelte';
-    
-    export let data: LayoutData;
 </script>
 
-<NavBar></NavBar>
+<svelte:head>
+	<link rel="manifest" href="/manifest.webmanifest">
+</svelte:head>
+
+<NavBar />
 
 <slot />
