@@ -8,3 +8,5 @@ export type Toast = {
 	type: 'success' | 'error';
 	message: string;
 };
+
+export type ScannerState = 'scanning' | 'stopped';

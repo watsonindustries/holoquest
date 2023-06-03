@@ -6,11 +6,13 @@
 	import { sha1 } from '../../crypto';
 	import { expectedStamps } from '../../const';
 	import ToastComponent from '$lib/components/Toast.svelte';
-	import type { Toast } from '../../custom';
+	import type { ScannerState, Toast } from '../../custom';
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	import { QrCode, StopCircle } from '@steeze-ui/heroicons';
+
+	let state: ScannerState = 'stopped';
 
 	let videoElem: HTMLVideoElement;
 	let qrScanner: QrScanner;
@@ -18,9 +20,19 @@
 	let toasts: ArrayLike<Toast> = [];
 	const expectedHashes = expectedStamps.map((stamp) => stamp.hash);
 
+	function transitionState() {
+		if (state === 'scanning') {
+			state = 'stopped';
+			qrScanner.pause();
+		} else if (state === 'stopped') {
+			state = 'scanning';
+			qrScanner.start();
+		}
+	}
+
 	function onResult(result: QrScanner.ScanResult) {
 		token = result.data;
-		qrScanner.pause();
+		transitionState();
 		let hash = sha1(token);
 
 		if (expectedHashes.includes(hash)) {
@@ -66,18 +78,17 @@
 
 	<div class="flex flex-col space-y-4 justify-center">
 		<button
-			on:click={() => qrScanner.start()}
-			class="btn btn-primary rounded-full gap-2 w-6/12 mx-auto"
+			on:click={transitionState}
+			class="btn rounded-full gap-2 w-6/12 mx-auto"
+			class:btn-primary={state === 'stopped'}
+			class:btn-error={state === 'scanning'}
 		>
-			<Icon src={QrCode} theme="solid" class="color-gray-900 h-8 w-8" />
-			Scan</button
-		>
-		<button
-			on:click={() => qrScanner.pause()}
-			class="btn btn-error rounded-full gap-2 w-6/12 mx-auto"
-		>
-			<Icon src={StopCircle} theme="solid" class="color-gray-900 h-8 w-8" />
-			Stop</button
+			<Icon
+				src={state === 'scanning' ? StopCircle : QrCode}
+				theme="solid"
+				class="color-gray-900 h-8 w-8"
+			/>
+			{state === 'scanning' ? 'Stop' : 'Scan'}</button
 		>
 	</div>
 
