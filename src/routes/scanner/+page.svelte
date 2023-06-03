@@ -10,7 +10,7 @@
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 
-	import { QrCode, StopCircle } from '@steeze-ui/heroicons';
+	import { Eye, QrCode, StopCircle } from '@steeze-ui/heroicons';
 
 	let state: ScannerState = 'stopped';
 
@@ -79,21 +79,29 @@
 	<div class="flex flex-col space-y-4 justify-center">
 		<button
 			on:click={transitionState}
-			class="btn rounded-full gap-2 w-6/12 mx-auto"
+			class="btn rounded-full gap-2 w-6/12 mx-auto text-xl"
 			class:btn-primary={state === 'stopped'}
 			class:btn-error={state === 'scanning'}
 		>
 			<Icon
 				src={state === 'scanning' ? StopCircle : QrCode}
 				theme="solid"
-				class="color-gray-900 h-8 w-8"
+				class="color-gray-900"
+				size="32px"
 			/>
 			{state === 'scanning' ? 'Stop' : 'Scan'}</button
 		>
 	</div>
 
-	<div id="scanner-preview-area" class="min-h-screen bg-slate-800">
+	<div id="scanner-preview-area" class="h-96 bg-slate-800" class:hidden={state === 'stopped'}>
 		<!-- svelte-ignore a11y-media-has-caption -->
 		<video />
+	</div>
+
+	<div class="flex flex-col space-y-4 justify-center">
+		<a class="btn btn-secondary rounded-full gap-2 mx-auto text-lg mt-2" href="/">
+			<Icon src={Eye} theme="solid" class="color-gray-900" size="28px" />
+			View collected stamps</a
+		>
 	</div>
 </div>
