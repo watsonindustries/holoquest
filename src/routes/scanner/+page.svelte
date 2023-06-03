@@ -4,6 +4,7 @@
 	import QrScanner from 'qr-scanner';
 
 	import { sha1 } from '../../crypto';
+	import { expectedStamps } from '../../const';
 	import ToastComponent from '$lib/components/Toast.svelte';
 	import type { Toast } from '../../custom';
 
@@ -15,18 +16,30 @@
 	let qrScanner: QrScanner;
 	let token = '';
 	let toasts: ArrayLike<Toast> = [];
+	const expectedHashes = expectedStamps.map((stamp) => stamp.hash);
 
 	function onResult(result: QrScanner.ScanResult) {
 		token = result.data;
 		qrScanner.pause();
 		let hash = sha1(token);
-		localStorage.setItem(hash, token);
-		toasts = [
-			{
-				type: 'success',
-				message: 'Stamp Saved!'
-			}
-		];
+
+		if (expectedHashes.includes(hash)) {
+			localStorage.setItem(hash, token);
+			toasts = [
+				{
+					type: 'success',
+					message: 'Stamp Saved!'
+				}
+			];
+		} else {
+			toasts = [
+				{
+					type: 'error',
+					message: 'Invalid Stamp!'
+				}
+			];
+		}
+
 		setTimeout(() => {
 			toasts = [];
 		}, 4000);
