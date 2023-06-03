@@ -1,8 +1,8 @@
 const s = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), u = [
-  s + "/_app/immutable/entry/app.48f2c80b.js",
+  s + "/_app/immutable/entry/app.b3e0bd55.js",
   s + "/_app/immutable/assets/0.5c7e4a3e.css",
   s + "/_app/immutable/nodes/0.5afca462.js",
-  s + "/_app/immutable/nodes/1.b1388f52.js",
+  s + "/_app/immutable/nodes/1.afd52798.js",
   s + "/_app/immutable/nodes/2.96d41988.js",
   s + "/_app/immutable/nodes/3.e7c97cd2.js",
   s + "/_app/immutable/nodes/4.89a7b86e.js",
@@ -11,8 +11,8 @@ const s = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), u
   s + "/_app/immutable/chunks/index.3243155e.js",
   s + "/_app/immutable/chunks/index.5f357576.js",
   s + "/_app/immutable/chunks/preload-helper.41c905a7.js",
-  s + "/_app/immutable/chunks/singletons.70ad5266.js",
-  s + "/_app/immutable/entry/start.c7d12a9d.js",
+  s + "/_app/immutable/chunks/singletons.faf2ab6a.js",
+  s + "/_app/immutable/entry/start.07d872fb.js",
   s + "/_app/immutable/chunks/qr-scanner-worker.min.5f44a019.js"
 ], m = [
   s + "/favicon.png",
@@ -20,7 +20,7 @@ const s = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), u
   s + "/logo_512.png",
   s + "/manifest.json",
   s + "/robots.txt"
-], i = "1685824253774", n = self, p = `cache${i}`, r = `offline${i}`, d = ["/", "/result", "/scanner", "/about"], f = [], b = (t) => t.map((e) => self.location.origin + e), _ = b([
+], i = "1685824262254", n = self, p = `cache${i}`, r = `offline${i}`, d = ["/", "/result", "/scanner", "/about"], f = [], b = (t) => t.map((e) => self.location.origin + e), _ = b([
   ...m.filter((t) => !/\/icons\/(apple.*?|original.png)/.test(t)),
   ...u,
   ...d
