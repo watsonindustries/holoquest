@@ -1,0 +1,26 @@
+{
+	"short_name": "HoloQuest",
+	"name": "HoloQuest",
+	"start_url": "/",
+	"icons": [
+		{
+			"src": "logo_512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"background_color": "#546aff",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#73dcff",
+	"shortcuts": [
+		{
+			"name": "Scanner",
+			"short_name": "Scanner",
+			"description": "Badge scanner",
+			"url": "/scanner?source=pwa",
+			"icons": [{ "src": "/icons/logo_192.png", "sizes": "192x192" }]
+		}
+	],
+	"description": "Badge collector app for HoloQuest."
+}
