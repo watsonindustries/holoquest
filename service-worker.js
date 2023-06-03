@@ -1,33 +1,34 @@
-const s = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), h = [
-  s + "/_app/immutable/entry/app.40673465.js",
-  s + "/_app/immutable/assets/0.db8697fb.css",
-  s + "/_app/immutable/nodes/0.fb170ab4.js",
-  s + "/_app/immutable/nodes/1.5990d0ef.js",
+const s = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), u = [
+  s + "/_app/immutable/entry/app.5b1b7877.js",
+  s + "/_app/immutable/assets/0.02a0b574.css",
+  s + "/_app/immutable/nodes/0.7b9fbba3.js",
+  s + "/_app/immutable/nodes/1.1772c799.js",
   s + "/_app/immutable/nodes/2.29daa965.js",
-  s + "/_app/immutable/nodes/3.12b1a1e4.js",
+  s + "/_app/immutable/nodes/3.75990d8e.js",
   s + "/_app/immutable/nodes/4.f00b295e.js",
-  s + "/_app/immutable/nodes/5.c1f36be1.js",
+  s + "/_app/immutable/nodes/5.07868d9d.js",
   s + "/_app/immutable/chunks/const.96e908ff.js",
   s + "/_app/immutable/chunks/crypto.6f6cc81d.js",
   s + "/_app/immutable/chunks/index.82b77fb4.js",
   s + "/_app/immutable/chunks/index.af4913a8.js",
   s + "/_app/immutable/chunks/preload-helper.41c905a7.js",
-  s + "/_app/immutable/chunks/singletons.150459c6.js",
-  s + "/_app/immutable/entry/start.f8e92b71.js",
+  s + "/_app/immutable/chunks/qr-scanner.min.4880ecae.js",
+  s + "/_app/immutable/chunks/singletons.93822dc1.js",
+  s + "/_app/immutable/entry/start.dda379b3.js",
   s + "/_app/immutable/chunks/qr-scanner-worker.min.5f44a019.js"
-], u = [
+], h = [
   s + "/favicon.png",
   s + "/icons/logo_192.png",
   s + "/logo_512.png",
   s + "/manifest.json",
   s + "/robots.txt"
-], i = "1685829581171", n = self, p = `cache${i}`, r = `offline${i}`, d = ["/", "/result", "/scanner", "/about"], f = [
+], i = "1685831177344", n = self, p = `cache${i}`, r = `offline${i}`, d = ["/", "/result", "/scanner", "/about"], b = [
   "https://4.bp.blogspot.com/-ZMzPgyP64Zg/WFuJyby0eDI/AAAAAAABAmk/I_UtFowN0ecaQiqgYGpTsKGTqFzMLESdwCLcB/s800/nenga_hanko_kingashinnen_maru.png"
-], b = (t) => t.map((e) => self.location.origin + e), _ = b([
-  ...u.filter((t) => !/\/icons\/(apple.*?|original.png)/.test(t)),
-  ...h,
+], f = (t) => t.map((e) => self.location.origin + e), _ = f([
+  ...h.filter((t) => !/\/icons\/(apple.*?|original.png)/.test(t)),
+  ...u,
   ...d
-]), l = [..._, ...f], A = new Set(l);
+]), l = [..._, ...b], A = new Set(l);
 n.addEventListener("install", (t) => {
   t.waitUntil(
     caches.open(p).then((e) => e.addAll(l)).then(() => {
