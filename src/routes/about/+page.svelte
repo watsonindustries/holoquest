@@ -1,10 +1,19 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import QrScanner from 'qr-scanner';
+
 	const debug = true;
 
-	const collectedStampsCount = localStorage.length;
+	let collectedStampsCount = 0;
+	let availableCameras = [] as ArrayLike<QrScanner.Camera>;
+
+	onMount(async () => {
+		availableCameras = await QrScanner.listCameras(true);
+		collectedStampsCount = localStorage.length;
+	});
 </script>
 
-<div class="text-2xl text-center mx-4 space-y-8">
+<div class="text-2xl text-center mx-4 space-y-8 my-4">
 	<p>HoloQuest companion app</p>
 
 	<p>
@@ -22,7 +31,17 @@
 		<div class="divider" />
 		<p class="text-primary font-bold">Debug mode is enabled</p>
 		<p>Collected stamps: {collectedStampsCount}</p>
-		<button on:click={() => localStorage.clear()} class="btn btn-error rounded-full gap-2 w-6/12 mx-auto">
+		<p>Available cameras:</p>
+		<ul>
+			{#each availableCameras as camera}
+				<li class="font-mono text-base">{camera.label}</li>
+			{/each}
+		</ul>
+
+		<button
+			on:click={() => localStorage.clear()}
+			class="btn btn-error rounded-full gap-2 w-6/12 mx-auto"
+		>
 			Delete all stamps</button
 		>
 	{/if}
