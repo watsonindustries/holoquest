@@ -25,15 +25,15 @@
 	});
 </script>
 
-<h1 class="text-4xl font-bold text-center text-primary font-geologica">Reward Collection</h1>
+<h1 class="text-center font-geologica text-4xl font-bold text-primary">Reward Collection</h1>
 
 <div class="flex flex-col justify-center">
 	<canvas id="canvas" class="mx-auto my-4" />
-	<div class="max-w-xs font-mono text-center break-words mx-auto">{checkSum}</div>
+	<div class="mx-auto max-w-xs break-words text-center font-mono">{checkSum}</div>
 </div>
 
-<div class="divider w-10/12 mx-auto" />
+<div class="divider mx-auto w-10/12" />
 
-<p class="text-xl max-w-xs mx-auto text-center text-secondary font-semibold">
+<p class="mx-auto max-w-xs text-center text-xl font-semibold text-secondary">
 	Show this code to staff for validation to get your prize!
 </p>

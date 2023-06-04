@@ -4,8 +4,10 @@ export type Stamp = {
 	hash: string;
 };
 
+export type ToastType = 'success' | 'error';
+
 export type Toast = {
-	type: 'success' | 'error';
+	type: ToastType;
 	message: string;
 };
 

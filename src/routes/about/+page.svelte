@@ -13,23 +13,23 @@
 	});
 </script>
 
-<div class="text-2xl text-center mx-4 space-y-8 my-4">
+<div class="mx-4 my-4 space-y-8 text-center text-2xl">
 	<p>HoloQuest companion app</p>
 
 	<p>
-		Developed by <a href="https://watsonindustries.live" class="link link-primary"
+		Developed by <a href="https://watsonindustries.live" class="link-primary link"
 			>Watson Industries</a
 		>
 	</p>
 
 	<p>
-		Contact <a href="https://twitter.com/DaniruKun" class="link link-secondary">@danirukun</a> about
+		Contact <a href="https://twitter.com/DaniruKun" class="link-secondary link">@danirukun</a> about
 		questions
 	</p>
 
 	{#if debug}
 		<div class="divider" />
-		<p class="text-primary font-bold">Debug mode is enabled</p>
+		<p class="font-bold text-primary">Debug mode is enabled</p>
 		<p>Collected stamps: {collectedStampsCount}</p>
 		<p>Available cameras:</p>
 		<ul>
@@ -40,7 +40,7 @@
 
 		<button
 			on:click={() => localStorage.clear()}
-			class="btn btn-error rounded-full gap-2 w-6/12 mx-auto"
+			class="btn-error btn mx-auto w-6/12 gap-2 rounded-full"
 		>
 			Delete all stamps</button
 		>

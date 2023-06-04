@@ -10,12 +10,12 @@
 </script>
 
 <div class="flex flex-col items-center">
-	<div class="w-28 h-28 bg-gray-200 rounded-full flex items-center justify-center">
-		<div class="w-24 h-24 bg-white rounded-full flex items-center justify-center">
+	<div class="flex h-28 w-28 items-center justify-center rounded-full bg-gray-200">
+		<div class="flex h-24 w-24 items-center justify-center rounded-full bg-white">
 			{#if collected}
-				<img src={img} alt={name} class="w-16 h-16 rounded-full" />
+				<img src={img} alt={name} class="h-16 w-16 rounded-full" />
 			{:else}
-				<span class="text-6xl text-secondary font-sans font-semibold">?</span>
+				<span class="font-sans text-6xl font-semibold text-secondary">?</span>
 			{/if}
 		</div>
 	</div>

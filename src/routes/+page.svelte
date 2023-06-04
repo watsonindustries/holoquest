@@ -6,7 +6,8 @@
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 
-	import { CheckCircle, QrCode } from '@steeze-ui/heroicons';
+	import { QrCode } from '@steeze-ui/heroicons';
+	import QuestCompletionButton from '$lib/components/QuestCompletionButton.svelte';
 
 	let isQuestCompleted = false;
 
@@ -31,11 +32,11 @@
 </script>
 
 <div class="flex flex-col justify-center space-y-6">
-	<h1 class="text-4xl font-bold font-geologica text-center text-primary">Stamps</h1>
+	<h1 class="text-center font-geologica text-4xl font-bold text-primary">Stamps</h1>
 
 	<a
 		href="/scanner"
-		class="btn btn-info btn-xl gap-2 rounded-full text-base-100 justify-center w-6/12 mx-auto font-bold"
+		class="btn-xl btn-info btn mx-auto w-6/12 justify-center gap-2 rounded-full font-bold text-base-100"
 		tabindex="-1"
 		aria-disabled="true"
 	>
@@ -44,25 +45,14 @@
 	>
 </div>
 
-<div class="divider w-10/12 mx-auto" />
+<div class="divider mx-auto w-10/12" />
 
-<div class="grid grid-cols-2 gap-4 p-4 bg-base-100">
+<div class="grid grid-cols-2 gap-4 bg-base-100 p-4">
 	{#each expectedStamps as stamp}
 		<StampComponent {...stamp} collected={isStampCollected(stamp)} />
 	{/each}
 </div>
 
-<div class="divider w-10/12 mx-auto" />
+<div class="divider mx-auto w-10/12" />
 
-<div class="flex justify-center mb-4">
-	<a
-		href="/result"
-		class="btn btn-success btn-xl gap-2 rounded-full"
-		class:btn-disabled={!isQuestCompleted}
-		tabindex="-1"
-		aria-disabled="true"
-	>
-		<Icon src={CheckCircle} theme="solid" class="color-gray-900 h-8 w-8" />
-		{isQuestCompleted ? 'Complete quest' : 'Collect more stamps'}</a
-	>
-</div>
+<QuestCompletionButton active={isQuestCompleted} />

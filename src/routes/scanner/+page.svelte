@@ -66,20 +66,20 @@
 	});
 </script>
 
-<div class="toast toast-bottom toast-center">
+<div class="toast-center toast-bottom toast">
 	{#each toasts as toast}
 		<ToastComponent {...toast} />
 	{/each}
 </div>
 
 <div class="space-y-4">
-	<h1 class="text-4xl text-center text-primary font-bold font-geologica">Scanner</h1>
-	<p class="text-xl text-center px-2">Press Scan, and scan the QR code of the stamp!</p>
+	<h1 class="text-center font-geologica text-4xl font-bold text-primary">Scanner</h1>
+	<p class="px-2 text-center text-xl">Press Scan, and scan the QR code of the stamp!</p>
 
-	<div class="flex flex-col space-y-4 justify-center">
+	<div class="flex flex-col justify-center space-y-4">
 		<button
 			on:click={transitionState}
-			class="btn rounded-full gap-2 w-6/12 mx-auto text-xl"
+			class="btn mx-auto w-6/12 gap-2 rounded-full text-xl"
 			class:btn-primary={state === 'stopped'}
 			class:btn-error={state === 'scanning'}
 		>
@@ -98,8 +98,8 @@
 		<video />
 	</div>
 
-	<div class="flex flex-col space-y-4 justify-center">
-		<a class="btn btn-secondary rounded-full gap-2 mx-auto text-lg mt-2" href="/">
+	<div class="flex flex-col justify-center space-y-4">
+		<a class="btn-secondary btn mx-auto mt-2 gap-2 rounded-full text-lg" href="/">
 			<Icon src={Eye} theme="solid" class="color-gray-900" size="28px" />
 			View collected stamps</a
 		>

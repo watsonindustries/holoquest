@@ -3,14 +3,14 @@
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
 
-import { build, files, version } from "$service-worker";
+import { build, files, version } from '$service-worker';
 
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const STATIC_CACHE_NAME = `cache${version}`;
 const APP_CACHE_NAME = `offline${version}`;
 
 // hard-coded list of app routes we want to preemptively cache
-const routes = ["/", "/result", "/scanner", "/about"];
+const routes = ['/', '/result', '/scanner', '/about'];
 
 // hard-coded list of other assets necessary for page load outside our domain
 const customAssets = [
@@ -21,8 +21,7 @@ const customAssets = [
 // `files` is an array of everything in the `static` directory
 // `version` is the current version of the app
 
-const addDomain = (assets: string[]) =>
-	assets.map((f) => self.location.origin + f);
+const addDomain = (assets: string[]) => assets.map((f) => self.location.origin + f);
 
 // we filter the files because we don't want to cache logos for iOS
 // (they're big and largely unused)
@@ -31,13 +30,13 @@ const addDomain = (assets: string[]) =>
 const ourAssets = addDomain([
 	...files.filter((f) => !/\/icons\/(apple.*?|original.png)/.test(f)),
 	...build,
-	...routes,
+	...routes
 ]);
 
 const toCache = [...ourAssets, ...customAssets];
 const staticAssets = new Set(toCache);
 
-worker.addEventListener("install", (event) => {
+worker.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches
 			.open(STATIC_CACHE_NAME)
@@ -50,7 +49,7 @@ worker.addEventListener("install", (event) => {
 	);
 });
 
-worker.addEventListener("activate", (event) => {
+worker.addEventListener('activate', (event) => {
 	event.waitUntil(
 		caches.keys().then(async (keys) => {
 			// delete old caches
@@ -86,20 +85,19 @@ async function fetchAndCache(request: Request) {
 	}
 }
 
-worker.addEventListener("fetch", (event) => {
-	if (event.request.method !== "GET" || event.request.headers.has("range")) {
+worker.addEventListener('fetch', (event) => {
+	if (event.request.method !== 'GET' || event.request.headers.has('range')) {
 		return;
 	}
 
 	const url = new URL(event.request.url);
 
 	// don't try to handle e.g. data: URIs
-	const isHttp = url.protocol.startsWith("http");
+	const isHttp = url.protocol.startsWith('http');
 	const isDevServerRequest =
 		url.hostname === self.location.hostname && url.port !== self.location.port;
 	const isStaticAsset = staticAssets.has(url.href);
-	const skipBecauseUncached =
-		event.request.cache === "only-if-cached" && !isStaticAsset;
+	const skipBecauseUncached = event.request.cache === 'only-if-cached' && !isStaticAsset;
 
 	if (isHttp && !isDevServerRequest && !skipBecauseUncached) {
 		event.respondWith(
@@ -107,8 +105,7 @@ worker.addEventListener("fetch", (event) => {
 				// always serve static files and bundler-generated assets from cache.
 				// if your application has other URLs with data that will never change,
 				// set this variable to true for them, and they will only be fetched once.
-				const cachedAsset =
-					isStaticAsset && (await caches.match(event.request));
+				const cachedAsset = isStaticAsset && (await caches.match(event.request));
 
 				return cachedAsset || fetchAndCache(event.request);
 			})()

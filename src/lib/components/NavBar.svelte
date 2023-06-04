@@ -8,7 +8,7 @@
 <div class="navbar bg-base-100">
 	<div class="navbar-start">
 		<div class="dropdown">
-			<label tabindex="0" class="btn btn-ghost btn-circle">
+			<label tabindex="0" class="btn-ghost btn-circle btn">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-5 w-5"
@@ -25,7 +25,7 @@
 			</label>
 			<ul
 				tabindex="0"
-				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+				class="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
 			>
 				<li><a href="/"><Icon src={Home} theme="solid" class="color-gray-900 w-4" />Home</a></li>
 				<li>
@@ -43,10 +43,9 @@
 	</div>
 	<div class="navbar-center">
 		<a
-			class="btn btn-ghost font-geologica normal-case text-xl text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary"
+			class="btn-ghost btn bg-gradient-to-br from-primary to-secondary bg-clip-text font-geologica text-xl normal-case text-transparent"
 			href="/">HoloQuest</a
 		>
-
 	</div>
 	<div class="navbar-end">
 		<!-- <button class="btn btn-ghost btn-circle">
