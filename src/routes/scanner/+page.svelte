@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	import QrScanner from 'qr-scanner';
 
@@ -63,6 +63,10 @@
 			highlightScanRegion: true,
 			highlightCodeOutline: true
 		});
+	});
+
+	onDestroy(() => {
+		qrScanner.destroy();
 	});
 </script>
 
