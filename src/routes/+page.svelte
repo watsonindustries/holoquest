@@ -31,15 +31,15 @@
 </script>
 
 <div class="flex flex-col justify-center space-y-6">
-	<h1 class="text-4xl font-bold text-center text-primary">Stamps</h1>
+	<h1 class="text-4xl font-bold font-geologica text-center text-primary">Stamps</h1>
 
 	<a
 		href="/scanner"
-		class="btn btn-info btn-xl gap-2 rounded-full justify-center w-6/12 mx-auto font-bold"
+		class="btn btn-info btn-xl gap-2 rounded-full text-base-100 justify-center w-6/12 mx-auto font-bold"
 		tabindex="-1"
 		aria-disabled="true"
 	>
-		<Icon src={QrCode} theme="solid" class="color-gray-900 h-8 w-8" />
+		<Icon src={QrCode} theme="solid" class="h-8 w-8" />
 		Scan stamp</a
 	>
 </div>

@@ -25,7 +25,7 @@
 	});
 </script>
 
-<h1 class="text-4xl font-bold text-center text-primary">Reward Collection</h1>
+<h1 class="text-4xl font-bold text-center text-primary font-geologica">Reward Collection</h1>
 
 <div class="flex flex-col justify-center">
 	<canvas id="canvas" class="mx-auto my-4" />

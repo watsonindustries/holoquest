@@ -73,7 +73,7 @@
 </div>
 
 <div class="space-y-4">
-	<h1 class="text-4xl text-center text-primary font-bold">Scanner</h1>
+	<h1 class="text-4xl text-center text-primary font-bold font-geologica">Scanner</h1>
 	<p class="text-xl text-center px-2">Press Scan, and scan the QR code of the stamp!</p>
 
 	<div class="flex flex-col space-y-4 justify-center">

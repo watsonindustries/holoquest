@@ -43,9 +43,10 @@
 	</div>
 	<div class="navbar-center">
 		<a
-			class="btn btn-ghost normal-case text-xl text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary"
+			class="btn btn-ghost font-geologica normal-case text-xl text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary"
 			href="/">HoloQuest</a
 		>
+
 	</div>
 	<div class="navbar-end">
 		<!-- <button class="btn btn-ghost btn-circle">
