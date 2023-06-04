@@ -4,6 +4,7 @@
 	import QRCode from 'qrcode';
 	import { expectedStamps } from '../../const';
 	import { calculateTokenChecksum } from '../../crypto';
+	import { fade } from 'svelte/transition';
 
 	let checkSum = '';
 
@@ -25,9 +26,11 @@
 	});
 </script>
 
-<h1 class="text-center font-geologica text-4xl font-bold text-primary">Reward Collection</h1>
+<h1 class="text-center font-geologica text-4xl font-bold tracking-tighter text-primary">
+	Reward Collection
+</h1>
 
-<div class="flex flex-col justify-center">
+<div class="flex flex-col justify-center" in:fade={{ duration: 1000 }}>
 	<canvas id="canvas" class="mx-auto my-4" />
 	<div class="mx-auto max-w-xs break-words text-center font-mono">{checkSum}</div>
 </div>

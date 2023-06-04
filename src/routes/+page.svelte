@@ -1,6 +1,7 @@
 <script lang="ts">
 	import StampComponent from '$lib/components/Stamp.svelte';
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import { expectedStamps } from '../const';
 	import type { Stamp } from '../custom';
 
@@ -31,7 +32,7 @@
 	});
 </script>
 
-<div class="flex flex-col justify-center space-y-6">
+<div class="flex flex-col justify-center space-y-6" in:fade={{ delay: 1000 }}>
 	<h1 class="text-center font-geologica text-4xl font-bold text-primary">Stamps</h1>
 
 	<a
@@ -45,11 +46,11 @@
 	>
 </div>
 
-<div class="divider mx-auto w-10/12" />
+<div class="divider mx-auto w-10/12" in:fade={{ delay: 1000 }} />
 
 <div class="grid grid-cols-2 gap-4 bg-base-100 p-4">
 	{#each expectedStamps as stamp}
-		<StampComponent {...stamp} collected={isStampCollected(stamp)} />
+		<StampComponent {...stamp} collected={isStampCollected(stamp)} id={stamp.id} />
 	{/each}
 </div>
 

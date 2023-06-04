@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 
-	import { CheckCircle } from '@steeze-ui/heroicons';
+	import { CheckCircle, XCircle } from '@steeze-ui/heroicons';
 
 	export let active = false;
 	export let href = '/result';
@@ -14,8 +14,9 @@
 		class:btn-disabled={!active}
 		tabindex="-1"
 		aria-disabled="true"
+		class:animate-pulse={active}
 	>
-		<Icon src={CheckCircle} theme="solid" class="color-gray-900 h-8 w-8" />
+		<Icon src={active ? CheckCircle : XCircle} theme="solid" class="color-gray-900 h-8 w-8" />
 		{active ? 'Complete quest' : 'Collect more stamps'}</a
 	>
 </div>

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
+
 	export let id: number;
 	export let name: string;
 	export let collected = false;
@@ -9,7 +11,7 @@
 	export let img = PLACEHOLDER_STAMP_IMG;
 </script>
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center" in:fade={{ duration: 200, delay: 150 * id + 1000 }}>
 	<div class="flex h-28 w-28 items-center justify-center rounded-full bg-gray-200">
 		<div class="flex h-24 w-24 items-center justify-center rounded-full bg-white">
 			{#if collected}

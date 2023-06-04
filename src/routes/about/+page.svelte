@@ -39,7 +39,10 @@
 		</ul>
 
 		<button
-			on:click={() => {localStorage.clear(); collectedStampsCount = localStorage.length;}}
+			on:click={() => {
+				localStorage.clear();
+				collectedStampsCount = localStorage.length;
+			}}
 			class="btn-error btn mx-auto w-6/12 gap-2 rounded-full"
 		>
 			Delete all stamps</button

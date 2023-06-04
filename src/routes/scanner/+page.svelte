@@ -11,6 +11,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	import { Eye, QrCode, StopCircle } from '@steeze-ui/heroicons';
+	import { fade } from 'svelte/transition';
 
 	let state: ScannerState = 'stopped';
 
@@ -66,7 +67,7 @@
 	});
 
 	onDestroy(() => {
-		qrScanner.destroy();
+		qrScanner?.destroy();
 	});
 </script>
 
@@ -97,7 +98,7 @@
 		>
 	</div>
 
-	<div id="scanner-preview-area" class="h-96 bg-slate-800" class:hidden={state === 'stopped'}>
+	<div id="scanner-preview-area" class="h-96" class:hidden={state === 'stopped'} transition:fade>
 		<!-- svelte-ignore a11y-media-has-caption -->
 		<video />
 	</div>
