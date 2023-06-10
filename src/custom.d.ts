@@ -12,3 +12,20 @@ export type Toast = {
 };
 
 export type ScannerState = 'scanning' | 'stopped';
+
+export type RegisterUserResponse = {
+	data: {
+		attributes: {
+			nickname?;
+			stamps_collected: null | 0;
+		};
+		id: string;
+		type: 'user';
+	};
+	jsonapi: {
+		version: '1.0';
+	};
+	links: {
+		self: string;
+	};
+};

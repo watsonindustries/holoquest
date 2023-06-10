@@ -32,3 +32,5 @@ export const expectedStamps: Stamp[] = [
 		hash: '31db5fff1842de328bf801624d6c6a7a368849e2'
 	}
 ];
+
+export const apiServerURL = 'http://localhost:4000/api/json';

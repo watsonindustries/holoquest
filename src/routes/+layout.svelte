@@ -9,12 +9,24 @@
 	import type { LayoutData } from './$types';
 	import { onMount } from 'svelte';
 	import { initChannel } from '../phoenix-client';
+	import { registerUser } from '../client';
 
 	export let data: LayoutData;
 
-	onMount(() => {
+	onMount(async () => {
 		$nickname = localStorage.getItem('nickname') || 'anonymous';
 		$userToken = localStorage.getItem('userToken');
+
+		if (!$userToken) {
+			// When no user token is found locally, register a new user and save its token
+			try {
+				const res = await registerUser();
+				$userToken = res.data.id;
+				localStorage.setItem('userToken', $userToken);
+			} catch (error) {
+				console.error(error);
+			}
+		}
 
 		$socket = new Socket(data.socketServerURL, { params: { userToken: $userToken } });
 		$scansChannel = initChannel($socket, 'notifications:scans');
