@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
+	import { nickname, scansChannel } from '../../store';
+
 	import QrScanner from 'qr-scanner';
 
 	import { sha1 } from '../../crypto';
@@ -12,6 +14,7 @@
 
 	import { Eye, QrCode, StopCircle } from '@steeze-ui/heroicons';
 	import { fade } from 'svelte/transition';
+	import type { PageData } from './$types';
 
 	let state: ScannerState = 'stopped';
 
@@ -20,6 +23,8 @@
 	let token = '';
 	let toasts: ArrayLike<Toast> = [];
 	const expectedHashes = expectedStamps.map((stamp) => stamp.hash);
+
+	export let data: PageData;
 
 	function transitionState() {
 		if (state === 'scanning') {
@@ -37,7 +42,9 @@
 		let hash = sha1(token);
 
 		if (expectedHashes.includes(hash)) {
+			// Scan success
 			localStorage.setItem(hash, token);
+			$scansChannel?.push('collected', { nickname: $nickname });
 			toasts = [
 				{
 					type: 'success',
@@ -104,7 +111,7 @@
 	</div>
 
 	<div class="flex flex-col justify-center space-y-4">
-		<a class="btn-secondary btn mx-auto mt-2 gap-2 rounded-full text-lg" href="/">
+		<a class="btn-secondary btn mx-auto mt-2 w-6/12 gap-2 rounded-full text-xl" href="/">
 			<Icon src={Eye} theme="solid" class="color-gray-900" size="28px" />
 			View collected stamps</a
 		>

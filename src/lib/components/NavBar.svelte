@@ -2,7 +2,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	//import as many icons from a Icon Pack
-	import { Home, QrCode, QuestionMarkCircle } from '@steeze-ui/heroicons';
+	import { Home, QrCode, QuestionMarkCircle, UserCircle } from '@steeze-ui/heroicons';
 </script>
 
 <div class="navbar bg-base-100">
@@ -48,23 +48,17 @@
 		>
 	</div>
 	<div class="navbar-end">
-		<!-- <button class="btn btn-ghost btn-circle">
-			<div class="indicator">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-5 w-5"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-					/></svg
-				>
-				<span class="badge badge-xs badge-primary indicator-item" />
+		<button class="btn-ghost btn-circle btn">
+			<div class="indicator relative">
+				<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />
+				<!-- TODO: Extract into separate component, change the color based on the socket ConnectionState -->
+				<span class="absolute -right-1 -top-1 flex h-3 w-3">
+					<span
+						class="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75"
+					/>
+					<span class="relative inline-flex h-3 w-3 rounded-full bg-success" />
+				</span>
 			</div>
-		</button> -->
+		</button>
 	</div>
 </div>
