@@ -3,6 +3,8 @@
 
 	//import as many icons from a Icon Pack
 	import { Home, QrCode, QuestionMarkCircle, UserCircle } from '@steeze-ui/heroicons';
+	import ConnectionIndicator from './ConnectionIndicator.svelte';
+
 </script>
 
 <div class="navbar bg-base-100">
@@ -51,13 +53,7 @@
 		<button class="btn-ghost btn-circle btn">
 			<div class="indicator relative">
 				<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />
-				<!-- TODO: Extract into separate component, change the color based on the socket ConnectionState -->
-				<span class="absolute -right-1 -top-1 flex h-3 w-3">
-					<span
-						class="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75"
-					/>
-					<span class="relative inline-flex h-3 w-3 rounded-full bg-success" />
-				</span>
+				<ConnectionIndicator />
 			</div>
 		</button>
 	</div>
