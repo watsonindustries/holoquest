@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Bars2, Home, QrCode, QuestionMarkCircle, UserCircle } from '@steeze-ui/heroicons';
+	import { Bars2, Home, QrCode, QuestionMarkCircle } from '@steeze-ui/heroicons';
 	import ConnectionIndicator from './ConnectionIndicator.svelte';
 </script>
 
@@ -34,11 +34,6 @@
 		>
 	</div>
 	<div class="navbar-end">
-		<button class="btn-ghost btn-circle btn">
-			<div class="indicator relative">
-				<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />
-				<ConnectionIndicator />
-			</div>
-		</button>
+		<ConnectionIndicator />	
 	</div>
 </div>

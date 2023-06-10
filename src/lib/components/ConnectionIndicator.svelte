@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { ConnectionState } from 'phoenix';
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { UserCircle } from '@steeze-ui/heroicons';
 
 	import { socket } from '../../store';
 
@@ -29,12 +31,16 @@
 	}
 
 	$: connectionIndicatorClass = getConnectionIndicatorClass(connectionState);
-	// $: console.log(connectionState);
 </script>
 
-<span class="absolute -right-1 -top-1 flex h-3 w-3">
-	<span
-		class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 {connectionIndicatorClass}"
-	/>
-	<span class="relative inline-flex h-3 w-3 rounded-full {connectionIndicatorClass}" />
-</span>
+<button class="btn-ghost btn-circle btn tooltip tooltip-left" data-tip={connectionState === 'open' ? 'Connected' : 'Disconnected'}>
+	<div class="indicator relative">
+		<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />
+		<span class="absolute -right-1 -top-1 flex h-3 w-3">
+			<span
+				class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 {connectionIndicatorClass}"
+			/>
+			<span class="relative inline-flex h-3 w-3 rounded-full {connectionIndicatorClass}" />
+		</span>
+	</div>
+</button>
