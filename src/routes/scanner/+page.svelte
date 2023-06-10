@@ -1,30 +1,25 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
-	import { nickname, scansChannel } from '../../store';
+	import { nickname, scansChannel, setToast } from '../../store';
 
 	import QrScanner from 'qr-scanner';
 
 	import { sha1 } from '../../crypto';
 	import { expectedStamps } from '../../const';
-	import ToastComponent from '$lib/components/Toast.svelte';
-	import type { ScannerState, Toast } from '../../custom';
+	import type { ScannerState } from '../../custom';
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	import { Eye, QrCode, StopCircle } from '@steeze-ui/heroicons';
 	import { fade } from 'svelte/transition';
-	import type { PageData } from './$types';
 
 	let state: ScannerState = 'stopped';
 
 	let videoElem: HTMLVideoElement;
 	let qrScanner: QrScanner;
 	let token = '';
-	let toasts: ArrayLike<Toast> = [];
 	const expectedHashes = expectedStamps.map((stamp) => stamp.hash);
-
-	export let data: PageData;
 
 	function transitionState() {
 		if (state === 'scanning') {
@@ -45,24 +40,17 @@
 			// Scan success
 			localStorage.setItem(hash, token);
 			$scansChannel?.push('collected', { nickname: $nickname });
-			toasts = [
-				{
-					type: 'success',
-					message: 'Stamp Saved!'
-				}
-			];
-		} else {
-			toasts = [
-				{
-					type: 'error',
-					message: 'Invalid Stamp!'
-				}
-			];
-		}
 
-		setTimeout(() => {
-			toasts = [];
-		}, 4000);
+			setToast({
+				type: 'success',
+				message: 'Stamp Saved!'
+			});
+		} else {
+			setToast({
+				type: 'error',
+				message: 'Invalid Stamp!'
+			});
+		}
 	}
 
 	onMount(() => {
@@ -78,12 +66,6 @@
 	});
 </script>
 
-<div class="toast-center toast-bottom toast">
-	{#each toasts as toast}
-		<ToastComponent {...toast} />
-	{/each}
-</div>
-
 <div class="space-y-4">
 	<h1 class="text-center font-geologica text-4xl font-bold text-primary">Scanner</h1>
 	<p class="px-2 text-center text-xl">Press Scan, and scan the QR code of the stamp!</p>
@@ -91,7 +73,7 @@
 	<div class="flex flex-col justify-center space-y-4">
 		<button
 			on:click={transitionState}
-			class="btn mx-auto w-6/12 gap-2 rounded-full text-xl"
+			class="btn mx-auto max-w-screen-lg w-10/12 gap-2 rounded-full text-lg"
 			class:btn-primary={state === 'stopped'}
 			class:btn-error={state === 'scanning'}
 		>
@@ -111,7 +93,7 @@
 	</div>
 
 	<div class="flex flex-col justify-center space-y-4">
-		<a class="btn-secondary btn mx-auto mt-2 w-6/12 gap-2 rounded-full text-xl" href="/">
+		<a class="btn-secondary btn mx-auto mt-2 max-w-screen-lg w-10/12 gap-2 rounded-full text-lg" href="/">
 			<Icon src={Eye} theme="solid" class="color-gray-900" size="28px" />
 			View collected stamps</a
 		>

@@ -50,7 +50,7 @@
 
 <div class="grid grid-cols-2 gap-4 bg-base-100 p-4">
 	{#each expectedStamps as stamp}
-		<StampComponent {...stamp} collected={isStampCollected(stamp)} id={stamp.id} />
+		<StampComponent name={stamp.name} collected={isStampCollected(stamp)} id={stamp.id} />
 	{/each}
 </div>
 

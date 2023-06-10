@@ -2,13 +2,13 @@
 	import { fade } from 'svelte/transition';
 	import type { ToastType } from '../../custom';
 
-	export let type: ToastType;
+	export let type: ToastType = 'success';
 	export let message: string;
 </script>
 
 <div class="toast-center toast-bottom toast w-52">
 	<div class="alert alert-{type}" transition:fade>
-		<div>
+		<div class="text-center">
 			<span>{message}</span>
 		</div>
 	</div>
