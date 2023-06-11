@@ -86,7 +86,7 @@
 	<!-- Stub -->
 	<div
 		class="mx-8 flex flex-col justify-center space-y-6 rounded-t-xl bg-slate-100 pb-8 pt-4 shadow-md"
-		class:animate-pulse="{isTouching}"
+		class:animate-pulse="{isTouching && isQuestCompleted}"
 		class:border-b-2="{isStampSheetTorn}"
 		class:border-dashed="{isStampSheetTorn}"
 		class:border-slate-900="{isStampSheetTorn}"
