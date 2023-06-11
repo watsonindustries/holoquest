@@ -10,6 +10,7 @@
 	import { onMount } from 'svelte';
 	import { initChannel } from '../phoenix-client';
 	import { registerUser } from '../client';
+	import { socketServerURL } from '../const';
 
 	export let data: LayoutData;
 
@@ -28,7 +29,7 @@
 			}
 		}
 
-		$socket = new Socket(data.socketServerURL, { params: { userToken: $userToken } });
+		$socket = new Socket(socketServerURL, { params: { userToken: $userToken } });
 		$scansChannel = initChannel($socket, 'notifications:scans');
 
 		try {

@@ -1,4 +1,5 @@
 import type { Stamp } from './custom.d';
+import { dev } from '$app/environment';
 /**
  * @file This file contains all the constants used in the application.
  */
@@ -33,4 +34,5 @@ export const expectedStamps: Stamp[] = [
 	}
 ];
 
-export const apiServerURL = 'http://localhost:4000/api/json';
+export const socketServerURL = dev ? 'ws://localhost:4000/socket' : 'wss://api.hololivefanbooth.com/socket';
+export const apiServerURL = dev ? 'http://localhost:4000/api/json' : 'https://api.hololivefanbooth.com';
