@@ -82,7 +82,7 @@
 	}
 </script>
 
-<div class="divide-y-2 divide-dashed divide-slate-900 my-2">
+<div class="divide-y-2 divide-dashed divide-slate-900 my-2" out:fade>
 	<!-- Stub -->
 	<div
 		class="mx-8 flex flex-col justify-center space-y-6 rounded-t-xl bg-slate-100 pb-8 pt-4 shadow-md"
@@ -121,7 +121,7 @@
 		<div
 			class="mx-8 grid grid-cols-2 gap-4 rounded-b-xl bg-slate-100 p-4 pt-8 shadow-md"
 			in:fade={{ delay }}
-			out:fly={isStampSheetTorn ? { y: 20, duration: 1200, easing: cubicOut } : {}}>
+			out:fly={(isStampSheetTorn && isQuestCompleted) ? { y: 20, duration: 1200, easing: cubicOut } : {opacity: 100}}>
 			{#each stamps as stamp}
 				<StampComponent name={stamp.name} collected={isStampCollected(stamp)} id={stamp.id} />
 			{/each}

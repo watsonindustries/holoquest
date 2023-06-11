@@ -67,7 +67,7 @@
 	});
 </script>
 
-<div class="space-y-4">
+<div class="space-y-4" in:fade={{delay: 500}}>
 	<h1 class="text-center font-geologica text-4xl font-bold text-primary">Scanner</h1>
 	<p class="px-2 text-center text-xl">Press Scan, and scan the QR code of the stamp!</p>
 
