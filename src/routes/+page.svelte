@@ -39,11 +39,9 @@
 		href="/scanner"
 		class="btn-xl btn-info btn mx-auto w-6/12 justify-center gap-2 rounded-full font-bold text-base-100"
 		tabindex="-1"
-		aria-disabled="true"
-	>
+		aria-disabled="true">
 		<Icon src={QrCode} theme="solid" class="h-8 w-8" />
-		Scan stamp</a
-	>
+		Scan stamp</a>
 </div>
 
 <div class="divider mx-auto w-10/12" in:fade={{ delay: 1000 }} />

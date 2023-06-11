@@ -5,7 +5,7 @@
 
 	import { socket } from '../../store';
 
-	let connectionState : ConnectionState = 'open';
+	let connectionState: ConnectionState = 'open';
 
 	$socket?.onClose(() => {
 		console.log('Lost connection to server');
@@ -33,13 +33,14 @@
 	$: connectionIndicatorClass = getConnectionIndicatorClass(connectionState);
 </script>
 
-<button class="btn-ghost btn-circle btn tooltip tooltip-left" data-tip={connectionState === 'open' ? 'Connected' : 'Disconnected'}>
+<button
+	class="btn-ghost tooltip tooltip-left btn-circle btn"
+	data-tip={connectionState === 'open' ? 'Connected' : 'Disconnected'}>
 	<div class="indicator relative">
 		<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />
 		<span class="absolute -right-1 -top-1 flex h-3 w-3">
 			<span
-				class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 {connectionIndicatorClass}"
-			/>
+				class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 {connectionIndicatorClass}" />
 			<span class="relative inline-flex h-3 w-3 rounded-full {connectionIndicatorClass}" />
 		</span>
 	</div>

@@ -73,18 +73,15 @@
 	<div class="flex flex-col justify-center space-y-4">
 		<button
 			on:click={transitionState}
-			class="btn mx-auto max-w-screen-lg w-10/12 gap-2 rounded-full text-lg"
+			class="btn mx-auto w-10/12 max-w-screen-lg gap-2 rounded-full text-lg"
 			class:btn-primary={state === 'stopped'}
-			class:btn-error={state === 'scanning'}
-		>
+			class:btn-error={state === 'scanning'}>
 			<Icon
 				src={state === 'scanning' ? StopCircle : QrCode}
 				theme="solid"
 				class="color-gray-900"
-				size="32px"
-			/>
-			{state === 'scanning' ? 'Stop' : 'Scan'}</button
-		>
+				size="32px" />
+			{state === 'scanning' ? 'Stop' : 'Scan'}</button>
 	</div>
 
 	<div id="scanner-preview-area" class="h-96" class:hidden={state === 'stopped'} transition:fade>
@@ -93,9 +90,10 @@
 	</div>
 
 	<div class="flex flex-col justify-center space-y-4">
-		<a class="btn-secondary btn mx-auto mt-2 max-w-screen-lg w-10/12 gap-2 rounded-full text-lg" href="/">
+		<a
+			class="btn-secondary btn mx-auto mt-2 w-10/12 max-w-screen-lg gap-2 rounded-full text-lg"
+			href="/">
 			<Icon src={Eye} theme="solid" class="color-gray-900" size="28px" />
-			View collected stamps</a
-		>
+			View collected stamps</a>
 	</div>
 </div>

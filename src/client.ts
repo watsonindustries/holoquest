@@ -1,9 +1,9 @@
-import type { RegisterUserResponse } from "./custom";
-import { apiServerURL } from "./const";
+import type { RegisterUserResponse } from './custom';
+import { apiServerURL } from './const';
 
 const defaultHeaders = {
-	"Accept": "application/vnd.api+json",
-	"Content-Type": "application/vnd.api+json"
+	Accept: 'application/vnd.api+json',
+	'Content-Type': 'application/vnd.api+json'
 };
 
 /**
@@ -12,9 +12,9 @@ const defaultHeaders = {
  */
 export async function registerUser(): Promise<RegisterUserResponse> {
 	const response = await fetch(`${apiServerURL}/accounts/users/`, {
-		"method": "POST",
-		"headers": defaultHeaders,
-		"body": "{\"data\":{\"type\":\"user\"}}"
+		method: 'POST',
+		headers: defaultHeaders,
+		body: '{"data":{"type":"user"}}'
 	});
 	const json = await response.json();
 	return json;
@@ -29,9 +29,9 @@ export async function registerUser(): Promise<RegisterUserResponse> {
  */
 export async function setNickname(userId: string, nickname: string): Promise<any> {
 	const response = await fetch(`${apiServerURL}/accounts/users/${userId}`, {
-		"method": "PATCH",
-		"headers": defaultHeaders,
-		"body": `{"data":{"type":"user","attributes":{"nickname":"${nickname}"}}}`
+		method: 'PATCH',
+		headers: defaultHeaders,
+		body: `{"data":{"type":"user","attributes":{"nickname":"${nickname}"}}}`
 	});
 	const json = await response.json();
 	return json;

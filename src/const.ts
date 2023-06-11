@@ -34,5 +34,9 @@ export const expectedStamps: Stamp[] = [
 	}
 ];
 
-export const socketServerURL = dev ? 'ws://localhost:4000/socket' : 'wss://api.hololivefanbooth.com/socket';
-export const apiServerURL = dev ? 'http://localhost:4000/api/json' : 'https://api.hololivefanbooth.com';
+export const socketServerURL = dev
+	? 'ws://localhost:4000/socket'
+	: 'wss://api.hololivefanbooth.com/socket';
+export const apiServerURL = dev
+	? 'http://localhost:4000/api/json'
+	: 'https://api.hololivefanbooth.com';

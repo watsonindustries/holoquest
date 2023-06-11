@@ -14,9 +14,7 @@
 		class:btn-disabled={!active}
 		tabindex="-1"
 		aria-disabled="true"
-		class:animate-pulse={active}
-	>
+		class:animate-pulse={active}>
 		<Icon src={active ? CheckCircle : XCircle} theme="solid" class="color-gray-900 h-8 w-8" />
-		{active ? 'Complete quest' : 'Collect more stamps'}</a
-	>
+		{active ? 'Complete quest' : 'Collect more stamps'}</a>
 </div>

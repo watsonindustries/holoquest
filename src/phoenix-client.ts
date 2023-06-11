@@ -20,7 +20,7 @@ export function initChannel(socket: Socket, topic: string) {
 
 		setToast({
 			type: 'success',
-			message: `User ${payload.nickname} found a stamp!`,
+			message: `User ${payload.nickname} found a stamp!`
 		});
 	});
 

@@ -17,8 +17,7 @@
 
 	<p>
 		Developed by <a href="https://watsonindustries.live" class="link-primary link"
-			>Watson Industries</a
-		>
+			>Watson Industries</a>
 	</p>
 
 	<p>
@@ -40,10 +39,8 @@
 			on:click={() => {
 				localStorage.clear();
 			}}
-			class="btn-error btn mx-auto w-8/12 gap-2 rounded-full"
-		>
-			clear localstorage</button
-		>
+			class="btn-error btn mx-auto w-8/12 gap-2 rounded-full">
+			clear localstorage</button>
 
 		<p class="text-xl font-bold">User info</p>
 		<p>Nickname: <span class="font-mono">{$nickname}</span></p>

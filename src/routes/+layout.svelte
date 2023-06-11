@@ -54,7 +54,6 @@
 			<Toast {...$toastStore} />
 		{/if}
 	</div>
-	
-	<slot />	
-</Navigation>
 
+	<slot />
+</Navigation>
