@@ -62,6 +62,7 @@
 	});
 
 	onDestroy(() => {
+		console.log('Destroying Scanner');
 		qrScanner?.destroy();
 	});
 </script>
