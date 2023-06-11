@@ -121,7 +121,7 @@
 		<div
 			class="mx-8 grid grid-cols-2 gap-4 rounded-b-xl bg-slate-100 p-4 pt-8 shadow-md"
 			in:fade={{ delay }}
-			out:fly={{ y: 20, duration: 1200, easing: cubicOut }}>
+			out:fly={isStampSheetTorn ? { y: 20, duration: 1200, easing: cubicOut } : {}}>
 			{#each stamps as stamp}
 				<StampComponent name={stamp.name} collected={isStampCollected(stamp)} id={stamp.id} />
 			{/each}
