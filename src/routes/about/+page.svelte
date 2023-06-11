@@ -6,9 +6,11 @@
 	const debug = true; // TODO: Set `false` as default, enabled in configured in localStorage
 
 	let availableCameras = [] as ArrayLike<QrScanner.Camera>;
+	let sheetTorn = false;
 
 	onMount(async () => {
 		availableCameras = await QrScanner.listCameras(true);
+		sheetTorn = localStorage.getItem('isStampSheetTorn') === 'yes';
 	});
 </script>
 
@@ -45,5 +47,10 @@
 		<p class="text-xl font-bold">User info</p>
 		<p>Nickname: <span class="font-mono">{$nickname}</span></p>
 		<p>Device ID: <span class="font-mono">{$userToken}</span></p>
+
+		<p class="text-xl font-bold">Stamps</p>
+		<p>Stamp sheet status: {sheetTorn ? 'torn' : 'untorn'}</p>
+		<button on:click={() => localStorage.setItem('isStampSheetTorn', 'no')}
+			class="btn-primary btn mx-auto w-8/12 gap-2 rounded-full">Untear sheet</button>
 	{/if}
 </div>
