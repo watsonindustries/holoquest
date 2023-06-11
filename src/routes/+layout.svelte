@@ -6,13 +6,10 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Toast from '$lib/components/Toast.svelte';
 	import { Socket } from 'phoenix';
-	import type { LayoutData } from './$types';
 	import { onMount } from 'svelte';
 	import { initChannel } from '../phoenix-client';
 	import { registerUser } from '../client';
 	import { socketServerURL } from '../const';
-
-	export let data: LayoutData;
 
 	onMount(async () => {
 		$nickname = localStorage.getItem('nickname') || 'anonymous';
