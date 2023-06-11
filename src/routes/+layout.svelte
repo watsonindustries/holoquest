@@ -3,7 +3,7 @@
 
 	import { nickname, userToken, socket, scansChannel, toastStore } from '../store';
 
-	import NavBar from '$lib/components/NavBar.svelte';
+	import Navigation from '$lib/components/Navigation.svelte';
 	import Toast from '$lib/components/Toast.svelte';
 	import { Socket } from 'phoenix';
 	import type { LayoutData } from './$types';
@@ -47,12 +47,13 @@
 	});
 </script>
 
-<NavBar />
+<Navigation>
+	<div class="toast-center toast-bottom toast">
+		{#if $toastStore}
+			<Toast {...$toastStore} />
+		{/if}
+	</div>
+	
+	<slot />	
+</Navigation>
 
-<div class="toast-center toast-bottom toast">
-	{#if $toastStore}
-		<Toast {...$toastStore} />
-	{/if}
-</div>
-
-<slot />
