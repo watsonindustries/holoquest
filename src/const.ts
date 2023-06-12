@@ -39,4 +39,4 @@ export const socketServerURL = dev
 	: 'wss://api.hololivefanbooth.com/socket';
 export const apiServerURL = dev
 	? 'http://localhost:4000/api/json'
-	: 'https://api.hololivefanbooth.com';
+	: 'https://api.hololivefanbooth.com/api/json';
