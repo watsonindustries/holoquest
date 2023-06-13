@@ -29,7 +29,14 @@
 
 			if (userToken !== '' && userToken !== null) {
 				const res = await setNickname(userToken, newNicknameValue);
-				console.log(res); // TODO: check for errors from server
+				if (res.errors) {
+					console.log(res.errors);
+					setToast({
+						type: 'error',
+						message: 'Nickname invalid'
+					});
+					return;
+				}
 				setToast({
 					type: 'success',
 					message: 'Nickname updated successfully'

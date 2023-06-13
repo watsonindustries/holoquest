@@ -1,4 +1,4 @@
-import type { RegisterUserResponse } from './custom';
+import type { RegisterUserResponse, SetNicknameResponse } from './custom';
 import { apiServerURL } from './const';
 
 const defaultHeaders = {
@@ -24,10 +24,9 @@ export async function registerUser(): Promise<RegisterUserResponse> {
  * Sets the nickname of a user.
  * @param {string} userId The ID of the user to set the nickname of. Must be a UUIDv4.
  * @param {string} nickname The nickname to set.
- * @returns {Promise<any>} A promise that resolves when the request is complete.
- * @throws {Error} If the request fails.
+ * @returns {Promise<SetNicknameResponse>} A promise that resolves when the request is complete.
  */
-export async function setNickname(userId: string, nickname: string): Promise<any> {
+export async function setNickname(userId: string, nickname: string): Promise<SetNicknameResponse> {
 	const response = await fetch(`${apiServerURL}/accounts/users/${userId}`, {
 		method: 'PATCH',
 		headers: defaultHeaders,

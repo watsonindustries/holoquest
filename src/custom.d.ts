@@ -29,3 +29,27 @@ export type RegisterUserResponse = {
 		self: string;
 	};
 };
+
+export type SetNicknameResponse = {
+	data: {
+		attributes: {
+			nickname?;
+			stamps_collected: null | 0;
+		};
+		id: string;
+		type: 'user';
+	};
+	jsonapi: {
+		version: '1.0';
+	};
+	links: {
+		self: string;
+	};
+	errors?: [{
+		code: string;
+		detail: string;
+		id: string;
+		status: string;
+		title: string;
+	}]
+};
