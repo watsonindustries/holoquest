@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Home, QrCode, QuestionMarkCircle } from '@steeze-ui/heroicons';
+	import { Home, QrCode, QuestionMarkCircle, Cog } from '@steeze-ui/heroicons';
 	import ConnectionIndicator from './ConnectionIndicator.svelte';
 </script>
 
@@ -41,17 +41,22 @@
 	</div>
 	<div class="drawer-side">
 		<label for="my-drawer-3" class="drawer-overlay" />
-		<ul class="menu h-full w-80 bg-base-200 p-4">
+		<ul class="menu h-full w-60 bg-base-200 p-4">
 			<!-- Sidebar content here -->
-			<li><a href="/"><Icon src={Home} theme="solid" class="color-gray-900 w-4" />Home</a></li>
+			<li><a href="/"><Icon src={Home} theme="solid" class="color-gray-900" size=20 />Home</a></li>
 			<li>
 				<a href="/scanner">
-					<Icon src={QrCode} theme="solid" class="color-gray-900 w-4" />Scanner
+					<Icon src={QrCode} theme="solid" class="color-gray-900" size=20 />Scanner
+				</a>
+			</li>
+			<li>
+				<a href="/settings">
+					<Icon src={Cog} theme="solid" class="color-gray-900" size=20 />Settings
 				</a>
 			</li>
 			<li>
 				<a href="/about">
-					<Icon src={QuestionMarkCircle} theme="solid" class="color-gray-900 w-4" />About
+					<Icon src={QuestionMarkCircle} theme="solid" class="color-gray-900" size=20 />About
 				</a>
 			</li>
 		</ul>
