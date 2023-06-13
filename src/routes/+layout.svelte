@@ -15,6 +15,10 @@
 		$nickname = localStorage.getItem('nickname') || 'anonymous';
 		$userToken = localStorage.getItem('userToken');
 
+		nickname.subscribe((value) => {
+			localStorage.setItem('nickname', value);
+		});
+
 		if (!$userToken) {
 			// When no user token is found locally, register a new user and save its token
 			try {

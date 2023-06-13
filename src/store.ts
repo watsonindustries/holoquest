@@ -17,7 +17,3 @@ export function setToast(toast: Toast) {
 	toastStore.set(toast);
 	setTimeout(() => toastStore.set(null), 5000);
 }
-
-nickname.subscribe((value) => {
-	localStorage.setItem('nickname', value);
-});
