@@ -52,10 +52,10 @@
 	});
 </script>
 
-<h1 class="mx-4 my-4 text-4xl font-bold text-primary">Settings</h1>
+<h1 class="mx-4 my-4 font-geologica text-4xl font-bold text-primary">Settings</h1>
 
 <div class="mx-4 my-4 space-y-4">
-	<label class="text-xl font-bold text-secondary" for="nickname">Nickname</label>
+	<label class="font-geologica text-xl font-bold text-secondary" for="nickname">Nickname</label>
 	<input
 		type="text"
 		id="nickname"
@@ -63,7 +63,9 @@
 		placeholder="E.g. smol_ame"
 		bind:value={$nickname}
 		class="input-bordered input-secondary input w-full max-w-xs" />
-	<button class="btn-secondary btn" on:click={handleSetNickname}> Set nickname </button>
+	<button class="btn-secondary btn rounded-full" on:click={handleSetNickname}>
+		Set nickname
+	</button>
 
 	<p>Your nickname is used to identify you in the leaderboards and realtime events.</p>
 </div>
