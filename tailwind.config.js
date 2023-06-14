@@ -4,6 +4,9 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
+			animation: {
+				ping: 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite'
+			},
 			fontFamily: {
 				geologica: ['geologica', 'sans-serif']
 			},
