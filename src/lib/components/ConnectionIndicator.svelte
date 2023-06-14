@@ -35,7 +35,7 @@
 
 	onMount(() => {
 		setTimeout(() => {
-			connectionState = $socket?.connectionState() as ConnectionState;	
+			connectionState = $socket?.connectionState() as ConnectionState;
 		}, 5000);
 	});
 </script>

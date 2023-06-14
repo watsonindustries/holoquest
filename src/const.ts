@@ -1,4 +1,4 @@
-import type { Stamp } from './custom.d';
+import type { Stamp } from './custom';
 import { dev } from '$app/environment';
 /**
  * @file This file contains all the constants used in the application.

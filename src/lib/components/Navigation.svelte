@@ -43,20 +43,22 @@
 		<label for="my-drawer-3" class="drawer-overlay" />
 		<ul class="menu h-full w-60 bg-base-200 p-4">
 			<!-- Sidebar content here -->
-			<li><a href="/"><Icon src={Home} theme="solid" class="color-gray-900" size=20 />Home</a></li>
+			<li>
+				<a href="/"><Icon src={Home} theme="solid" class="color-gray-900" size="20" />Home</a>
+			</li>
 			<li>
 				<a href="/scanner">
-					<Icon src={QrCode} theme="solid" class="color-gray-900" size=20 />Scanner
+					<Icon src={QrCode} theme="solid" class="color-gray-900" size="20" />Scanner
 				</a>
 			</li>
 			<li>
 				<a href="/settings">
-					<Icon src={Cog} theme="solid" class="color-gray-900" size=20 />Settings
+					<Icon src={Cog} theme="solid" class="color-gray-900" size="20" />Settings
 				</a>
 			</li>
 			<li>
 				<a href="/about">
-					<Icon src={QuestionMarkCircle} theme="solid" class="color-gray-900" size=20 />About
+					<Icon src={QuestionMarkCircle} theme="solid" class="color-gray-900" size="20" />About
 				</a>
 			</li>
 		</ul>

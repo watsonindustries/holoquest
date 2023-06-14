@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { setNickname } from '../../client';
 	import { setToast, nickname } from '../../store';
+	import { ToastType } from '../../custom';
 
 	let userToken = '';
 
@@ -19,7 +20,7 @@
 
 			if (!isNicknameValid(newNicknameValue)) {
 				setToast({
-					type: 'error',
+					type: ToastType.ERROR,
 					message: 'Nickname must be between 3 and 20 characters long'
 				});
 				return;
@@ -32,18 +33,18 @@
 				if (res.errors) {
 					console.log(res.errors);
 					setToast({
-						type: 'error',
+						type: ToastType.ERROR,
 						message: 'Nickname invalid'
 					});
 					return;
 				}
 				setToast({
-					type: 'success',
+					type: ToastType.SUCCESS,
 					message: 'Nickname updated successfully'
 				});
 			} else {
 				setToast({
-					type: 'error',
+					type: ToastType.ERROR,
 					message: 'User token not found'
 				});
 			}

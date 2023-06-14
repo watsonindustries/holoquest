@@ -105,7 +105,7 @@
 				{/if}
 			</h2>
 		{:else}
-		<!-- Scan button -->
+			<!-- Scan button -->
 			<a
 				href="/scanner"
 				class="btn-xl btn-info btn mx-auto w-8/12 justify-center gap-2 rounded-full font-bold text-base-100"

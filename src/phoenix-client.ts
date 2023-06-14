@@ -1,5 +1,6 @@
 import type { Socket } from 'phoenix';
 import { setToast } from './store';
+import { ToastType } from './custom';
 
 export function initChannel(socket: Socket, topic: string) {
 	const channel = socket.channel(topic, {});
@@ -19,7 +20,7 @@ export function initChannel(socket: Socket, topic: string) {
 		console.log('Received collected-broadcast:', payload);
 
 		setToast({
-			type: 'success',
+			type: ToastType.SUCCESS,
 			message: `User ${payload.nickname} found a stamp!`
 		});
 	});

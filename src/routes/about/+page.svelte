@@ -50,7 +50,8 @@
 
 		<p class="text-xl font-bold">Stamps</p>
 		<p>Stamp sheet status: {sheetTorn ? 'torn' : 'untorn'}</p>
-		<button on:click={() => localStorage.setItem('isStampSheetTorn', 'no')}
+		<button
+			on:click={() => localStorage.setItem('isStampSheetTorn', 'no')}
 			class="btn-primary btn mx-auto w-8/12 gap-2 rounded-full">Untear sheet</button>
 	{/if}
 </div>

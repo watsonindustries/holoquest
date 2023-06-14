@@ -4,19 +4,25 @@ export type Stamp = {
 	hash: string;
 };
 
-export type ToastType = 'success' | 'error';
+export enum ToastType {
+	SUCCESS,
+	ERROR
+}
 
 export type Toast = {
 	type: ToastType;
 	message: string;
 };
 
-export type ScannerState = 'scanning' | 'stopped';
+export enum ScannerState {
+	SCANNING,
+	STOPPED
+}
 
 export type RegisterUserResponse = {
 	data: {
 		attributes: {
-			nickname?;
+			nickname?: string;
 			stamps_collected: null | 0;
 		};
 		id: string;
@@ -33,7 +39,7 @@ export type RegisterUserResponse = {
 export type SetNicknameResponse = {
 	data: {
 		attributes: {
-			nickname?;
+			nickname?: string;
 			stamps_collected: null | 0;
 		};
 		id: string;
@@ -45,11 +51,13 @@ export type SetNicknameResponse = {
 	links: {
 		self: string;
 	};
-	errors?: [{
-		code: string;
-		detail: string;
-		id: string;
-		status: string;
-		title: string;
-	}]
+	errors?: [
+		{
+			code: string;
+			detail: string;
+			id: string;
+			status: string;
+			title: string;
+		}
+	];
 };

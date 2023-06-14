@@ -7,14 +7,14 @@
 
 	import { sha1 } from '../../crypto';
 	import { expectedStamps } from '../../const';
-	import type { ScannerState } from '../../custom';
+	import { ToastType, ScannerState } from '../../custom';
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 
 	import { Eye, QrCode, StopCircle } from '@steeze-ui/heroicons';
 	import { fade } from 'svelte/transition';
 
-	let state: ScannerState = 'stopped';
+	let state = ScannerState.STOPPED;
 
 	let videoElem: HTMLVideoElement;
 	let qrScanner: QrScanner;
@@ -22,11 +22,11 @@
 	const expectedHashes = expectedStamps.map((stamp) => stamp.hash);
 
 	function transitionState() {
-		if (state === 'scanning') {
-			state = 'stopped';
+		if (state === ScannerState.SCANNING) {
+			state = ScannerState.STOPPED;
 			qrScanner.pause();
-		} else if (state === 'stopped') {
-			state = 'scanning';
+		} else if (state === ScannerState.STOPPED) {
+			state = ScannerState.SCANNING;
 			qrScanner.start();
 		}
 	}
@@ -42,12 +42,12 @@
 			$scansChannel?.push('collected', { nickname: $nickname });
 
 			setToast({
-				type: 'success',
+				type: ToastType.SUCCESS,
 				message: 'Stamp Saved!'
 			});
 		} else {
 			setToast({
-				type: 'error',
+				type: ToastType.ERROR,
 				message: 'Invalid Stamp!'
 			});
 		}
@@ -67,7 +67,7 @@
 	});
 </script>
 
-<div class="space-y-4" in:fade={{delay: 500}}>
+<div class="space-y-4" in:fade={{ delay: 500 }}>
 	<h1 class="text-center font-geologica text-4xl font-bold text-primary">Scanner</h1>
 	<p class="px-2 text-center text-xl">Press Scan, and scan the QR code of the stamp!</p>
 
@@ -75,17 +75,21 @@
 		<button
 			on:click={transitionState}
 			class="btn mx-auto w-10/12 max-w-screen-lg gap-2 rounded-full text-lg"
-			class:btn-primary={state === 'stopped'}
-			class:btn-error={state === 'scanning'}>
+			class:btn-primary={state === ScannerState.STOPPED}
+			class:btn-error={state === ScannerState.SCANNING}>
 			<Icon
-				src={state === 'scanning' ? StopCircle : QrCode}
+				src={state === ScannerState.SCANNING ? StopCircle : QrCode}
 				theme="solid"
 				class="color-gray-900"
 				size="32px" />
-			{state === 'scanning' ? 'Stop' : 'Scan'}</button>
+			{state === ScannerState.SCANNING ? 'Stop' : 'Scan'}</button>
 	</div>
 
-	<div id="scanner-preview-area" class="h-96" class:hidden={state === 'stopped'} transition:fade>
+	<div
+		id="scanner-preview-area"
+		class="h-96"
+		class:hidden={state === ScannerState.STOPPED}
+		transition:fade>
 		<!-- svelte-ignore a11y-media-has-caption -->
 		<video />
 	</div>
