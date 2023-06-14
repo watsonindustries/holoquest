@@ -1,6 +1,6 @@
 import type { RegisterUserResponse, SetNicknameResponse } from './custom';
 import { apiServerURL } from './const';
-import { HOLOQUEST_API_TOKEN } from '$env/static/private';
+import { HOLOQUEST_API_TOKEN } from '$env/dynamic/private';
 
 const defaultHeaders = {
 	Accept: 'application/vnd.api+json',
