@@ -56,5 +56,5 @@
 		{/if}
 	</div>
 
-	<slot />
+	<slot class="overscroll-y-none" />
 </Navigation>
