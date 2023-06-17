@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Home, QrCode, QuestionMarkCircle, Cog } from '@steeze-ui/heroicons';
+	import { Home, QrCode, QuestionMarkCircle, Cog, BugAnt } from '@steeze-ui/heroicons';
 	import ConnectionIndicator from './ConnectionIndicator.svelte';
 	import { onMount } from 'svelte';
 
 	let drawerToggle: HTMLInputElement;
+	let isDebug = true; 
 
 	onMount(() => {
 		drawerToggle = document.querySelector('.drawer-toggle') as HTMLInputElement;
+		// TODO: Uncomment this before prod launch
+		// isDebug = localStorage.getItem('debug') === 'true';
 	});
 </script>
 
@@ -84,6 +87,17 @@
 					<Icon src={QuestionMarkCircle} theme="solid" class="color-gray-900" size="20" />About
 				</a>
 			</li>
+			{#if isDebug}
+				<li>
+					<a
+						href="/debug"
+						on:click={() => {
+							drawerToggle.checked = false;
+						}}>
+						<Icon src={BugAnt} theme="solid" class="color-gray-900" size="20" />Debug
+					</a>
+				</li>
+			{/if}
 		</ul>
 	</div>
 </div>

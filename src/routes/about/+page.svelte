@@ -1,57 +1,35 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import QrScanner from 'qr-scanner';
-	import { nickname, userToken } from '../../store';
+	import { version } from '$app/environment';
 
-	const debug = true; // TODO: Set `false` as default, enabled in configured in localStorage
-
-	let availableCameras = [] as ArrayLike<QrScanner.Camera>;
-	let sheetTorn = false;
-
-	onMount(async () => {
-		availableCameras = await QrScanner.listCameras(true);
-		sheetTorn = localStorage.getItem('isStampSheetTorn') === 'yes';
-	});
+	const coverCorpURL = 'https://cover-corp.com';
+	const hololiveURL = 'https://hololive.hololivepro.com/en';
 </script>
 
 <div class="mx-4 my-4 space-y-4 text-lg">
-	<p>HoloQuest companion app</p>
+	<p class="font-geologica text-2xl text-primary">HoloQuest companion app</p>
+
+	<p>Build version <span class="font-mono">{version}</span></p>
 
 	<p>
 		Developed by <a href="https://watsonindustries.live" class="link-primary link"
-			>Watson Industries</a>
+			>Watson Industries</a
+		>.
 	</p>
 
 	<p>
-		Contact <a href="https://twitter.com/DaniruKun" class="link-secondary link">@danirukun</a> about
-		questions
+		Reach out to <a href="https://twitter.com/DaniruKun" class="link-secondary link">@danirukun</a> for
+		support.
 	</p>
 
-	{#if debug}
-		<div class="divider" />
-		<p class="font-bold text-primary">Debug mode is enabled</p>
-		<p class="text-xl font-bold">Available cameras</p>
-		<ul>
-			{#each availableCameras as camera}
-				<li class="font-mono text-base">{camera.label}</li>
-			{/each}
-		</ul>
-
-		<button
-			on:click={() => {
-				localStorage.clear();
-			}}
-			class="btn-error btn mx-auto w-8/12 gap-2 rounded-full">
-			clear localstorage</button>
-
-		<p class="text-xl font-bold">User info</p>
-		<p>Nickname: <span class="font-mono">{$nickname}</span></p>
-		<p>Device ID: <span class="font-mono">{$userToken}</span></p>
-
-		<p class="text-xl font-bold">Stamps</p>
-		<p>Stamp sheet status: {sheetTorn ? 'torn' : 'untorn'}</p>
-		<button
-			on:click={() => localStorage.setItem('isStampSheetTorn', 'no')}
-			class="btn-primary btn mx-auto w-8/12 gap-2 rounded-full">Untear sheet</button>
-	{/if}
+	<h2 class="font-geologica text-2xl text-secondary">Legal</h2>
+	<p>
+		This is a fan project for the DoKomi 2023 Hololive fan booth after approval by <a
+			href={coverCorpURL}
+			class="link-primary link">COVER Corp.</a> within the rules of the fan work guidelines.
+	</p>
+	<p>
+		Not affiliated in any formal way with <a href={coverCorpURL} class="link-primary link"
+			>COVER Corp.</a>
+		or <a href={hololiveURL} class="link-primary link">holopro.</a>
+	</p>
 </div>
