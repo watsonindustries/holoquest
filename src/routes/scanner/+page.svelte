@@ -74,7 +74,7 @@
 	<div class="flex flex-col justify-center space-y-4">
 		<button
 			on:click={transitionState}
-			class="btn mx-auto w-10/12 max-w-screen-lg gap-2 rounded-full text-lg"
+			class="btn mx-auto w-10/12 max-w-screen-lg gap-2 rounded-full text"
 			class:btn-primary={state === ScannerState.STOPPED}
 			class:btn-error={state === ScannerState.SCANNING}>
 			<Icon
@@ -96,7 +96,7 @@
 
 	<div class="flex flex-col justify-center space-y-4">
 		<a
-			class="btn-secondary btn mx-auto mt-2 w-10/12 max-w-screen-lg gap-2 rounded-full text-lg"
+			class="btn-secondary btn mx-auto mt-2 w-10/12 max-w-screen-lg gap-2 rounded-full text"
 			href="/">
 			<Icon src={Eye} theme="solid" class="color-gray-900" size="28px" />
 			View collected stamps</a>
