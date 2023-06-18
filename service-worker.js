@@ -1,25 +1,25 @@
 const o = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), T = [
-  o + "/_app/immutable/entry/app.8fdca51f.js",
+  o + "/_app/immutable/entry/app.3327314c.js",
   o + "/_app/immutable/assets/0.190eedb9.css",
-  o + "/_app/immutable/nodes/0.d8898f45.js",
-  o + "/_app/immutable/nodes/1.caafe5cc.js",
-  o + "/_app/immutable/nodes/2.bf68b364.js",
-  o + "/_app/immutable/nodes/3.273c8679.js",
+  o + "/_app/immutable/nodes/0.a4627ee6.js",
+  o + "/_app/immutable/nodes/1.e0f5957f.js",
+  o + "/_app/immutable/nodes/2.dd7ff475.js",
+  o + "/_app/immutable/nodes/3.189889b1.js",
   o + "/_app/immutable/nodes/4.5abd668e.js",
-  o + "/_app/immutable/nodes/5.279fa231.js",
+  o + "/_app/immutable/nodes/5.d7f08400.js",
   o + "/_app/immutable/nodes/6.0a2d5331.js",
   o + "/_app/immutable/chunks/client.2f60997e.js",
   o + "/_app/immutable/chunks/const.e86bc028.js",
   o + "/_app/immutable/chunks/custom.b03ad683.js",
-  o + "/_app/immutable/chunks/environment.37bc989b.js",
-  o + "/_app/immutable/chunks/index.62155315.js",
+  o + "/_app/immutable/chunks/environment.72386169.js",
+  o + "/_app/immutable/chunks/index.5dec9b23.js",
   o + "/_app/immutable/chunks/index.963641d4.js",
   o + "/_app/immutable/chunks/index.f9001aba.js",
   o + "/_app/immutable/chunks/preload-helper.41c905a7.js",
   o + "/_app/immutable/chunks/qr-scanner.min.4880ecae.js",
-  o + "/_app/immutable/chunks/singletons.10f1816b.js",
+  o + "/_app/immutable/chunks/singletons.6b3254fb.js",
   o + "/_app/immutable/chunks/store.4adb6f91.js",
-  o + "/_app/immutable/entry/start.dbc781bd.js",
+  o + "/_app/immutable/entry/start.c0f5336a.js",
   o + "/_app/immutable/chunks/qr-scanner-worker.min.5f44a019.js"
 ], v = [
   o + "/favicon.png",
@@ -36,7 +36,7 @@ const o = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), T
   o + "/robots.txt"
 ], N = [
   o + "/"
-], E = "1687039932323";
+], E = "1687047657844";
 try {
   self["workbox:core:7.0.0"] && _();
 } catch {
@@ -201,7 +201,7 @@ try {
   self["workbox:strategies:7.0.0"] && _();
 } catch {
 }
-function b(a) {
+function R(a) {
   return typeof a == "string" ? new Request(a) : a;
 }
 class z {
@@ -242,7 +242,7 @@ class z {
    */
   async fetch(e) {
     const { event: t } = this;
-    let s = b(e);
+    let s = R(e);
     if (s.mode === "navigate" && t instanceof FetchEvent && t.preloadResponse) {
       const c = await t.preloadResponse;
       if (c)
@@ -305,7 +305,7 @@ class z {
    * @return {Promise<Response|undefined>} A matching response, if found.
    */
   async cacheMatch(e) {
-    const t = b(e);
+    const t = R(e);
     let s;
     const { cacheName: n, matchOptions: r } = this._strategy, c = await this.getCacheKey(t, "read"), i = Object.assign(Object.assign({}, r), { cacheName: n });
     s = await caches.match(c, i);
@@ -335,7 +335,7 @@ class z {
    * not be cached, and `true` otherwise.
    */
   async cachePut(e, t) {
-    const s = b(e);
+    const s = R(e);
     await Q(0);
     const n = await this.getCacheKey(s, "write");
     if (!t)
@@ -386,7 +386,7 @@ class z {
     if (!this._cacheKeys[s]) {
       let n = e;
       for (const r of this.iterateCallbacks("cacheKeyWillBeUsed"))
-        n = b(await r({
+        n = R(await r({
           mode: t,
           request: n,
           event: this.event,
@@ -936,7 +936,7 @@ try {
   self["workbox:routing:7.0.0"] && _();
 } catch {
 }
-const j = "GET", R = (a) => a && typeof a == "object" ? a : { handle: a };
+const j = "GET", b = (a) => a && typeof a == "object" ? a : { handle: a };
 class w {
   /**
    * Constructor for Route class.
@@ -950,7 +950,7 @@ class w {
    * against.
    */
   constructor(e, t, s = j) {
-    this.handler = R(t), this.match = e, this.method = s;
+    this.handler = b(t), this.match = e, this.method = s;
   }
   /**
    *
@@ -958,7 +958,7 @@ class w {
    * function that returns a Promise resolving to a Response
    */
   setCatchHandler(e) {
-    this.catchHandler = R(e);
+    this.catchHandler = b(e);
   }
 }
 class Y extends w {
@@ -1129,7 +1129,7 @@ class Z {
    * default handler. Each method has its own default.
    */
   setDefaultHandler(e, t = j) {
-    this._defaultHandlerMap.set(t, R(e));
+    this._defaultHandlerMap.set(t, b(e));
   }
   /**
    * If a Route throws an error while handling a request, this `handler`
@@ -1139,7 +1139,7 @@ class Z {
    * function that returns a Promise resulting in a Response.
    */
   setCatchHandler(e) {
-    this._catchHandler = R(e);
+    this._catchHandler = b(e);
   }
   /**
    * Registers a route with the router.
