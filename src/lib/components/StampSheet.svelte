@@ -126,7 +126,11 @@
 				? { y: 20, duration: 1200, easing: cubicOut }
 				: { opacity: 100 }}>
 			{#each stamps as stamp}
-				<StampComponent name={stamp.name} collected={isStampCollected(stamp)} id={stamp.id} />
+				<StampComponent
+					name={stamp.name}
+					collected={isStampCollected(stamp)}
+					id={stamp.id}
+					img={stamp.imageURL} />
 			{/each}
 		</div>
 	{/if}

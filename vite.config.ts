@@ -11,8 +11,6 @@ export default defineConfig({
 		https: false
 	},
 	define: {
-		'process.env.NODE_ENV': process.env.NODE_ENV === 'production'
-			? '"production"'
-			: '"development"'
+		'process.env.NODE_ENV': process.env.NODE_ENV === 'production' ? '"production"' : '"development"'
 	}
 });

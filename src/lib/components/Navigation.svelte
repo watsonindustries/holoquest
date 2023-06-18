@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 
 	let drawerToggle: HTMLInputElement;
-	let isDebug = true; 
+	let isDebug = true;
 
 	onMount(() => {
 		drawerToggle = document.querySelector('.drawer-toggle') as HTMLInputElement;

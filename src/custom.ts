@@ -2,6 +2,8 @@ export type Stamp = {
 	id: number;
 	name: string;
 	hash: string;
+	externalURL?: string;
+	imageURL?: string;
 };
 
 export enum ToastType {
