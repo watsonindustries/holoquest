@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ConnectionState } from 'phoenix';
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { UserCircle } from '@steeze-ui/heroicons';
+	import { Wifi } from '@steeze-ui/heroicons';
 
 	import { socket } from '../../store';
 	import { onMount } from 'svelte';
@@ -44,7 +44,7 @@
 	class="btn-ghost tooltip tooltip-left btn-circle btn"
 	data-tip={connectionState === 'open' ? 'Connected' : 'Disconnected'}>
 	<div class="indicator relative">
-		<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />
+		<Icon src={Wifi} theme="solid" class="color-gray-900" size="20" />
 		<span class="absolute -right-1 -top-1 flex h-3 w-3">
 			<span
 				class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 {connectionIndicatorClass}" />
