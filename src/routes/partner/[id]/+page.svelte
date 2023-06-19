@@ -11,7 +11,7 @@
 
 	const delay = 500;
 
-	const { name, externalURL, imageURL } = data.partner as Stamp;
+	const { name, externalURL, imageURL, description } = data.partner as Stamp;
 </script>
 
 <a href="/" in:fade={{ delay }} class="btn-ghost btn mb-4 w-fit justify-start gap-2 rounded-full"
@@ -23,9 +23,7 @@
 	<h1 class="font-geologica text-4xl font-bold text-primary">{name}</h1>
 
 	<p class="font-geologica">
-		Nihil quis iste. Praesentium asperiores eaque dicta cupiditate impedit facilis at cum ab.
-		Corrupti vero ex qui nihil reprehenderit corporis nihil pariatur. Recusandae beatae repellat rem
-		sunt assumenda quaerat tempore repellat facilis.
+		{description}
 	</p>
 
 	<a href={externalURL} class="btn-secondary btn max-w-screen-lg gap-2 rounded-full"

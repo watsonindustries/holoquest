@@ -2,6 +2,7 @@ export type Stamp = {
 	id: number;
 	name: string;
 	hash: string;
+	description: string;
 	externalURL?: string;
 	imageURL?: string;
 };
