@@ -10,10 +10,12 @@
 	import { initChannel } from '../phoenix-client';
 	import { registerUser } from '../client';
 	import { socketServerURL } from '../const';
+	import { generateNickname } from '../hololive-nick-gen';
 
 	onMount(async () => {
 		// Initialize the stores with the nickname and user token found locally
-		$nickname = localStorage.getItem('nickname') || 'anonymous';
+		// If first time using the app, generate a new nickname
+		$nickname = localStorage.getItem('nickname') || generateNickname();
 		$userToken = localStorage.getItem('userToken');
 
 		nickname.subscribe((value) => {
