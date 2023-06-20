@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Home, QrCode, QuestionMarkCircle, Cog, BugAnt } from '@steeze-ui/heroicons';
+	import { Home, QrCode, QuestionMarkCircle, UserCircle, BugAnt, User } from '@steeze-ui/heroicons';
 	import ConnectionIndicator from './ConnectionIndicator.svelte';
 	import { onMount } from 'svelte';
 
@@ -18,8 +18,8 @@
 	<input id="drawer-nav" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content flex flex-col">
 		<!-- Navbar -->
-		<div class="navbar mb-4 flex w-full justify-between bg-base-300">
-			<div class="flex-none lg:hidden">
+		<div class="navbar relative mb-4 flex w-full justify-center bg-base-300">
+			<div class="absolute left-1 flex-none lg:hidden">
 				<label for="drawer-nav" class="btn-ghost btn-square btn">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,10 @@
 					HoloQuest
 				</a>
 			</div>
-			<div class="flex">
+			<div class="absolute right-1 flex">
+				<a href="/profile" class="btn-ghost btn-circle btn">
+					<Icon src={UserCircle} size="20" theme="solid" />
+				</a>
 				<ConnectionIndicator />
 			</div>
 		</div>
@@ -71,11 +74,11 @@
 			</li>
 			<li>
 				<a
-					href="/settings"
+					href="/profile"
 					on:click={() => {
 						drawerToggle.checked = false;
 					}}>
-					<Icon src={Cog} theme="solid" class="color-gray-900" size="20" />Settings
+					<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />Profile
 				</a>
 			</li>
 			<li>

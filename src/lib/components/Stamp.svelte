@@ -21,6 +21,6 @@
 				<img src={img} alt={name} class="h-20 w-20 rounded-full" />
 			</div>
 		</div>
-		<div class="mt-2 text-center">{name}</div>
+		<div class="mt-2 w-8/12 break-all text-center text-secondary">{name}</div>
 	</div>
 </a>

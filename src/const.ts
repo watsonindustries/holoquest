@@ -4,8 +4,8 @@ import { dev } from '$app/environment';
 import watameSmug from '$lib/assets/watamesmug.jpg';
 import hasukeProfilePic from '$lib/assets/hasuke-profile.jpg';
 import saviProfilePic from '$lib/assets/savi-profile.jpg';
-import moriProfilePic from '$lib/assets/morinohitos-profile.jpg'
-import cyclicProfilePic from '$lib/assets/cyclic-redundancy-profile.png'
+import moriProfilePic from '$lib/assets/morinohitos-profile.jpg';
+import cyclicProfilePic from '$lib/assets/cyclic-redundancy-profile.png';
 
 /**
  * @file This file contains all the constants used in the application.

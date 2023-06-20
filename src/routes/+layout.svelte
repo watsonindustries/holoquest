@@ -12,6 +12,7 @@
 	import { socketServerURL } from '../const';
 
 	onMount(async () => {
+		// Initialize the stores with the nickname and user token found locally
 		$nickname = localStorage.getItem('nickname') || 'anonymous';
 		$userToken = localStorage.getItem('userToken');
 
