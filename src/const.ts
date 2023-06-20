@@ -4,6 +4,8 @@ import { dev } from '$app/environment';
 import watameSmug from '$lib/assets/watamesmug.jpg';
 import hasukeProfilePic from '$lib/assets/hasuke-profile.jpg';
 import saviProfilePic from '$lib/assets/savi-profile.jpg';
+import moriProfilePic from '$lib/assets/morinohitos-profile.jpg'
+import cyclicProfilePic from '$lib/assets/cyclic-redundancy-profile.png'
 
 /**
  * @file This file contains all the constants used in the application.
@@ -35,19 +37,22 @@ Modell & Banner by me.`,
 	},
 	{
 		id: 3,
-		name: 'Stamp 3',
+		name: 'Mori @ 3M34',
 		hash: '76a12efd6c61d78ecf46c820c4210ef9eaceda34',
-		description: '',
-		externalURL: 'https://webapp.dokomi.de/explore/c/107977',
-		imageURL: watameSmug
+		description: 'Artist into: Anime|VTubers|Games',
+		externalURL: 'https://webapp.dokomi.de/explore/c/108058',
+		imageURL: moriProfilePic
 	},
 	{
 		id: 4,
-		name: 'Stamp 4',
+		name: 'CYCLIC★REDUNDANCY',
 		hash: '547b3527f079fd616ccd420d242e06092efc2e1b',
-		description: '',
-		externalURL: 'https://webapp.dokomi.de/explore/c/107977',
-		imageURL: watameSmug
+		description: `
+		Doujin 同人 Circle 🎨▪️Account manager 担当者：
+@Ninamo_lcr
+▪️Online stores 通販 ➡️ See pinned tweet 🛒📌▪️ES/EN/日本語👌`,
+		externalURL: 'https://webapp.dokomi.de/explore/c/107091',
+		imageURL: cyclicProfilePic
 	},
 	{
 		id: 5,
