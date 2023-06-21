@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 
-	import { nickname, userToken, socket, scansChannel, toastStore } from '../store';
+	import { nickname, userToken, socket, scansChannel, toastStore, setToast } from '../store';
 
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Toast from '$lib/components/Toast.svelte';
@@ -11,6 +11,7 @@
 	import { registerUser } from '../client';
 	import { socketServerURL } from '../const';
 	import { generateNickname } from '../hololive-nick-gen';
+	import { ToastType } from '../custom';
 
 	onMount(async () => {
 		// Initialize the stores with the nickname and user token found locally
@@ -25,7 +26,7 @@
 		if (!$userToken) {
 			// When no user token is found locally, register a new user and save its token
 			try {
-				const res = await registerUser();
+				const res = await registerUser($nickname);
 				$userToken = res.data.id;
 				localStorage.setItem('userToken', $userToken);
 			} catch (error) {
@@ -35,6 +36,15 @@
 
 		$socket = new Socket(socketServerURL, { params: { userToken: $userToken } });
 		$scansChannel = initChannel($socket, 'notifications:scans');
+
+		$scansChannel.on('collected-broadcast', (payload) => {
+			console.log('Received collected-broadcast:', payload);
+
+			setToast({
+				type: ToastType.SUCCESS,
+				message: `User ${payload.nickname} found a stamp!`
+			});
+		});
 
 		try {
 			$socket.connect();

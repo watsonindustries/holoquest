@@ -1,3 +1,4 @@
+import { nickname } from './store';
 import type { LeaderboardResponse, RegisterUserResponse, SetNicknameResponse } from './custom';
 import { apiServerURL } from './const';
 
@@ -13,11 +14,11 @@ const defaultHeaders = {
  * Registers a new user on the server.
  * @returns {Promise<RegisterUserResponse>} JSON-API response containing an ID as a UUIDv4.
  */
-export async function registerUser(): Promise<RegisterUserResponse> {
+export async function registerUser(nickname = ''): Promise<RegisterUserResponse> {
 	const response = await fetch(`${apiServerURL}/accounts/users/`, {
 		method: 'POST',
 		headers: defaultHeaders,
-		body: '{"data":{"type":"user"}}'
+		body: `{"data":{"type":"user","attributes":{"nickname":"${nickname}"}}}`
 	});
 	const json = await response.json();
 	return json;
