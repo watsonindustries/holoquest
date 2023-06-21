@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
-	import { nickname, scansChannel, setToast } from '../../store';
+	import { nickname, scansChannel, setToast, userToken } from '../../store';
 
 	import QrScanner from 'qr-scanner';
 
@@ -13,6 +13,7 @@
 
 	import { Eye, QrCode, StopCircle } from '@steeze-ui/heroicons';
 	import { fade } from 'svelte/transition';
+	import { updateScore } from '../../client';
 
 	let state = ScannerState.STOPPED;
 
@@ -20,6 +21,10 @@
 	let qrScanner: QrScanner;
 	let token = '';
 	const expectedHashes = expectedStamps.map((stamp) => stamp.hash);
+
+	let collectedStampCount = function () {
+		return 0;
+	};
 
 	function transitionState() {
 		if (state === ScannerState.SCANNING) {
@@ -41,6 +46,12 @@
 			localStorage.setItem(hash, token);
 			$scansChannel?.push('collected', { nickname: $nickname });
 
+			try {
+				if ($userToken) updateScore($userToken, collectedStampCount());
+			} catch (e) {
+				console.error("Can't update score!");
+			}
+
 			setToast({
 				type: ToastType.SUCCESS,
 				message: 'Stamp Saved!'
@@ -59,6 +70,10 @@
 			highlightScanRegion: true,
 			highlightCodeOutline: true
 		});
+
+		collectedStampCount = () => {
+			return Object.keys(localStorage).filter((key) => expectedHashes.includes(key)).length;
+		};
 	});
 
 	onDestroy(() => {

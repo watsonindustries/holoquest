@@ -56,3 +56,13 @@ export async function fetchLeaderboard(): Promise<LeaderboardResponse> {
 	const json = await response.json();
 	return json;
 }
+
+export async function updateScore(userId: string, score: number): Promise<void> {
+	const response = await fetch(`${apiServerURL}/accounts/users/${userId}`, {
+		method: 'PATCH',
+		headers: defaultHeaders,
+		body: `{"data":{"type":"user","attributes":{"stamps_collected":${score}}}}`
+	});
+	const json = await response.json();
+	return json;
+}
