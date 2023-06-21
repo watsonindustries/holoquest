@@ -9,7 +9,7 @@
 	`;
 </script>
 
-<tr class:font-bold={entryNickname === $nickname}>
+<tr class:font-extrabold={entryNickname === $nickname}>
 	<th class="font-mono font-normal">
 		<span class="flex gap-2 align-middle">
 			# {rank}

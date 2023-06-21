@@ -40,6 +40,8 @@
 		$scansChannel.on('collected-broadcast', (payload) => {
 			console.log('Received collected-broadcast:', payload);
 
+			if (payload.nickname === $nickname) return;
+
 			setToast({
 				type: ToastType.SUCCESS,
 				message: `User ${payload.nickname} found a stamp!`
