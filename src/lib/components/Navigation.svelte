@@ -1,6 +1,13 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
-	import { Home, QrCode, QuestionMarkCircle, UserCircle, BugAnt, User } from '@steeze-ui/heroicons';
+	import {
+		Home,
+		QrCode,
+		QuestionMarkCircle,
+		UserCircle,
+		BugAnt,
+		Trophy
+	} from '@steeze-ui/heroicons';
 	import ConnectionIndicator from './ConnectionIndicator.svelte';
 	import { onMount } from 'svelte';
 
@@ -79,6 +86,15 @@
 						drawerToggle.checked = false;
 					}}>
 					<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />Profile
+				</a>
+			</li>
+			<li>
+				<a
+					href="/leaderboard"
+					on:click={() => {
+						drawerToggle.checked = false;
+					}}>
+					<Icon src={Trophy} theme="solid" class="color-gray-900" size="20" />Leaderboard
 				</a>
 			</li>
 			<li>

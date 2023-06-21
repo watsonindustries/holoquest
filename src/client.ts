@@ -1,4 +1,4 @@
-import type { RegisterUserResponse, SetNicknameResponse } from './custom';
+import type { LeaderboardResponse, RegisterUserResponse, SetNicknameResponse } from './custom';
 import { apiServerURL } from './const';
 
 const apiToken = import.meta.env.VITE_HOLOQUEST_API_TOKEN;
@@ -34,6 +34,24 @@ export async function setNickname(userId: string, nickname: string): Promise<Set
 		method: 'PATCH',
 		headers: defaultHeaders,
 		body: `{"data":{"type":"user","attributes":{"nickname":"${nickname}"}}}`
+	});
+	const json = await response.json();
+	return json;
+}
+
+/**
+ * Fetches the leaderboard from the server.
+ * @returns {Promise<LeaderboardResponse>} JSON-API response containing the leaderboard.
+ * @example
+ * const leaderboard = await fetchLeaderboard();
+ * console.log(leaderboard); // { data: [{ id: '...', type: 'user', attributes: { nickname: '...', stamps_collected: 0 } }] }
+ * console.log(leaderboard.data[0].attributes.nickname); // "Cruel_KFP"
+ * console.log(leaderboard.data[0].attributes.stamps_collected); // 0
+ */
+export async function fetchLeaderboard(): Promise<LeaderboardResponse> {
+	const response = await fetch(`${apiServerURL}/leaderboard`, {
+		method: 'GET',
+		headers: defaultHeaders
 	});
 	const json = await response.json();
 	return json;

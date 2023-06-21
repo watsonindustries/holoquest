@@ -64,3 +64,12 @@ export type SetNicknameResponse = {
 		}
 	];
 };
+
+export type LeaderboardResponse = {
+	data: [
+		{
+			nickname: string;
+			stamps_collected: number;
+		}
+	]
+};
