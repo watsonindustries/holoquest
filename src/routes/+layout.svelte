@@ -48,6 +48,15 @@
 			});
 		});
 
+		// TODO: Maybe attach to a dedicated channel for this?
+		$scansChannel.on('msg', (payload) => {
+			console.log('Received msg:', payload);
+			setToast({
+				type: ToastType.SUCCESS,
+				message: payload.message
+			});
+		});
+
 		try {
 			$socket.connect();
 		} catch (e) {
