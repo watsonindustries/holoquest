@@ -1,1 +1,0 @@
-import{w as s}from"./index.176db086.js";const a=s("anonymous"),e=s(null),l=s(null),u=s(null),n=s(null);function c(t){n.set(t),setTimeout(()=>n.set(null),5e3)}export{c as a,u as b,a as n,l as s,n as t,e as u};
