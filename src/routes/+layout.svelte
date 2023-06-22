@@ -74,7 +74,7 @@
 </script>
 
 <Navigation>
-	<div class="toast-center toast-bottom toast">
+	<div class="toast-center toast-bottom toast z-50">
 		{#if $toastStore}
 			<Toast {...$toastStore} />
 		{/if}

@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="w-screen space-y-4 overflow-x-auto font-geologica text-lg text-secondary"
+	class="w-screen space-y-4 overflow-x-auto font-geologica text-lg text-secondary z-0"
 	in:fade={{ delay: 500 }}>
 	<h1 class="mx-4 my-4 text-4xl font-bold text-primary">Leaderboard</h1>
 	<table class="table w-full">
