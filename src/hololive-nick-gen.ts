@@ -1,6 +1,35 @@
+const HOLOJP_FANNAMES = ["Soratomo",
+	"Robosa",
+	"35P",
+	"Hoshiyomi",
+	"Kabumin",
+	"Rosetai",
+	"Senpai",
+	"Sukonbu",
+	"Matsurisu",
+	"Aqua_Crew",
+	"Shiokko",
+	"Human",
+	"Chocomaid",
+	"Subatomo",
+	"Mion_Family",
+	"Onigiriya",
+	"Koronesuki",
+	"Kaitakusha",
+	"Fandead",
+	"Elfriend",
+	"Shirogane",
+	"Houshou",
+	"Heimin",
+	"Tatsunoko",
+	"Watamate",
+	"Lu_Knight"];
+
+const HOLOEN_FANNAMES = ['Dead_Beat', 'KFP', 'Chimken', 'Takodachi', 'Chumbud', 'Teamate', 'Gator', 'Irystocrat', 'Sapling', 'Kronie', 'Hooman', 'Brat', 'Baerat'];
+
 const DATASETS = {
 	ADJECTIVES: ['Lovely', 'Confident', 'Robust', 'Dynamic', 'Brave', 'Calm', 'Sad', 'Wise', 'Wild', 'Clean', 'Crazy', 'Sneaky', 'Silly', 'Lucid', 'Leader'],
-	FANNAMES: ['Dead_Beat', 'KFP', 'Chimken', 'Takodachis', 'Chumbud', 'Teamate', 'Gator', 'Irystocrat', 'Sapling', 'Kronie', 'Hooman', 'Brat', 'Baerat']
+	FANNAMES: HOLOEN_FANNAMES.concat(HOLOJP_FANNAMES)
 }
 
 function randomInt({ min = 0, max = 100 }): number {
