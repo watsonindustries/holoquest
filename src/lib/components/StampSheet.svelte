@@ -24,7 +24,7 @@
 	}
 
 	const delay = 500; // synchronized fade in delay
-	const minTouchTime = 1500; // minimum touch time in milliseconds, how long the stub of the stamp sheet should be touched
+	const minTouchTime = 1000; // minimum touch time in milliseconds, how long the stub of the stamp sheet should be touched
 
 	onMount(() => {
 		isStampCollected = function (stamp: Stamp) {
