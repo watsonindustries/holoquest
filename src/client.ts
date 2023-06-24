@@ -1,4 +1,3 @@
-import { nickname } from './store';
 import type { LeaderboardResponse, RegisterUserResponse, SetNicknameResponse } from './custom';
 import { apiServerURL } from './const';
 

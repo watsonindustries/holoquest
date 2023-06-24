@@ -5,8 +5,14 @@
 
 const sw = self as unknown as ServiceWorkerGlobalScope;
 
+import { NetworkOnly } from 'workbox-strategies';
 import { build, files, prerendered, version } from '$service-worker';
 import { precacheAndRoute } from 'workbox-precaching';
+import * as navigationPreload from 'workbox-navigation-preload';
+import { registerRoute } from 'workbox-routing';
+import { BackgroundSyncPlugin } from 'workbox-background-sync';
+
+navigationPreload.enable();
 
 const precache_list = [...build, ...files, ...prerendered].map((s) => ({
 	url: s,
@@ -14,6 +20,24 @@ const precache_list = [...build, ...files, ...prerendered].map((s) => ({
 }));
 
 precacheAndRoute(precache_list);
+
+const bgSyncPlugin = new BackgroundSyncPlugin('takoRequests', {
+	maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
+});
+
+const networkOnly = new NetworkOnly({ plugins: [bgSyncPlugin] });
+
+registerRoute(
+	/\/api\/.*\/*.json/,
+	networkOnly,
+	'POST'
+);
+
+registerRoute(
+	/\/api\/.*\/*.json/,
+	networkOnly,
+	'PATCH'
+);
 
 sw.addEventListener("install", event => {
 	// forces a service worker to activate immediately

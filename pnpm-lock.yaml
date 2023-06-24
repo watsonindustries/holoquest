@@ -94,7 +94,19 @@ devDependencies:
   vitest:
     specifier: ^0.25.3
     version: 0.25.8
+  workbox-background-sync:
+    specifier: ^7.0.0
+    version: 7.0.0
+  workbox-navigation-preload:
+    specifier: ^7.0.0
+    version: 7.0.0
   workbox-precaching:
+    specifier: ^7.0.0
+    version: 7.0.0
+  workbox-routing:
+    specifier: ^7.0.0
+    version: 7.0.0
+  workbox-strategies:
     specifier: ^7.0.0
     version: 7.0.0
 
@@ -1319,6 +1331,10 @@ packages:
     dependencies:
       function-bind: 1.1.1
 
+  /idb@7.1.1:
+    resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
+    dev: true
+
   /ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
@@ -2378,8 +2394,21 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /workbox-background-sync@7.0.0:
+    resolution: {integrity: sha512-S+m1+84gjdueM+jIKZ+I0Lx0BDHkk5Nu6a3kTVxP4fdj3gKouRNmhO8H290ybnJTOPfBDtTMXSQA/QLTvr7PeA==}
+    dependencies:
+      idb: 7.1.1
+      workbox-core: 7.0.0
+    dev: true
+
   /workbox-core@7.0.0:
     resolution: {integrity: sha512-81JkAAZtfVP8darBpfRTovHg8DGAVrKFgHpOArZbdFd78VqHr5Iw65f2guwjE2NlCFbPFDoez3D3/6ZvhI/rwQ==}
+    dev: true
+
+  /workbox-navigation-preload@7.0.0:
+    resolution: {integrity: sha512-juWCSrxo/fiMz3RsvDspeSLGmbgC0U9tKqcUPZBCf35s64wlaLXyn2KdHHXVQrb2cqF7I0Hc9siQalainmnXJA==}
+    dependencies:
+      workbox-core: 7.0.0
     dev: true
 
   /workbox-precaching@7.0.0:
