@@ -6,6 +6,7 @@ import hasukeProfilePic from '$lib/assets/hasuke-profile.jpg';
 import saviProfilePic from '$lib/assets/savi-profile.jpg';
 import moriProfilePic from '$lib/assets/morinohitos-profile.jpg';
 import cyclicProfilePic from '$lib/assets/cyclic-redundancy-profile.png';
+import erizuProfilePic from '$lib/assets/erizu-profile.jpg';
 
 /**
  * @file This file contains all the constants used in the application.
@@ -56,11 +57,11 @@ Modell & Banner by me.`,
 	},
 	{
 		id: 5,
-		name: 'Stamp 5',
+		name: 'Erizu 3J19',
 		hash: '31db5fff1842de328bf801624d6c6a7a368849e2',
-		description: '',
-		externalURL: 'https://webapp.dokomi.de/explore/c/107977',
-		imageURL: watameSmug
+		description: 'Freelance Illustrator | Live2d Artist/Rigger | Pixel Art Apprentice',
+		externalURL: 'https://webapp.dokomi.de/explore/c/108335',
+		imageURL: erizuProfilePic
 	}
 ];
 
