@@ -2,6 +2,7 @@
 	"short_name": "HoloQuest",
 	"name": "HoloQuest",
 	"start_url": "/",
+  "id": "com.hololivefanbooth.holoquest",
 	"icons": [
     {
       "src": "android/android-launchericon-512-512.png",
