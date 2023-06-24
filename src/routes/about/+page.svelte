@@ -6,6 +6,14 @@
 	const daniruKunDiscordURL = 'http://discordapp.com/users/511267995214151721';
 </script>
 
+<svelte:head>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap"
+		rel="stylesheet" />
+</svelte:head>
+
 <div class="mx-4 my-4 space-y-4 font-geologica text-lg">
 	<p class="text-4xl text-primary">HoloQuest companion app</p>
 
@@ -18,7 +26,7 @@
 
 	<svg
 		class="light:fill-black mx-auto w-5/12 stroke-1 py-4 dark:fill-white"
-		viewBox="0 0 882 458"
+		viewBox="0 0 900 458"
 		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
 		xmlns:xlink="http://www.w3.org/1999/xlink">
