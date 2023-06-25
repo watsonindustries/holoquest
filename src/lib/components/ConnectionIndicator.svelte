@@ -41,7 +41,7 @@
 </script>
 
 <button
-	class="btn-ghost tooltip tooltip-left btn-circle btn"
+	class="btn-ghost btn-circle btn tooltip tooltip-left"
 	data-tip={connectionState === 'open' ? 'Connected' : 'Disconnected'}>
 	<div class="indicator relative">
 		<Icon src={Wifi} theme="solid" class="color-gray-900" size="20" />

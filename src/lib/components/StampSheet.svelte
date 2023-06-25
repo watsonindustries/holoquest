@@ -7,6 +7,7 @@
 	import type { Stamp } from '../../custom';
 	import { onMount } from 'svelte';
 	import { expectedStamps } from '../../const';
+	import HolomemGacha from './HolomemGacha.svelte';
 
 	export let stamps: Stamp[] = [];
 
@@ -98,11 +99,12 @@
 
 		{#if isQuestCompleted}
 			<h2 class="text-center font-geologica text-xl font-semibold text-secondary">
-				{#if isStampSheetTorn}
+				<!-- {#if isStampSheetTorn}
 					Thank you for participating!
 				{:else}
-					Show sheet to staff!
-				{/if}
+					
+				{/if} -->
+				Show sheet to staff!
 			</h2>
 		{:else}
 			<!-- Scan button -->
@@ -135,3 +137,9 @@
 		</div>
 	{/if}
 </div>
+
+{#if isStampSheetTorn}
+	<div class="my-auto mt-4 flex flex-col items-center justify-end space-y-4">
+		<HolomemGacha />
+	</div>
+{/if}

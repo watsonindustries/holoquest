@@ -12,6 +12,12 @@ export enum ToastType {
 	ERROR
 }
 
+export enum GachaState {
+	PLAYED,
+	NOT_PLAYED,
+	PLAYING
+}
+
 export type Toast = {
 	type: ToastType;
 	message: string;
@@ -71,5 +77,28 @@ export type LeaderboardResponse = {
 			nickname: string;
 			stamps_collected: number;
 		}
-	]
+	];
+};
+
+export type Holomem = {
+	id: string;
+	name: string;
+	english_name: string;
+	type: string;
+	org: string;
+	suborg: string;
+	group: string;
+	top_topics: string[];
+	photo: string;
+	banner: string;
+	twitter: string;
+	video_count: string;
+	subscriber_count: string;
+	view_count: string;
+	clip_count: number;
+	lang: string;
+	published_at: string;
+	inactive: boolean;
+	description: string;
+	twitch: null | string;
 };

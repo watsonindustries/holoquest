@@ -6,7 +6,7 @@
 	export let message: string;
 </script>
 
-<div class="toast-center toast-bottom toast w-60 -z-50">
+<div class="toast-center toast-bottom toast -z-50 w-60">
 	<div
 		class="alert alert-{type}"
 		class:alert-success={type === ToastType.SUCCESS}
