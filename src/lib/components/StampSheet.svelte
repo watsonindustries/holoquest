@@ -17,7 +17,7 @@
 
 	let tearStampSheet = function (): void {};
 
-	let isStampSheetTorn = false; // Can only be true if the quest was completed
+	let isStampSheetTorn = true; // Can only be true if the quest was completed
 	let isQuestCompleted = false; // Can only be true if all stamps were collected
 
 	function isAllStampsCollected() {
@@ -42,9 +42,7 @@
 			isQuestCompleted = true;
 		}
 
-		if (localStorage.getItem('isStampSheetTorn') === 'yes') {
-			isStampSheetTorn = true;
-		}
+		isStampSheetTorn = localStorage.getItem('isStampSheetTorn') === 'yes';
 	});
 
 	let touchStartTime: number;
@@ -116,14 +114,14 @@
 		{/if}
 	</div>
 
-	<!-- Stamp grid -->
+	<!-- Stamp grid, only rendered when the stamp sheet is not torn -->
 	{#if !isStampSheetTorn}
 		<div
 			class="grid grid-cols-2 gap-4 rounded-b-xl p-4 pt-8 shadow-md"
 			in:fade={{ delay }}
 			out:fly={isStampSheetTorn && isQuestCompleted
 				? { y: 20, duration: 1200, easing: cubicOut }
-				: { opacity: 100 }}>
+				: {}}>
 			{#each stamps as stamp}
 				<StampComponent
 					name={stamp.name}
