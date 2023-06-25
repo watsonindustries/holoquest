@@ -8,6 +8,7 @@
 	let gachaState = GachaState.NOT_PLAYED;
 	let result: Holomem;
 	let resultIndex: number;
+	const gachaPullDuration = 3000; // ms
 
 	function pickMemberIndex(): number {
 		const min = 0;
@@ -22,7 +23,7 @@
 			resultIndex = pickMemberIndex();
 			result = holomemGachaPool[resultIndex] as Holomem;
 			gachaState = GachaState.PLAYED;
-		}, 3000);
+		}, gachaPullDuration);
 	}
 
 	onMount(() => {
@@ -51,6 +52,7 @@
 		>Play Gacha</button>
 {:else if gachaState === GachaState.PLAYING}
 	<span class="loading-xl loading loading-dots" />
+	<p class="font-geologica">Warming up the gacha...</p>
 {:else if gachaState === GachaState.PLAYED}
 	{#if result}
 		<div
