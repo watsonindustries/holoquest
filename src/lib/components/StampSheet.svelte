@@ -83,10 +83,12 @@
 	}
 </script>
 
-<div class="my-2 divide-y-2 divide-dashed divide-slate-900" out:fade>
+<div
+	class="bg-triangles mx-8 my-2 divide-y-2 divide-dashed divide-slate-900 rounded-t-xl bg-slate-100"
+	out:fade>
 	<!-- Stub -->
 	<div
-		class="mx-8 flex flex-col justify-center space-y-6 rounded-t-xl bg-slate-100 pb-8 pt-4 shadow-md"
+		class="flex flex-col justify-center space-y-6 pb-8 pt-4 shadow-md"
 		class:animate-pulse={isTouching && isQuestCompleted}
 		class:border-b-2={isStampSheetTorn}
 		class:border-dashed={isStampSheetTorn}
@@ -99,11 +101,6 @@
 
 		{#if isQuestCompleted}
 			<h2 class="text-center font-geologica text-xl font-semibold text-secondary">
-				<!-- {#if isStampSheetTorn}
-					Thank you for participating!
-				{:else}
-					
-				{/if} -->
 				Show sheet to staff!
 			</h2>
 		{:else}
@@ -122,7 +119,7 @@
 	<!-- Stamp grid -->
 	{#if !isStampSheetTorn}
 		<div
-			class="mx-8 grid grid-cols-2 gap-4 rounded-b-xl bg-slate-100 p-4 pt-8 shadow-md"
+			class="grid grid-cols-2 gap-4 rounded-b-xl p-4 pt-8 shadow-md"
 			in:fade={{ delay }}
 			out:fly={isStampSheetTorn && isQuestCompleted
 				? { y: 20, duration: 1200, easing: cubicOut }
