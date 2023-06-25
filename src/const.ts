@@ -7,6 +7,7 @@ import saviProfilePic from '$lib/assets/savi-profile.jpg';
 import moriProfilePic from '$lib/assets/morinohitos-profile.jpg';
 import cyclicProfilePic from '$lib/assets/cyclic-redundancy-profile.png';
 import erizuProfilePic from '$lib/assets/erizu-profile.jpg';
+import juweiProfilePic from '$lib/assets/juwei-profile.jpg';
 
 /**
  * @file This file contains all the constants used in the application.
@@ -62,7 +63,20 @@ Modell & Banner by me.`,
 		description: 'Freelance Illustrator | Live2d Artist/Rigger | Pixel Art Apprentice',
 		externalURL: 'https://webapp.dokomi.de/explore/c/108335',
 		imageURL: erizuProfilePic
+	},
+	{
+		id: 6,
+		name: 'juwei 🌷🌆',
+		hash: 'be94be5fe0c93e5c74a6b62f500b66954eca9ed2',
+		description: `
+		【artist and tea connoisseur】commissions: http://vgen.co/juwei • stream: http://twitch.tv/juwei_ • support: http://ko-fi.com/juwei • alt: 
+@jujujuwei
+ ✨ h: 
+@pnkkr4mune`,
+		externalURL: 'https://webapp.dokomi.de/explore/c/107557',
+		imageURL: juweiProfilePic
 	}
+
 ];
 
 export const socketServerURL = dev
