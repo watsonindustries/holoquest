@@ -554,35 +554,35 @@ class le extends z {
   }
 }
 const o = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), he = [
-  o + "/_app/immutable/entry/app.1b3ff741.js",
-  o + "/_app/immutable/assets/0.01f78c0c.css",
-  o + "/_app/immutable/nodes/0.df1c5596.js",
-  o + "/_app/immutable/nodes/1.1cf8ac1c.js",
-  o + "/_app/immutable/nodes/2.35bcefc4.js",
-  o + "/_app/immutable/nodes/3.50e3a0db.js",
-  o + "/_app/immutable/nodes/4.70e4b4b3.js",
-  o + "/_app/immutable/nodes/5.b7a98832.js",
-  o + "/_app/immutable/nodes/6.0f97898e.js",
-  o + "/_app/immutable/nodes/7.54fd0acd.js",
-  o + "/_app/immutable/nodes/8.f8ce9678.js",
-  o + "/_app/immutable/chunks/client.0356fdca.js",
-  o + "/_app/immutable/chunks/const.fc20f7b0.js",
+  o + "/_app/immutable/entry/app.df42f1c1.js",
+  o + "/_app/immutable/assets/0.8e094f48.css",
+  o + "/_app/immutable/nodes/0.df360975.js",
+  o + "/_app/immutable/nodes/1.f4aec8aa.js",
+  o + "/_app/immutable/nodes/2.07f581c2.js",
+  o + "/_app/immutable/nodes/3.d63f0bde.js",
+  o + "/_app/immutable/nodes/4.7b2550de.js",
+  o + "/_app/immutable/nodes/5.f267d79d.js",
+  o + "/_app/immutable/nodes/6.8e89f049.js",
+  o + "/_app/immutable/nodes/7.da094551.js",
+  o + "/_app/immutable/nodes/8.a7583613.js",
+  o + "/_app/immutable/chunks/client.ac66b51c.js",
+  o + "/_app/immutable/chunks/const.2e07ef10.js",
   o + "/_app/immutable/assets/hasuke-profile.990ed979.jpg",
   o + "/_app/immutable/assets/savi-profile.1ba8ae1c.jpg",
   o + "/_app/immutable/assets/morinohitos-profile.6695ca3e.jpg",
   o + "/_app/immutable/assets/cyclic-redundancy-profile.c7023f77.png",
   o + "/_app/immutable/assets/erizu-profile.305c184c.jpg",
-  o + "/_app/immutable/chunks/control.e7f5239e.js",
-  o + "/_app/immutable/chunks/custom.b03ad683.js",
-  o + "/_app/immutable/chunks/environment.faeb1c08.js",
-  o + "/_app/immutable/chunks/index.a1611425.js",
-  o + "/_app/immutable/chunks/index.dda9e46f.js",
-  o + "/_app/immutable/chunks/index.f90550e1.js",
+  o + "/_app/immutable/chunks/control.f5b05b5f.js",
+  o + "/_app/immutable/chunks/custom.fbadb549.js",
+  o + "/_app/immutable/chunks/environment.8beab69f.js",
+  o + "/_app/immutable/chunks/index.4486e6aa.js",
+  o + "/_app/immutable/chunks/index.ca4d86f6.js",
+  o + "/_app/immutable/chunks/index.d309f9a8.js",
   o + "/_app/immutable/chunks/preload-helper.41c905a7.js",
   o + "/_app/immutable/chunks/qr-scanner.min.4880ecae.js",
-  o + "/_app/immutable/chunks/singletons.7362525e.js",
-  o + "/_app/immutable/chunks/store.19762889.js",
-  o + "/_app/immutable/entry/start.ac5eab0c.js",
+  o + "/_app/immutable/chunks/singletons.b350507b.js",
+  o + "/_app/immutable/chunks/store.7f71c011.js",
+  o + "/_app/immutable/entry/start.4e75058a.js",
   o + "/_app/immutable/chunks/qr-scanner-worker.min.5f44a019.js",
   o + "/_app/immutable/assets/watamesmug.78962fdd.jpg"
 ], de = [
@@ -627,7 +627,7 @@ const o = /* @__PURE__ */ location.pathname.split("/").slice(0, -1).join("/"), h
   o + "/robots.txt"
 ], fe = [
   o + "/"
-], G = "1687641931035";
+], G = "1687688090244";
 function A(n, e) {
   const t = e();
   return n.waitUntil(t), t;
@@ -2007,16 +2007,8 @@ const Je = new Ge("takoRequests", {
   maxRetentionTime: 24 * 60
   // Retry for max of 24 Hours (specified in minutes)
 }), ee = new le({ plugins: [Je] });
-S(
-  /\/api\/.*\/*.json/,
-  ee,
-  "POST"
-);
-S(
-  /\/api\/.*\/*.json/,
-  ee,
-  "PATCH"
-);
+S(/\/api\/.*\/*.json/, ee, "POST");
+S(/\/api\/.*\/*.json/, ee, "PATCH");
 q.addEventListener("install", (n) => {
   console.log("installing service worker version: ", G), q.skipWaiting();
 });
