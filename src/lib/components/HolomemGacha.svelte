@@ -3,6 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import { GachaState, type Holomem } from '../../custom';
 	import { holomemGachaPool } from '../../const';
+	import { nickname } from '../../store';
 
 	let gachaState = GachaState.NOT_PLAYED;
 	let result: Holomem;
@@ -57,7 +58,7 @@
 			in:fade={{ delay: 500 }}>
 			<figure><img src={result.photo} alt={result.english_name} /></figure>
 			<div class="card-body items-center font-geologica">
-				<h2 class="card-title text-xl text-slate-100">You got {result.english_name}!</h2>
+				<h2 class="card-title text-xl text-slate-100">{$nickname} got {result.english_name}!</h2>
 				<p class="text-slate-100">{result.group}</p>
 				<div class="card-actions justify-end">
 					<a
