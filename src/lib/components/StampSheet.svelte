@@ -82,7 +82,7 @@
 </script>
 
 <div
-	class="bg-triangles mx-8 my-2 divide-y-2 divide-dashed divide-slate-900 rounded-t-xl bg-slate-100"
+	class="bg-triangles mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100"
 	out:fade>
 	<!-- Stub -->
 	<div
@@ -117,7 +117,7 @@
 	<!-- Stamp grid, only rendered when the stamp sheet is not torn -->
 	{#if !isStampSheetTorn}
 		<div
-			class="grid grid-cols-2 gap-4 rounded-b-xl p-4 pt-8 shadow-md"
+			class="grid grid-cols-2 gap-4 rounded-b-xl p-4 pt-8 shadow-md z-30"
 			in:fade={{ delay }}
 			out:fly={isStampSheetTorn && isQuestCompleted
 				? { y: 20, duration: 1200, easing: cubicOut }

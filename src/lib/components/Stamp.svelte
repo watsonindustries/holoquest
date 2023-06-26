@@ -10,15 +10,20 @@
 		'https://4.bp.blogspot.com/-ZMzPgyP64Zg/WFuJyby0eDI/AAAAAAABAmk/I_UtFowN0ecaQiqgYGpTsKGTqFzMLESdwCLcB/s800/nenga_hanko_kingashinnen_maru.png';
 
 	export let img = PLACEHOLDER_STAMP_IMG;
+
+	export const fadeDuration = 100;
 </script>
 
 <a href={navURL}>
-	<div class="flex flex-col items-center" in:fade={{ duration: 200, delay: 150 * id + 500 }}>
+	<div
+		class="flex flex-col items-center"
+		in:fade={{ duration: fadeDuration, delay: 150 * id + 500 }}>
 		<div
-			class="flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary"
-			class:opacity-30={!collected}>
-			<div class="flex h-24 w-24 items-center justify-center rounded-full bg-white">
-				<img src={img} alt={name} class="h-20 w-20 rounded-full" />
+			class="flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary">
+			<div class="flex h-24 w-24 items-center justify-center rounded-full">
+				<div class="flex h-24 w-24 items-center justify-center rounded-full bg-white">
+					<img src={img} alt={name} class="h-20 w-20 rounded-full" class:opacity-30={!collected} />
+				</div>
 			</div>
 		</div>
 		<div class="mt-2 w-8/12 break-all text-center text-secondary">{name}</div>
