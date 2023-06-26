@@ -8,6 +8,9 @@ import moriProfilePic from '$lib/assets/morinohitos-profile.jpg';
 import cyclicProfilePic from '$lib/assets/cyclic-redundancy-profile.png';
 import erizuProfilePic from '$lib/assets/erizu-profile.jpg';
 import juweiProfilePic from '$lib/assets/juwei-profile.jpg';
+import ioeaProfile from '$lib/assets/ioea-profile.jpg';
+import maruminProfile from '$lib/assets/marumin-profile.jpg';
+import hynoriProfile from '$lib/assets/hynori-profile.png';
 
 /**
  * @file This file contains all the constants used in the application.
@@ -30,15 +33,38 @@ Modell & Banner by me.`,
 	},
 	{
 		id: 2,
-		name: 'SAVI✿サビ M701',
-		hash: '26f34a24468d310ae469fcde15fef83ed9d3297d',
+		name: 'Kagura Nana @ IOEA',
+		hash: '65f21aa01e5be625463340fdebf5eac8b636264f',
 		description: `
-		I'm a pink ball who simps for cute girls.. and draws…sometimes (2434) 💓Eng/Рус/日本語/Ger OK💓 business: savi.chan.commissions@gmail(.)com📩info in carrd`,
-		externalURL: 'https://webapp.dokomi.de/explore/c/107468',
-		imageURL: saviProfilePic
+		Natsume Eri, Eretto and Nana Kaguraaa
+		`,
+		externalURL: 'https://webapp.dokomi.de/explore/c/109092',
+		imageURL: ioeaProfile
 	},
 	{
 		id: 3,
+		name: 'marumin',
+		hash: '0cee71fe8e4834108709bbc3986517fc1bb82175',
+		description: `
+		♡ I'm Maru and I draw!! | DM for commission info || email: amarururun@gmail.com || 🍃🌿🍀rambles 
+@marusleeps
+ || https://marustore.storenvy.com
+ `,
+		externalURL: 'https://webapp.dokomi.de/explore/c/107001',
+		imageURL: maruminProfile
+	},
+	{
+		id: 4,
+		name: 'hynori🌸 3G94',
+		hash: '78d2cb5917a477bdaa73e743e2e71760b72f30c7',
+		description: `
+		phi 🌟 she/her 🌟 game art student 🌟 OC, DnD, FFXIV, genshin 🌟 I love alphinaud leveilleur 🌟 comms CLOSED 🌟 email hynorin*gmail*com GER&ENG OK! 日本語まだまだです
+		`,
+		externalURL: 'https://webapp.dokomi.de/explore/c/107044',
+		imageURL: hynoriProfile
+	},
+	{
+		id: 5,
 		name: 'Mori @ 3M34',
 		hash: '76a12efd6c61d78ecf46c820c4210ef9eaceda34',
 		description: 'Artist into: Anime|VTubers|Games',
@@ -46,7 +72,17 @@ Modell & Banner by me.`,
 		imageURL: moriProfilePic
 	},
 	{
-		id: 4,
+		id: 6,
+		name: 'SAVI✿サビ M701',
+		hash: '26f34a24468d310ae469fcde15fef83ed9d3297d',
+		description: `
+		I'm a pink ball who simps for cute girls.. and draws…sometimes (2434) 💓Eng/Рус/日本語/Ger OK💓 business: savi.chan.commissions@gmail(.)com📩info in carrd`,
+		externalURL: 'https://webapp.dokomi.de/explore/c/107468',
+		imageURL: saviProfilePic
+	},
+
+	{
+		id: 7,
 		name: 'CYCLIC★REDUNDANCY',
 		hash: '547b3527f079fd616ccd420d242e06092efc2e1b',
 		description: `
@@ -57,7 +93,7 @@ Modell & Banner by me.`,
 		imageURL: cyclicProfilePic
 	},
 	{
-		id: 5,
+		id: 8,
 		name: 'Erizu 3J19',
 		hash: '31db5fff1842de328bf801624d6c6a7a368849e2',
 		description: 'Freelance Illustrator | Live2d Artist/Rigger | Pixel Art Apprentice',
@@ -65,7 +101,7 @@ Modell & Banner by me.`,
 		imageURL: erizuProfilePic
 	},
 	{
-		id: 6,
+		id: 9,
 		name: 'juwei 🌷🌆',
 		hash: 'be94be5fe0c93e5c74a6b62f500b66954eca9ed2',
 		description: `
