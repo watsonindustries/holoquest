@@ -32,7 +32,13 @@
 			qrScanner.pause();
 		} else if (state === ScannerState.STOPPED) {
 			state = ScannerState.SCANNING;
-			qrScanner.start();
+			qrScanner.start().catch((e) => {
+				console.error(e);
+				setToast({
+					type: ToastType.ERROR,
+					message: 'Failed to start scanner!'
+				});
+			});
 		}
 	}
 
@@ -70,6 +76,10 @@
 			highlightScanRegion: true,
 			highlightCodeOutline: true
 		});
+
+		videoElem.setAttribute('playsinline', 'true');
+		videoElem.setAttribute('autoplay', 'true');
+		videoElem.setAttribute('muted', 'true');
 
 		collectedStampCount = () => {
 			return Object.keys(localStorage).filter((key) => expectedHashes.includes(key)).length;

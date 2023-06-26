@@ -99,7 +99,7 @@
 
 		{#if isQuestCompleted}
 			<h2 class="text-center font-geologica text-xl font-semibold text-secondary">
-				Show sheet to staff!
+				Show sheet to staff at the booth!
 			</h2>
 		{:else}
 			<!-- Scan button -->

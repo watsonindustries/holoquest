@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import {
-		Home,
+		Ticket,
 		QrCode,
 		QuestionMarkCircle,
 		UserCircle,
@@ -16,8 +16,7 @@
 
 	onMount(() => {
 		drawerToggle = document.querySelector('.drawer-toggle') as HTMLInputElement;
-		// TODO: Uncomment this before prod launch
-		// isDebug = localStorage.getItem('debug') === 'true';
+		isDebug = localStorage.getItem('debug') === 'true';
 	});
 </script>
 
@@ -61,14 +60,14 @@
 	</div>
 	<div class="drawer-side">
 		<label for="drawer-nav" class="drawer-overlay" />
-		<ul class="menu h-full w-60 bg-base-200 p-4">
+		<ul class="menu h-full w-60 bg-base-200 p-4 text-xl">
 			<!-- Sidebar content here -->
 			<li>
 				<a
 					href="/"
 					on:click={() => {
 						drawerToggle.checked = false;
-					}}><Icon src={Home} theme="solid" class="color-gray-900" size="20" />Home</a>
+					}}><Icon src={Ticket} theme="solid" class="color-gray-900" size="20" />Stamp Sheet</a>
 			</li>
 			<li>
 				<a

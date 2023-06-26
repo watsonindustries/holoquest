@@ -11,7 +11,7 @@
 
 	const delay = 500;
 
-	const { name, externalURL, imageURL, description } = data.partner as Stamp;
+	const { name, externalURL, imageURL, description } = data.partner as unknown as Stamp;
 </script>
 
 <a href="/" in:fade={{ delay }} class="btn-ghost btn mb-4 w-fit justify-start gap-2 rounded-full"
