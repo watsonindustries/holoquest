@@ -11,6 +11,7 @@ import juweiProfilePic from '$lib/assets/juwei-profile.jpg';
 import ioeaProfile from '$lib/assets/ioea-profile.jpg';
 import maruminProfile from '$lib/assets/marumin-profile.jpg';
 import hynoriProfile from '$lib/assets/hynori-profile.png';
+import asulNuiProfile from '$lib/assets/asulnui-profile.jpg';
 
 /**
  * @file This file contains all the constants used in the application.
@@ -111,8 +112,18 @@ Modell & Banner by me.`,
 @pnkkr4mune`,
 		externalURL: 'https://webapp.dokomi.de/explore/c/107557',
 		imageURL: juweiProfilePic
+	},
+	{
+		id: 10,
+		name: 'Asulnui',
+		hash: '6fdfc8bfb68f0c3df42bf6d98064f2a7b058e4e5',
+		description: `
+		Robo doggo⚡🐾 Vtuber training arc. VArtist 🖊️ Art tag #Inuink 
+ESP/ENG/日本語 OK!
+`,
+		externalURL: 'https://webapp.dokomi.de/explore/c/107086',
+		imageURL: asulNuiProfile
 	}
-
 ];
 
 export const socketServerURL = dev
