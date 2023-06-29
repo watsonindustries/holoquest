@@ -26,7 +26,7 @@
 		{description}
 	</p>
 
-	<a href={externalURL} class="btn-secondary btn max-w-screen-lg gap-2 rounded-full"
+	<a href={externalURL} class="btn-secondary btn max-w-screen-lg gap-2 rounded-full text-white"
 		>Open in DoKomi app <Icon
 			src={ArrowTopRightOnSquare}
 			theme="solid"

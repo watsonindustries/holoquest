@@ -117,7 +117,7 @@
 	<!-- Stamp grid, only rendered when the stamp sheet is not torn -->
 	{#if !isStampSheetTorn}
 		<div
-			class="grid grid-cols-2 gap-4 rounded-b-xl p-4 pt-8 shadow-md z-30"
+			class="z-30 grid grid-cols-2 gap-4 rounded-b-xl p-4 pt-8 shadow-md"
 			in:fade={{ delay }}
 			out:fly={isStampSheetTorn && isQuestCompleted
 				? { y: 20, duration: 1200, easing: cubicOut }

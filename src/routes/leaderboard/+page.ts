@@ -1,8 +1,6 @@
 import { fetchLeaderboard } from '../../client';
 import type { PageLoad } from './$types';
 
-
-
 export const load = (async () => {
 	try {
 		const leaderboard = await fetchLeaderboard();

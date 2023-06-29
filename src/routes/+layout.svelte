@@ -1,7 +1,14 @@
 <script lang="ts">
 	import '../app.css';
 
-	import { nickname, userToken, socket, notificationsChannel, toastStore, setToast } from '../store';
+	import {
+		nickname,
+		userToken,
+		socket,
+		notificationsChannel,
+		toastStore,
+		setToast
+	} from '../store';
 
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Toast from '$lib/components/Toast.svelte';
@@ -57,7 +64,7 @@
 				type: ToastType.SUCCESS,
 				message: `User ${payload.nickname} completed the rally!`
 			});
-		})
+		});
 
 		// TODO: Maybe attach to a dedicated channel for this?
 		$notificationsChannel.on('msg', (payload) => {

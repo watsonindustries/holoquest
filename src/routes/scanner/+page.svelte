@@ -11,7 +11,7 @@
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 
-	import { Eye, QrCode, StopCircle } from '@steeze-ui/heroicons';
+	import { Ticket, QrCode, StopCircle } from '@steeze-ui/heroicons';
 	import { fade } from 'svelte/transition';
 	import { updateScore } from '../../client';
 
@@ -111,7 +111,7 @@
 	<div class="flex flex-col justify-center space-y-4">
 		<button
 			on:click={transitionState}
-			class="text btn mx-auto w-10/12 max-w-screen-lg gap-2 rounded-full"
+			class="text btn mx-auto w-10/12 max-w-screen-lg gap-2 rounded-full text-white"
 			class:btn-primary={state === ScannerState.STOPPED}
 			class:btn-error={state === ScannerState.SCANNING}>
 			<Icon
@@ -133,9 +133,9 @@
 
 	<div class="flex flex-col justify-center space-y-4">
 		<a
-			class="text btn-secondary btn mx-auto mt-2 w-10/12 max-w-screen-lg gap-2 rounded-full"
+			class="text btn-secondary btn mx-auto mt-2 w-10/12 max-w-screen-lg gap-2 rounded-full text-white"
 			href="/">
-			<Icon src={Eye} theme="solid" class="color-gray-900" size="28px" />
+			<Icon src={Ticket} theme="solid" class="color-gray-900" size="28px" />
 			View collected stamps</a>
 	</div>
 </div>

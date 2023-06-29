@@ -67,6 +67,9 @@
 		Reach out to <a href={daniruKunDiscordURL} class="link-secondary link">@danirukun</a> for inquiries.
 	</p>
 
+	<a href="https://forms.gle/K744AfWbi2HSKdzU6" class="btn-secondary btn rounded-full text-white"
+		>Support Form</a>
+
 	<h2 class=" text-2xl text-secondary">Help</h2>
 	<p>
 		Scan the QR code found on the HoloQuest stamps to collect them. Your collected stamps will show
