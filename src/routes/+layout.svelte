@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 
-	import { nickname, userToken, socket, scansChannel, toastStore, setToast } from '../store';
+	import { nickname, userToken, socket, notificationsChannel, toastStore, setToast } from '../store';
 
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Toast from '$lib/components/Toast.svelte';
@@ -35,9 +35,9 @@
 		}
 
 		$socket = new Socket(socketServerURL, { params: { userToken: $userToken } });
-		$scansChannel = initChannel($socket, 'notifications:scans');
+		$notificationsChannel = initChannel($socket, 'notifications:scans');
 
-		$scansChannel.on('collected-broadcast', (payload) => {
+		$notificationsChannel.on('collected-broadcast', (payload) => {
 			console.log('Received collected-broadcast:', payload);
 
 			if (payload.nickname === $nickname) return;
@@ -48,8 +48,19 @@
 			});
 		});
 
+		$notificationsChannel.on('rally-completed', (payload) => {
+			console.log('Received rally-completed:', payload);
+
+			if (payload.nickname === $nickname) return;
+
+			setToast({
+				type: ToastType.SUCCESS,
+				message: `User ${payload.nickname} completed the rally!`
+			});
+		})
+
 		// TODO: Maybe attach to a dedicated channel for this?
-		$scansChannel.on('msg', (payload) => {
+		$notificationsChannel.on('msg', (payload) => {
 			console.log('Received msg:', payload);
 			setToast({
 				type: ToastType.SUCCESS,
@@ -64,7 +75,7 @@
 		}
 
 		try {
-			$scansChannel.join().receive('ok', (response) => {
+			$notificationsChannel.join().receive('ok', (response) => {
 				console.log('Joined successfully', response);
 			});
 		} catch (error) {

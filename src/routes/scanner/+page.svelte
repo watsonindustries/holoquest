@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
-	import { nickname, scansChannel, setToast, userToken } from '../../store';
+	import { nickname, notificationsChannel, setToast, userToken } from '../../store';
 
 	import QrScanner from 'qr-scanner';
 
@@ -50,10 +50,12 @@
 		if (expectedHashes.includes(hash)) {
 			// Scan success
 			localStorage.setItem(hash, token);
-			$scansChannel?.push('collected', { nickname: $nickname });
+			$notificationsChannel?.push('collected', { nickname: $nickname });
+
+			let collectedStamps = collectedStampCount();
 
 			try {
-				if ($userToken) updateScore($userToken, collectedStampCount());
+				if ($userToken) updateScore($userToken, collectedStamps);
 			} catch (e) {
 				console.error("Can't update score!");
 			}
@@ -62,6 +64,16 @@
 				type: ToastType.SUCCESS,
 				message: 'Stamp Saved!'
 			});
+
+			if (collectedStamps == 10) {
+				setTimeout(() => {
+					setToast({
+						type: ToastType.SUCCESS,
+						message: 'Stamp Rally completed!'
+					});
+					$notificationsChannel?.push('rally-completed', { nickname: $nickname });
+				}, 1000);
+			}
 		} else {
 			setToast({
 				type: ToastType.ERROR,
