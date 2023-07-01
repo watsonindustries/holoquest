@@ -34,7 +34,7 @@ Modell & Banner by me.`,
 	},
 	{
 		id: 2,
-		name: 'Kagura Nana @ IOEA',
+		name: 'Kagura Nana 3B18',
 		hash: '65f21aa01e5be625463340fdebf5eac8b636264f',
 		description: `
 		Natsume Eri, Eretto and Nana Kaguraaa
@@ -44,7 +44,7 @@ Modell & Banner by me.`,
 	},
 	{
 		id: 3,
-		name: 'marumin',
+		name: 'marumin 3C21',
 		hash: '0cee71fe8e4834108709bbc3986517fc1bb82175',
 		description: `
 		♡ I'm Maru and I draw!! | DM for commission info || email: amarururun@gmail.com || 🍃🌿🍀rambles 
@@ -84,7 +84,7 @@ Modell & Banner by me.`,
 
 	{
 		id: 7,
-		name: 'CYCLIC★REDUNDANCY',
+		name: 'CYCLIC★REDUNDANCY 3J48',
 		hash: '547b3527f079fd616ccd420d242e06092efc2e1b',
 		description: `
 		Doujin 同人 Circle 🎨▪️Account manager 担当者：
@@ -103,7 +103,7 @@ Modell & Banner by me.`,
 	},
 	{
 		id: 9,
-		name: 'juwei 🌷🌆',
+		name: 'juwei 🌷🌆 3L53',
 		hash: 'be94be5fe0c93e5c74a6b62f500b66954eca9ed2',
 		description: `
 		【artist and tea connoisseur】commissions: http://vgen.co/juwei • stream: http://twitch.tv/juwei_ • support: http://ko-fi.com/juwei • alt: 
@@ -115,7 +115,7 @@ Modell & Banner by me.`,
 	},
 	{
 		id: 10,
-		name: 'Asulnui',
+		name: 'Asulnui 3H03',
 		hash: '6fdfc8bfb68f0c3df42bf6d98064f2a7b058e4e5',
 		description: `
 		Robo doggo⚡🐾 Vtuber training arc. VArtist 🖊️ Art tag #Inuink 
