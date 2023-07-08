@@ -1,3 +1,10 @@
+- [Developing](#developing)
+  * [Building](#building)
+  * [Setup](#setup)
+    + [Stamps](#stamps)
+    + [Server](#server)
+  * [Events](#events)
+
 # Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
@@ -9,22 +16,63 @@ npm run dev
 npm run dev -- --open
 ```
 
+The app will always try to establish a connection to the server at `socketServerURL` (check in `const.ts`).
+
+For regular HTTP API requests, the app will use the `apiServerURL` (check in `const.ts`).
+
+You can configure the production build server URLs in the same module.
+
 ## Building
 
 To create a production version of your app:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
-You can preview the production build with `npm run preview`.
+You can preview the production build with `pnpm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
 ## Setup
 
-The way the quest works, is that the app has a hardcoded array of stamps to be collected in `const.ts`. Those stamps are then displayed in the root view.
+### Stamps
+
+The way the quest works, is that the app has a hardcoded array of stamps `expectedStamps` to be collected in `const.ts`. Those stamps are then displayed in the root view.
 
 Each Stamp in the real world is a **UUID token** encoded as a **QR code**. The expected stamps contain the **SHA1 hashes** of the UUIDs, so that the app can verify that the scanned stamp is the correct one.
 
-Once all stamps are collected, the app displays a **secret code** that can be used to claim the prize. The code is a checksum of the stamp token UUIDs in the order they appear in the `const.ts` file using **SHA-256**. The code is encoded as a QR code, so that it can be easily scanned and will be visible in `/result`.
+If you want stamps to have an image, add the optimized asset to `src/lib/assets` and reference it using a SvelteKit import.
+
+For example, a stamp might look like this:
+
+```javascript
+{
+		hash: '37d895725ad8aa8bba87a139710e909b46cb753e',
+		id: 1,
+		name: 'Hasuke はすけ 4C16',
+		description: `
+		Digital Artist & V-Tuber | 🇩🇪🇺🇸🇯🇵 |
+| Graphic Art | Illustration | Gamedev |
+Certified Hololive Simp
+Modell & Banner by me.`,
+		externalURL: 'https://webapp.dokomi.de/explore/c/108511',
+		imageURL: hasukeProfilePic
+	},
+```
+
+And you import the image like this:
+
+```javascript
+import hasukeProfilePic from '$lib/assets/hasuke-profile.png';
+```
+
+The `externalURL` is a generic link to some external URL (this might be a link to a partner's homepage, a deep link in a convention's app etc.).
+
+### Server
+
+The server implementation and documentation is available [HERE](https://github.com/watsonindustries/tako).
+
+## Events
+
+WIP
