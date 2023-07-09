@@ -42,7 +42,7 @@
 		}
 
 		$socket = new Socket(socketServerURL, { params: { userToken: $userToken } });
-		$notificationsChannel = initChannel($socket, 'notifications:scans');
+		$notificationsChannel = initChannel($socket, 'notifications');
 
 		$notificationsChannel.on('collected-broadcast', (payload) => {
 			console.log('Received collected-broadcast:', payload);
