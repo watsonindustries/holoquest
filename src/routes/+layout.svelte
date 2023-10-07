@@ -17,7 +17,7 @@
 	import { initChannel } from '../phoenix-client';
 	import { registerUser } from '../client';
 	import { socketServerURL } from '../const';
-	import { generateNickname } from '../hololive-nick-gen';
+	import { generateNickname } from 'hololive-nick-gen';
 	import { ToastType } from '../custom';
 
 	onMount(async () => {

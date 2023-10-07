@@ -11,6 +11,9 @@ dependencies:
   daisyui:
     specifier: ^3.1.6
     version: 3.1.6(postcss@8.4.24)
+  hololive-nick-gen:
+    specifier: ^1.0.1
+    version: 1.0.1
   jssha:
     specifier: ^3.3.0
     version: 3.3.0
@@ -1340,6 +1343,10 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+
+  /hololive-nick-gen@1.0.1:
+    resolution: {integrity: sha512-tUmlxukXNFd8ShLXbQW8GtXI/Wwl33RELzwSCQRAY9GdB7GwqpD62wkaB7b1oRb636CE+ZOuRrqMIXLL47Wjdw==}
+    dev: false
 
   /idb@7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
