@@ -1,9 +1,11 @@
 - [Developing](#developing)
-  * [Building](#building)
-  * [Setup](#setup)
-    + [Stamps](#stamps)
-    + [Server](#server)
-  * [Events](#events)
+	- [Building](#building)
+	- [Setup](#setup)
+		- [Stamps](#stamps)
+		- [Server](#server)
+	- [Events](#events)
+	- [Gacha game](#gacha-game)
+		- [State diagram](#state-diagram)
 
 # Developing
 
@@ -76,3 +78,19 @@ The server implementation and documentation is available [HERE](https://github.c
 ## Events
 
 WIP
+
+## Gacha game
+
+On the completion of the stamp rally, a one time gacha game pull is available.
+
+### State diagram
+
+```mermaid
+stateDiagram-v2
+    [*] --> NOT_PLAYED
+    NOT_PLAYED --> PLAYING : Play Gacha
+    PLAYING --> PLAYED : After 3 seconds
+    PLAYED --> [*] : End
+```
+
+The wait time for the pull result is configurable in the `HolomemGacha` component, as well as any extra logic you want to add to the game.
