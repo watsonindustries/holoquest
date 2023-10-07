@@ -14,7 +14,7 @@
 	import Toast from '$lib/components/Toast.svelte';
 	import { Socket } from 'phoenix';
 	import { onMount } from 'svelte';
-	import { registerUser } from '../client';
+	import { registerUser, ChannelsClient } from '../client';
 	import { socketServerURL } from '../const';
 	import { generateNickname } from 'hololive-nick-gen';
 	import { TOAST_TYPE } from '../custom';
@@ -106,7 +106,8 @@
 			Object.assign(window, {
 				socket: $socket,
 				notificationsChannel: $notificationsChannel,
-				setToast: setToast
+				setToast: setToast,
+				notificationsClient: new ChannelsClient($notificationsChannel)
 			});
 		}
 	});

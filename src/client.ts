@@ -1,5 +1,8 @@
 import type { LeaderboardResponse, RegisterUserResponse, SetNicknameResponse } from './custom';
 import { apiServerURL } from './const';
+import { notificationsChannel, nickname } from './store';
+import { get } from 'svelte/store'
+import type { Channel } from 'phoenix';
 
 const apiToken = import.meta.env.VITE_HOLOQUEST_API_TOKEN;
 
@@ -65,4 +68,36 @@ export async function updateScore(userId: string, score: number): Promise<void> 
 	});
 	const json = await response.json();
 	return json;
+}
+
+export class ChannelsClient {
+	nickname = get(nickname);
+	channel: Channel | null;
+
+	constructor(channel: Channel) {
+		this.channel = channel;
+		nickname.subscribe((value) => {
+			this.nickname = value;
+		});
+		notificationsChannel.subscribe((value) => {
+			this.channel = value;
+		});
+	}
+
+	/**
+	 * Pushes a message to the channel
+	 * @param {string} message Message to send to the server
+	 */
+	pushMessage(message: string) {
+		this.channel?.push('message', { nickname: this.nickname, message });
+	}
+
+	// Pushes a 'collected' message to the channel
+	pushCollected() {
+		this.channel?.push('collected', { nickname: this.nickname });
+	}
+
+	pushRallyCompleted() {
+		this.channel?.push('rally-completed', { nickname: this.nickname });
+	}
 }

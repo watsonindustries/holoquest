@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
-	import { nickname, notificationsChannel, setToast, userToken } from '../../store';
+	import { notificationsChannel, setToast, userToken } from '../../store';
 
 	import QrScanner from 'qr-scanner';
 
 	import { sha1 } from '../../crypto';
 	import { expectedStamps } from '../../const';
 	import { TOAST_TYPE, SCANNER_STATE, type ScannerState } from '../../custom';
-	import { updateScore } from '../../client';
+	import { ChannelsClient, updateScore } from '../../client';
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Ticket, QrCode, StopCircle } from '@steeze-ui/heroicons';
 	import { fade } from 'svelte/transition';
+	import type { Channel } from 'phoenix';
 
 	let state: ScannerState = 'STOPPED';
 
@@ -24,6 +25,8 @@
 	let collectedStampCount = function () {
 		return 0;
 	};
+
+	const notificationsClient = new ChannelsClient($notificationsChannel as Channel);
 
 	function transitionState() {
 		if (state === SCANNER_STATE.SCANNING) {
@@ -49,7 +52,7 @@
 		if (expectedHashes.includes(hash)) {
 			// Scan success
 			localStorage.setItem(hash, token);
-			$notificationsChannel?.push('collected', { nickname: $nickname });
+			notificationsClient.pushCollected();
 
 			let collectedStamps = collectedStampCount();
 
@@ -70,7 +73,7 @@
 						type: TOAST_TYPE.SUCCESS,
 						message: 'Stamp Rally completed!'
 					});
-					$notificationsChannel?.push('rally-completed', { nickname: $nickname });
+					notificationsClient.pushRallyCompleted();
 				}, 1000);
 			}
 		} else {
