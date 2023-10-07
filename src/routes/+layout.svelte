@@ -19,6 +19,8 @@
 	import { generateNickname } from 'hololive-nick-gen';
 	import { TOAST_TYPE } from '../custom';
 
+	import { dev } from '$app/environment';
+
 	onMount(async () => {
 		// Initialize the stores with the nickname and user token found locally
 		// If first time using the app, generate a new nickname
@@ -36,7 +38,7 @@
 				$userToken = res.data.id;
 				localStorage.setItem('userToken', $userToken);
 			} catch (error) {
-				console.error(error);
+				console.error('Failed to register user: ', error);
 			}
 		}
 
@@ -97,6 +99,15 @@
 			});
 		} catch (error) {
 			console.error(error);
+		}
+
+		// Bind stuff to window for debugging
+		if (dev || localStorage.getItem('debug') === 'true') {
+			Object.assign(window, {
+				socket: $socket,
+				notificationsChannel: $notificationsChannel,
+				setToast: setToast
+			});
 		}
 	});
 </script>
