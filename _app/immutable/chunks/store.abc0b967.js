@@ -1,0 +1,1 @@
+import{w as s}from"./index.bcc80e03.js";const a=s("anonymous"),e=s(null),l=s(null),u=s(null),n=s(null);function c(t){n.set(t),setTimeout(()=>n.set(null),5e3)}export{u as a,c as b,a as n,l as s,n as t,e as u};

@@ -1,1 +1,0 @@
-var N=(E=>(E[E.SUCCESS=0]="SUCCESS",E[E.ERROR=1]="ERROR",E))(N||{}),P=(E=>(E[E.PLAYED=0]="PLAYED",E[E.NOT_PLAYED=1]="NOT_PLAYED",E[E.PLAYING=2]="PLAYING",E))(P||{}),A=(E=>(E[E.SCANNING=0]="SCANNING",E[E.STOPPED=1]="STOPPED",E))(A||{});export{P as G,A as S,N as T};
