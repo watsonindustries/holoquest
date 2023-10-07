@@ -7,15 +7,14 @@
 
 	import { sha1 } from '../../crypto';
 	import { expectedStamps } from '../../const';
-	import { ToastType, ScannerState } from '../../custom';
-
-	import { Icon } from '@steeze-ui/svelte-icon';
-
-	import { Ticket, QrCode, StopCircle } from '@steeze-ui/heroicons';
-	import { fade } from 'svelte/transition';
+	import { TOAST_TYPE, SCANNER_STATE, type ScannerState } from '../../custom';
 	import { updateScore } from '../../client';
 
-	let state = ScannerState.STOPPED;
+	import { Icon } from '@steeze-ui/svelte-icon';
+	import { Ticket, QrCode, StopCircle } from '@steeze-ui/heroicons';
+	import { fade } from 'svelte/transition';
+
+	let state: ScannerState = 'STOPPED';
 
 	let videoElem: HTMLVideoElement;
 	let qrScanner: QrScanner;
@@ -27,15 +26,15 @@
 	};
 
 	function transitionState() {
-		if (state === ScannerState.SCANNING) {
-			state = ScannerState.STOPPED;
+		if (state === SCANNER_STATE.SCANNING) {
+			state = SCANNER_STATE.STOPPED;
 			qrScanner.pause();
-		} else if (state === ScannerState.STOPPED) {
-			state = ScannerState.SCANNING;
+		} else if (state === SCANNER_STATE.STOPPED) {
+			state = SCANNER_STATE.SCANNING;
 			qrScanner.start().catch((e) => {
 				console.error(e);
 				setToast({
-					type: ToastType.ERROR,
+					type: TOAST_TYPE.ERROR,
 					message: 'Failed to start scanner!'
 				});
 			});
@@ -61,14 +60,14 @@
 			}
 
 			setToast({
-				type: ToastType.SUCCESS,
+				type: TOAST_TYPE.SUCCESS,
 				message: 'Stamp Saved!'
 			});
 
 			if (collectedStamps == 10) {
 				setTimeout(() => {
 					setToast({
-						type: ToastType.SUCCESS,
+						type: TOAST_TYPE.SUCCESS,
 						message: 'Stamp Rally completed!'
 					});
 					$notificationsChannel?.push('rally-completed', { nickname: $nickname });
@@ -76,7 +75,7 @@
 			}
 		} else {
 			setToast({
-				type: ToastType.ERROR,
+				type: TOAST_TYPE.ERROR,
 				message: 'Invalid Stamp!'
 			});
 		}
@@ -112,20 +111,20 @@
 		<button
 			on:click={transitionState}
 			class="text btn mx-auto w-10/12 max-w-screen-lg gap-2 rounded-full text-white"
-			class:btn-primary={state === ScannerState.STOPPED}
-			class:btn-error={state === ScannerState.SCANNING}>
+			class:btn-primary={state === SCANNER_STATE.STOPPED}
+			class:btn-error={state === SCANNER_STATE.SCANNING}>
 			<Icon
-				src={state === ScannerState.SCANNING ? StopCircle : QrCode}
+				src={state === SCANNER_STATE.SCANNING ? StopCircle : QrCode}
 				theme="solid"
 				class="color-gray-900"
 				size="32px" />
-			{state === ScannerState.SCANNING ? 'Stop' : 'Scan'}</button>
+			{state === SCANNER_STATE.SCANNING ? 'Stop' : 'Scan'}</button>
 	</div>
 
 	<div
 		id="scanner-preview-area"
 		class="h-96"
-		class:hidden={state === ScannerState.STOPPED}
+		class:hidden={state === SCANNER_STATE.STOPPED}
 		transition:fade>
 		<!-- svelte-ignore a11y-media-has-caption -->
 		<video />

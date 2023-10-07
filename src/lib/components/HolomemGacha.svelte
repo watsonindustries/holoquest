@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import { GachaState, type Holomem } from '../../custom';
+	import { GACHA_STATE, type GachaState, type Holomem } from '../../custom';
 	import { holomemGachaPool } from '../../const';
 	import { nickname } from '../../store';
 
-	let gachaState = GachaState.NOT_PLAYED;
+	let gachaState: GachaState = GACHA_STATE.NOT_PLAYED;
 	let result: Holomem;
 	let resultIndex: number;
 	const gachaPullDuration = 3000; // ms
@@ -18,24 +18,24 @@
 
 	// Main gacha implementation
 	function handlePlayGacha() {
-		gachaState = GachaState.PLAYING;
+		gachaState = GACHA_STATE.PLAYING;
 		setTimeout(() => {
 			resultIndex = pickMemberIndex();
 			result = holomemGachaPool[resultIndex] as Holomem;
-			gachaState = GachaState.PLAYED;
+			gachaState = GACHA_STATE.PLAYED;
 		}, gachaPullDuration);
 	}
 
 	onMount(() => {
 		// Recover gacha state
 		if (localStorage.getItem('gachaPlayed') === 'yes') {
-			gachaState = GachaState.PLAYED;
+			gachaState = GACHA_STATE.PLAYED;
 			resultIndex = parseInt(localStorage.getItem('gachaResultIndex') as string);
 			result = holomemGachaPool[resultIndex] as Holomem;
 		}
 	});
 
-	$: if (gachaState === GachaState.PLAYED) {
+	$: if (gachaState === GACHA_STATE.PLAYED) {
 		// Dump state to localStorage
 		localStorage.setItem('gachaPlayed', 'yes');
 		localStorage.setItem('gachaResultIndex', resultIndex.toString());
@@ -47,13 +47,13 @@
 	You have completed the quest!
 </h2>
 
-{#if gachaState === GachaState.NOT_PLAYED}
+{#if gachaState === GACHA_STATE.NOT_PLAYED}
 	<button class="btn-secondary btn animate-pulse rounded-full" on:click={handlePlayGacha}
 		>Play Gacha</button>
-{:else if gachaState === GachaState.PLAYING}
+{:else if gachaState === GACHA_STATE.PLAYING}
 	<span class="loading-xl loading loading-dots" />
 	<p class="font-geologica">Warming up the gacha...</p>
-{:else if gachaState === GachaState.PLAYED}
+{:else if gachaState === GACHA_STATE.PLAYED}
 	{#if result}
 		<div
 			class="card image-full -z-10 w-10/12 bg-base-100 text-center shadow-lg"

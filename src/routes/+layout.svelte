@@ -14,11 +14,10 @@
 	import Toast from '$lib/components/Toast.svelte';
 	import { Socket } from 'phoenix';
 	import { onMount } from 'svelte';
-	import { initChannel } from '../phoenix-client';
 	import { registerUser } from '../client';
 	import { socketServerURL } from '../const';
 	import { generateNickname } from 'hololive-nick-gen';
-	import { ToastType } from '../custom';
+	import { TOAST_TYPE } from '../custom';
 
 	onMount(async () => {
 		// Initialize the stores with the nickname and user token found locally
@@ -42,7 +41,18 @@
 		}
 
 		$socket = new Socket(socketServerURL, { params: { userToken: $userToken } });
-		$notificationsChannel = initChannel($socket, 'notifications');
+		$notificationsChannel = $socket.channel('notifications');
+
+		// Register handlers
+		$notificationsChannel.on('shout', (payload) => {
+			console.log('Received shout:', payload);
+		});
+
+		$notificationsChannel.on('ping', (payload) => {
+			console.log('Received ping:', payload);
+			console.log('Sending pong...');
+			$notificationsChannel?.push('pong', { body: 'pong' });
+		});
 
 		$notificationsChannel.on('collected-broadcast', (payload) => {
 			console.log('Received collected-broadcast:', payload);
@@ -50,7 +60,7 @@
 			if (payload.nickname === $nickname) return;
 
 			setToast({
-				type: ToastType.SUCCESS,
+				type: TOAST_TYPE.SUCCESS,
 				message: `User ${payload.nickname} found a stamp!`
 			});
 		});
@@ -61,7 +71,7 @@
 			if (payload.nickname === $nickname) return;
 
 			setToast({
-				type: ToastType.SUCCESS,
+				type: TOAST_TYPE.SUCCESS,
 				message: `User ${payload.nickname} completed the rally!`
 			});
 		});
@@ -70,7 +80,7 @@
 		$notificationsChannel.on('msg', (payload) => {
 			console.log('Received msg:', payload);
 			setToast({
-				type: ToastType.SUCCESS,
+				type: TOAST_TYPE.SUCCESS,
 				message: payload.message
 			});
 		});
@@ -83,7 +93,7 @@
 
 		try {
 			$notificationsChannel.join().receive('ok', (response) => {
-				console.log('Joined successfully', response);
+				console.log('Joined notifications channel successfully', response);
 			});
 		} catch (error) {
 			console.error(error);

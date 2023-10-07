@@ -1,3 +1,4 @@
+
 export type Stamp = {
 	id: number;
 	name: string;
@@ -7,26 +8,32 @@ export type Stamp = {
 	imageURL?: string;
 };
 
-export enum ToastType {
-	SUCCESS,
-	ERROR
-}
+export const TOAST_TYPE = {
+	SUCCESS: 'SUCCESS',
+	ERROR: 'ERROR',
+} as const;
 
-export enum GachaState {
-	PLAYED,
-	NOT_PLAYED,
-	PLAYING
-}
+export type ToastType = keyof typeof TOAST_TYPE;
+
+export const GACHA_STATE = {
+	PLAYED: 'PLAYED',
+	NOT_PLAYED: 'NOT_PLAYED',
+	PLAYING: 'PLAYING',
+} as const;
+
+export type GachaState = keyof typeof GACHA_STATE;
 
 export type Toast = {
 	type: ToastType;
 	message: string;
 };
 
-export enum ScannerState {
-	SCANNING,
-	STOPPED
-}
+export const SCANNER_STATE = {
+	SCANNING: 'SCANNING',
+	STOPPED: 'STOPPED',
+} as const;
+
+export type ScannerState = keyof typeof SCANNER_STATE;
 
 export type RegisterUserResponse = {
 	data: {
