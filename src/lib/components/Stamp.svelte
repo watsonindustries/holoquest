@@ -17,7 +17,7 @@
 <a href={navURL}>
 	<div
 		class="flex flex-col items-center"
-		in:fade={{ duration: fadeDuration, delay: 150 * id + 500 }}>
+		in:fade|global={{ duration: fadeDuration, delay: 150 * id + 500 }}>
 		<div
 			class="flex h-28 w-28 items-center justify-center rounded-full {collected
 				? 'bg-gradient-to-br from-primary to-secondary'

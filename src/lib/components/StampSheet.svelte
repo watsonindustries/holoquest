@@ -83,7 +83,7 @@
 
 <div
 	class="bg-triangles mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100"
-	out:fade>
+	out:fade|global>
 	<!-- Stub -->
 	<div
 		class="flex flex-col justify-center space-y-6 pb-8 pt-4 shadow-md"
@@ -91,7 +91,7 @@
 		class:border-b-2={isStampSheetTorn}
 		class:border-dashed={isStampSheetTorn}
 		class:border-slate-900={isStampSheetTorn}
-		in:fade={{ delay }}
+		in:fade|global={{ delay }}
 		on:touchstart={handleTouchStart}
 		on:touchend={handleTouchEnd}
 		on:touchcancel={handleTouchCancel}>
@@ -118,8 +118,8 @@
 	{#if !isStampSheetTorn}
 		<div
 			class="z-30 grid grid-cols-2 gap-4 rounded-b-xl p-4 pt-8 shadow-md"
-			in:fade={{ delay }}
-			out:fly={isStampSheetTorn && isQuestCompleted
+			in:fade|global={{ delay }}
+			out:fly|global={isStampSheetTorn && isQuestCompleted
 				? { y: 20, duration: 1200, easing: cubicOut }
 				: {}}>
 			{#each stamps as stamp}

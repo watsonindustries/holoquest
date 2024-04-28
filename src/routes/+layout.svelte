@@ -70,7 +70,7 @@
 		$notificationsChannel.on('rally-completed', (payload) => {
 			console.log('Received rally-completed:', payload);
 
-			if (payload.nickname === $nickname) return;
+			if (payload.nickname === $nickname) return; // A bit of a hack, this can be done in Tako too
 
 			setToast({
 				type: TOAST_TYPE.SUCCESS,

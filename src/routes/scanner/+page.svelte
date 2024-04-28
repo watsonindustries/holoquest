@@ -106,7 +106,7 @@
 	});
 </script>
 
-<div class="space-y-4" in:fade={{ delay: 500 }}>
+<div class="space-y-4" in:fade|global={{ delay: 500 }}>
 	<h1 class="text-center font-geologica text-4xl font-bold text-primary">Scanner</h1>
 	<p class="px-2 text-center text-xl">Press Scan, and scan the QR code of the stamp!</p>
 
@@ -128,7 +128,7 @@
 		id="scanner-preview-area"
 		class="h-96"
 		class:hidden={state === SCANNER_STATE.STOPPED}
-		transition:fade>
+		transition:fade|global>
 		<!-- svelte-ignore a11y-media-has-caption -->
 		<video />
 	</div>

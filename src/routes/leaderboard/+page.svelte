@@ -29,7 +29,7 @@
 
 <div
 	class="z-0 w-screen space-y-4 overflow-x-auto font-geologica text-lg text-secondary"
-	in:fade={{ delay: 500 }}>
+	in:fade|global={{ delay: 500 }}>
 	<h1 class="mx-4 my-4 text-4xl font-bold text-primary">Leaderboard</h1>
 	<h2 class="mx-4 text-lg font-bold">{lastUpdatedFormatted()}</h2>
 	<table class="table w-full">

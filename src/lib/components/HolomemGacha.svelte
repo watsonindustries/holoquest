@@ -57,7 +57,7 @@
 	{#if result}
 		<div
 			class="card image-full -z-10 w-10/12 bg-base-100 text-center shadow-lg"
-			in:fade={{ delay: 500 }}>
+			in:fade|global={{ delay: 500 }}>
 			<figure><img src={result.photo} alt={result.english_name} /></figure>
 			<div class="card-body items-center font-geologica">
 				<h2 class="card-title text-xl text-slate-100">{$nickname} got {result.english_name}!</h2>

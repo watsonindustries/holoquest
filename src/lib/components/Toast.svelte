@@ -12,7 +12,7 @@
 		class="alert alert-{type}"
 		class:alert-success={type === TOAST_TYPE.SUCCESS}
 		class:alert-error={type === TOAST_TYPE.ERROR}
-		transition:fade>
+		transition:fade|global>
 		<div class="text-center">
 			<span>{message}</span>
 		</div>

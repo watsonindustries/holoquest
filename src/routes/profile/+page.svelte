@@ -53,11 +53,11 @@
 	});
 </script>
 
-<h1 class="mx-4 my-4 font-geologica text-4xl font-bold text-primary" in:fade={{ delay: 500 }}>
+<h1 class="mx-4 my-4 font-geologica text-4xl font-bold text-primary" in:fade|global={{ delay: 500 }}>
 	Profile
 </h1>
 
-<div class="mx-4 my-4 space-y-4" in:fade={{ delay: 500 }}>
+<div class="mx-4 my-4 space-y-4" in:fade|global={{ delay: 500 }}>
 	<label class="font-geologica text-xl font-bold text-secondary" for="nickname">Nickname</label>
 	<input
 		type="text"
