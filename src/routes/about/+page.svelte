@@ -15,7 +15,7 @@
 </svelte:head>
 
 <div class="mx-4 my-4 space-y-4 font-geologica text-lg">
-	<p class="text-4xl text-primary">HoloQuest companion app</p>
+	<p class="text-4xl text-primary">holoquest companion app</p>
 
 	<p>Build version <span class="font-mono">{version}</span></p>
 
@@ -72,7 +72,7 @@
 
 	<h2 class=" text-2xl text-secondary">Help</h2>
 	<p>
-		Scan the QR code found on the HoloQuest stamps to collect them. Your collected stamps will show
+		Scan the QR code found on the holoquest stamps to collect them. Your collected stamps will show
 		up on your <b>stamp sheet</b>. Tap a stamp to see where to find it. Once you find all stamps,
 		take your stamp sheet to the Fan Booth.
 	</p>
@@ -94,12 +94,12 @@
 		<li class="list-item">
 			If the QR code scanner stops working, close the tab and browser completely and restart it.
 		</li>
-		<li class="list-item">To more easily find exhibitors, install the DoKomi 2023 app.</li>
+		<li class="list-item">To more easily find exhibitors, install the DoKomi 2024 app.</li>
 	</ul>
 
 	<h2 class="text-2xl text-secondary">Legal</h2>
 	<p>
-		This is a fan project for the DoKomi 2023 Hololive fan booth after approval by <a
+		This is a fan project for the DoKomi 2024 Hololive fan booth after approval by <a
 			href={coverCorpURL}
 			class="link-primary link">COVER Corp.</a> within the rules of the fan work guidelines.
 	</p>
