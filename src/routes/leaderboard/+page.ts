@@ -1,4 +1,4 @@
-import { fetchLeaderboard } from '../../client';
+import { fetchLeaderboard } from '../../legacy-client';
 import type { PageLoad } from './$types';
 
 export const load = (async () => {

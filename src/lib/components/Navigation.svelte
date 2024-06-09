@@ -87,15 +87,6 @@
 			</li>
 			<li>
 				<a
-					href="/leaderboard"
-					on:click={() => {
-						drawerToggle.checked = false;
-					}}>
-					<Icon src={Trophy} theme="solid" class="color-gray-900" size="20" />Leaderboard
-				</a>
-			</li>
-			<li>
-				<a
 					href="/about"
 					on:click={() => {
 						drawerToggle.checked = false;

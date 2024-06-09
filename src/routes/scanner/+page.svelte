@@ -8,7 +8,6 @@
 	import { sha1 } from '../../crypto';
 	import { expectedStamps } from '../../const';
 	import { TOAST_TYPE, SCANNER_STATE, type ScannerState } from '../../custom';
-	import { updateScore } from '../../client';
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Ticket, QrCode, StopCircle } from '@steeze-ui/heroicons';
@@ -52,12 +51,6 @@
 			localStorage.setItem(hash, token);
 
 			let collectedStamps = collectedStampCount();
-
-			try {
-				if ($userToken) updateScore($userToken, collectedStamps);
-			} catch (e) {
-				console.error("Can't update score!");
-			}
 
 			setToast({
 				type: TOAST_TYPE.SUCCESS,

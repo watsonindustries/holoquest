@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	import { setNickname } from '../../client';
 	import { setToast, nickname } from '../../store';
 	import { TOAST_TYPE } from '../../custom';
 
@@ -30,15 +29,6 @@
 			$nickname = newNicknameValue;
 
 			if (userToken !== '' && userToken !== null) {
-				const res = await setNickname(userToken, newNicknameValue);
-				if (res.errors) {
-					console.log(res.errors);
-					setToast({
-						type: TOAST_TYPE.ERROR,
-						message: 'Nickname invalid'
-					});
-					return;
-				}
 				setToast({
 					type: TOAST_TYPE.SUCCESS,
 					message: 'Nickname updated successfully'
