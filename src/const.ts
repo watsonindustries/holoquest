@@ -1,17 +1,16 @@
-import type { Stamp } from './custom';
 import { dev } from '$app/environment';
+import type { Stamp } from './custom';
 
-import watameSmug from '$lib/assets/watamesmug.jpg';
-import hasukeProfilePic from '$lib/assets/hasuke-profile.jpg';
-import saviProfilePic from '$lib/assets/savi-profile.jpg';
-import moriProfilePic from '$lib/assets/morinohitos-profile.jpg';
+import asulNuiProfile from '$lib/assets/asulnui-profile.jpg';
 import cyclicProfilePic from '$lib/assets/cyclic-redundancy-profile.png';
 import erizuProfilePic from '$lib/assets/erizu-profile.jpg';
-import juweiProfilePic from '$lib/assets/juwei-profile.jpg';
-import ioeaProfile from '$lib/assets/ioea-profile.jpg';
-import maruminProfile from '$lib/assets/marumin-profile.jpg';
+import hasukeProfilePic from '$lib/assets/hasuke-profile.jpg';
 import hynoriProfile from '$lib/assets/hynori-profile.png';
-import asulNuiProfile from '$lib/assets/asulnui-profile.jpg';
+import ioeaProfile from '$lib/assets/ioea-profile.jpg';
+import juweiProfilePic from '$lib/assets/juwei-profile.jpg';
+import maruminProfile from '$lib/assets/marumin-profile.jpg';
+import moriProfilePic from '$lib/assets/morinohitos-profile.jpg';
+import saviProfilePic from '$lib/assets/savi-profile.jpg';
 
 /**
  * @file This file contains all the constants used in the application.

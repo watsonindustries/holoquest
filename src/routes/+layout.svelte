@@ -27,7 +27,6 @@
 			localStorage.setItem('nickname', value);
 		});
 
-
 		// Bind stuff to window for debugging
 		if (dev || localStorage.getItem('debug') === 'true') {
 			Object.assign(window, {

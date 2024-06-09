@@ -1,4 +1,3 @@
-
 export type Stamp = {
 	id: number;
 	name: string;
@@ -10,7 +9,7 @@ export type Stamp = {
 
 export const TOAST_TYPE = {
 	SUCCESS: 'SUCCESS',
-	ERROR: 'ERROR',
+	ERROR: 'ERROR'
 } as const;
 
 export type ToastType = keyof typeof TOAST_TYPE;
@@ -18,7 +17,7 @@ export type ToastType = keyof typeof TOAST_TYPE;
 export const GACHA_STATE = {
 	PLAYED: 'PLAYED',
 	NOT_PLAYED: 'NOT_PLAYED',
-	PLAYING: 'PLAYING',
+	PLAYING: 'PLAYING'
 } as const;
 
 export type GachaState = keyof typeof GACHA_STATE;
@@ -30,7 +29,7 @@ export type Toast = {
 
 export const SCANNER_STATE = {
 	SCANNING: 'SCANNING',
-	STOPPED: 'STOPPED',
+	STOPPED: 'STOPPED'
 } as const;
 
 export type ScannerState = keyof typeof SCANNER_STATE;

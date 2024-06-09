@@ -43,7 +43,10 @@
 	});
 </script>
 
-<h1 class="mx-4 my-4 font-geologica text-4xl font-bold text-primary" in:fade|global={{ delay: 500 }}>
+<h1
+	class="mx-4 my-4 font-geologica text-4xl font-bold text-primary"
+	in:fade|global={{ delay: 500 }}
+>
 	Profile
 </h1>
 
@@ -55,7 +58,8 @@
 		name="nickname"
 		placeholder="E.g. smol_ame"
 		bind:value={$nickname}
-		class="input-bordered input-secondary input w-full max-w-xs" />
+		class="input-bordered input-secondary input w-full max-w-xs"
+	/>
 	<button class="btn-secondary btn rounded-full" on:click={handleSetNickname}>
 		Set nickname
 	</button>

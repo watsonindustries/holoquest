@@ -1,8 +1,8 @@
-import type { LeaderboardResponse, RegisterUserResponse, SetNicknameResponse } from './custom';
-import { apiServerURL } from './const';
-import { notificationsChannel, nickname } from './store';
-import { get } from 'svelte/store'
 import type { Channel } from 'phoenix';
+import { get } from 'svelte/store';
+import { apiServerURL } from './const';
+import type { LeaderboardResponse, RegisterUserResponse, SetNicknameResponse } from './custom';
+import { nickname, notificationsChannel } from './store';
 
 const apiToken = import.meta.env.VITE_HOLOQUEST_API_TOKEN;
 

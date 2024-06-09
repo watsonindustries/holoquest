@@ -49,7 +49,8 @@
 
 {#if gachaState === GACHA_STATE.NOT_PLAYED}
 	<button class="btn-secondary btn animate-pulse rounded-full" on:click={handlePlayGacha}
-		>Play Gacha</button>
+		>Play Gacha</button
+	>
 {:else if gachaState === GACHA_STATE.PLAYING}
 	<span class="loading-xl loading loading-dots" />
 	<p class="font-geologica">Warming up the gacha...</p>
@@ -57,7 +58,8 @@
 	{#if result}
 		<div
 			class="card image-full -z-10 w-10/12 bg-base-100 text-center shadow-lg"
-			in:fade|global={{ delay: 500 }}>
+			in:fade|global={{ delay: 500 }}
+		>
 			<figure><img src={result.photo} alt={result.english_name} /></figure>
 			<div class="card-body items-center font-geologica">
 				<h2 class="card-title text-xl text-slate-100">{$nickname} got {result.english_name}!</h2>
@@ -65,7 +67,8 @@
 				<div class="card-actions justify-end">
 					<a
 						class="btn-secondary btn rounded-full text-slate-50"
-						href="https://holodex.net/channel/{result.id}/clips">Explore Channel</a>
+						href="https://holodex.net/channel/{result.id}/clips">Explore Channel</a
+					>
 				</div>
 			</div>
 		</div>

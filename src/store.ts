@@ -1,5 +1,5 @@
+import type { Channel, Socket } from 'phoenix';
 import { writable } from 'svelte/store';
-import type { Socket, Channel } from 'phoenix';
 import type { Toast } from './custom';
 
 export const nickname = writable<string>('anonymous');

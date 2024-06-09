@@ -30,19 +30,22 @@
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
-						class="inline-block h-6 w-6 stroke-current">
+						class="inline-block h-6 w-6 stroke-current"
+					>
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							stroke-width="2"
-							d="M4 6h16M4 12h16M4 18h16" />
+							d="M4 6h16M4 12h16M4 18h16"
+						/>
 					</svg>
 				</label>
 			</div>
 			<div class="flex">
 				<a
 					class="btn-ghost btn bg-gradient-to-br from-primary to-secondary bg-clip-text font-geologica text-xl normal-case text-transparent"
-					href="/">
+					href="/"
+				>
 					HoloQuest
 				</a>
 			</div>
@@ -65,14 +68,16 @@
 					href="/"
 					on:click={() => {
 						drawerToggle.checked = false;
-					}}><Icon src={Ticket} theme="solid" class="color-gray-900" size="20" />Stamp Sheet</a>
+					}}><Icon src={Ticket} theme="solid" class="color-gray-900" size="20" />Stamp Sheet</a
+				>
 			</li>
 			<li>
 				<a
 					href="/scanner"
 					on:click={() => {
 						drawerToggle.checked = false;
-					}}>
+					}}
+				>
 					<Icon src={QrCode} theme="solid" class="color-gray-900" size="20" />Scanner
 				</a>
 			</li>
@@ -81,7 +86,8 @@
 					href="/profile"
 					on:click={() => {
 						drawerToggle.checked = false;
-					}}>
+					}}
+				>
 					<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />Profile
 				</a>
 			</li>
@@ -90,7 +96,8 @@
 					href="/about"
 					on:click={() => {
 						drawerToggle.checked = false;
-					}}>
+					}}
+				>
 					<Icon src={QuestionMarkCircle} theme="solid" class="color-gray-900" size="20" />About
 				</a>
 			</li>
@@ -100,7 +107,8 @@
 						href="/debug"
 						on:click={() => {
 							drawerToggle.checked = false;
-						}}>
+						}}
+					>
 						<Icon src={BugAnt} theme="solid" class="color-gray-900" size="20" />Debug
 					</a>
 				</li>

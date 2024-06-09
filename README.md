@@ -1,11 +1,11 @@
 - [Developing](#developing)
-	- [Building](#building)
-	- [Setup](#setup)
-		- [Stamps](#stamps)
-		- [Server](#server)
-	- [Events](#events)
-	- [Gacha game](#gacha-game)
-		- [State diagram](#state-diagram)
+  - [Building](#building)
+  - [Setup](#setup)
+    - [Stamps](#stamps)
+    - [Server](#server)
+  - [Events](#events)
+  - [Gacha game](#gacha-game)
+    - [State diagram](#state-diagram)
 
 # Developing
 
@@ -42,7 +42,7 @@ You can preview the production build with `pnpm run preview`.
 
 The way the quest works, is that the app has a hardcoded array of stamps `expectedStamps` to be collected in `const.ts`. Those stamps are then displayed in the root view.
 
-Each Stamp in the real world is a **UUID token** encoded as a **QR code**. The expected stamps contain the **SHA1 hashes** of the UUIDs, so that the app can verify that the scanned stamp is the correct one.
+Each Stamp in the real world is a **UUID token** encoded as a **QR code**. The expected stamps contain the **SHA256 hashes** of the UUIDs, so that the app can verify that the scanned stamp is the correct one.
 
 If you want stamps to have an image, add the optimized asset to `src/lib/assets` and reference it using a SvelteKit import.
 
@@ -51,7 +51,7 @@ For example, a stamp might look like this:
 ```javascript
 {
 		hash: '37d895725ad8aa8bba87a139710e909b46cb753e',
-		id: 1,
+		id: 'some uuid',
 		name: 'Hasuke はすけ 4C16',
 		description: `
 		Digital Artist & V-Tuber | 🇩🇪🇺🇸🇯🇵 |

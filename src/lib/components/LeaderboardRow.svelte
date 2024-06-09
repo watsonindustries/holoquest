@@ -18,7 +18,8 @@
 					class="flex items-center"
 					class:fill-yellow-400={rank === 1}
 					class:fill-slate-400={rank === 2}
-					class:fill-amber-500={rank === 3}>
+					class:fill-amber-500={rank === 3}
+				>
 					{@html ribbonIcon}
 				</span>
 			{/if}

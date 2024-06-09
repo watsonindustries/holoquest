@@ -5,12 +5,12 @@
 
 const sw = self as unknown as ServiceWorkerGlobalScope;
 
-import { NetworkOnly } from 'workbox-strategies';
 import { build, files, prerendered, version } from '$service-worker';
-import { precacheAndRoute } from 'workbox-precaching';
-import * as navigationPreload from 'workbox-navigation-preload';
-import { registerRoute } from 'workbox-routing';
 import { BackgroundSyncPlugin } from 'workbox-background-sync';
+import * as navigationPreload from 'workbox-navigation-preload';
+import { precacheAndRoute } from 'workbox-precaching';
+import { registerRoute } from 'workbox-routing';
+import { NetworkOnly } from 'workbox-strategies';
 
 navigationPreload.enable();
 

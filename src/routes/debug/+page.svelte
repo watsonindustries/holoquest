@@ -23,8 +23,10 @@
 		on:click={() => {
 			localStorage.clear();
 		}}
-		class="btn-error btn mx-auto w-8/12 gap-2 rounded-full">
-		clear localstorage</button>
+		class="btn-error btn mx-auto w-8/12 gap-2 rounded-full"
+	>
+		clear localstorage</button
+	>
 
 	<p class="text-xl font-bold">User info</p>
 	<p>Nickname: <span class="font-mono">{$nickname}</span></p>
@@ -34,5 +36,6 @@
 	<p>Stamp sheet status: {sheetTorn ? 'torn' : 'untorn'}</p>
 	<button
 		on:click={() => localStorage.setItem('isStampSheetTorn', 'no')}
-		class="btn-primary btn mx-auto w-8/12 gap-2 rounded-full">Untear sheet</button>
+		class="btn-primary btn mx-auto w-8/12 gap-2 rounded-full">Untear sheet</button
+	>
 </div>

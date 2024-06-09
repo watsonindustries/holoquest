@@ -1,6 +1,6 @@
 // crypto.spec.ts
-import { sha1, calculateTokenChecksum } from './crypto'; // adjust the path if necessary
 import { test } from 'vitest';
+import { calculateTokenChecksum, sha1 } from './crypto'; // adjust the path if necessary
 
 test('sha1 hashes correctly', () => {
 	const input = 'Hello, world!';

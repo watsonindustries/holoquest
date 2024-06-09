@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
-	import { Icon } from '@steeze-ui/svelte-icon';
-	import { QrCode } from '@steeze-ui/heroicons';
 	import StampComponent from '$lib/components/Stamp.svelte';
 	import type { Stamp } from '../../custom';
 	import { onMount } from 'svelte';
 	import { expectedStamps } from '../../const';
 	import HolomemGacha from './HolomemGacha.svelte';
+	import RoundScanButton from './RoundScanButton.svelte';
 
 	export let stamps: Stamp[] = [];
 
@@ -83,7 +82,8 @@
 
 <div
 	class="bg-triangles mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100"
-	out:fade|global>
+	out:fade|global
+>
 	<!-- Stub -->
 	<div
 		class="flex flex-col justify-center space-y-6 pb-8 pt-4 shadow-md"
@@ -94,7 +94,8 @@
 		in:fade|global={{ delay }}
 		on:touchstart={handleTouchStart}
 		on:touchend={handleTouchEnd}
-		on:touchcancel={handleTouchCancel}>
+		on:touchcancel={handleTouchCancel}
+	>
 		<h1 class="text-center font-geologica text-4xl font-bold text-primary">Stamps</h1>
 
 		{#if isQuestCompleted}
@@ -102,15 +103,7 @@
 				Show sheet to staff at the booth!
 			</h2>
 		{:else}
-			<!-- Scan button -->
-			<a
-				href="/scanner"
-				class="btn-xl btn-info btn mx-auto w-8/12 justify-center gap-2 rounded-full font-bold text-base-100"
-				tabindex="-1"
-				aria-disabled="true">
-				<Icon src={QrCode} theme="solid" class="h-8 w-8" />
-				Scan stamp
-			</a>
+			<RoundScanButton />
 		{/if}
 	</div>
 
@@ -121,13 +114,15 @@
 			in:fade|global={{ delay }}
 			out:fly|global={isStampSheetTorn && isQuestCompleted
 				? { y: 20, duration: 1200, easing: cubicOut }
-				: {}}>
+				: {}}
+		>
 			{#each stamps as stamp}
 				<StampComponent
 					name={stamp.name}
 					collected={isStampCollected(stamp)}
 					id={stamp.id}
-					img={stamp.imageURL} />
+					img={stamp.imageURL}
+				/>
 			{/each}
 		</div>
 	{/if}
