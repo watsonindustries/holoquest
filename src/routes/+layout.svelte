@@ -12,12 +12,8 @@
 
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Toast from '$lib/components/Toast.svelte';
-	import { Socket } from 'phoenix';
 	import { onMount } from 'svelte';
-	import { registerUser, ChannelsClient } from '../client';
-	import { socketServerURL } from '../const';
 	import { generateNickname } from 'hololive-nick-gen';
-	import { TOAST_TYPE } from '../custom';
 
 	import { dev } from '$app/environment';
 
@@ -31,83 +27,13 @@
 			localStorage.setItem('nickname', value);
 		});
 
-		if (!$userToken) {
-			// When no user token is found locally, register a new user and save its token
-			try {
-				const res = await registerUser($nickname);
-				$userToken = res.data.id;
-				localStorage.setItem('userToken', $userToken);
-			} catch (error) {
-				console.error('Failed to register user: ', error);
-			}
-		}
-
-		$socket = new Socket(socketServerURL, { params: { userToken: $userToken } });
-		$notificationsChannel = $socket.channel('notifications');
-
-		// Register handlers
-		$notificationsChannel.on('shout', (payload) => {
-			console.log('Received shout:', payload);
-		});
-
-		$notificationsChannel.on('ping', (payload) => {
-			console.log('Received ping:', payload);
-			console.log('Sending pong...');
-			$notificationsChannel?.push('pong', { body: 'pong' });
-		});
-
-		$notificationsChannel.on('collected-broadcast', (payload) => {
-			console.log('Received collected-broadcast:', payload);
-
-			if (payload.nickname === $nickname) return;
-
-			setToast({
-				type: TOAST_TYPE.SUCCESS,
-				message: `User ${payload.nickname} found a stamp!`
-			});
-		});
-
-		$notificationsChannel.on('rally-completed', (payload) => {
-			console.log('Received rally-completed:', payload);
-
-			if (payload.nickname === $nickname) return; // A bit of a hack, this can be done in Tako too
-
-			setToast({
-				type: TOAST_TYPE.SUCCESS,
-				message: `User ${payload.nickname} completed the rally!`
-			});
-		});
-
-		// TODO: Maybe attach to a dedicated channel for this?
-		$notificationsChannel.on('msg', (payload) => {
-			console.log('Received msg:', payload);
-			setToast({
-				type: TOAST_TYPE.SUCCESS,
-				message: payload.message
-			});
-		});
-
-		try {
-			$socket.connect();
-		} catch (e) {
-			console.error(e);
-		}
-
-		try {
-			$notificationsChannel.join().receive('ok', (response) => {
-				console.log('Joined notifications channel successfully', response);
-			});
-		} catch (error) {
-			console.error(error);
-		}
 
 		// Bind stuff to window for debugging
 		if (dev || localStorage.getItem('debug') === 'true') {
 			Object.assign(window, {
 				socket: $socket,
 				notificationsChannel: $notificationsChannel,
-				setToast: setToast,
-				notificationsClient: new ChannelsClient($notificationsChannel)
+				setToast: setToast
 			});
 		}
 	});

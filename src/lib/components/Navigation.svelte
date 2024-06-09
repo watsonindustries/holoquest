@@ -8,7 +8,6 @@
 		BugAnt,
 		Trophy
 	} from '@steeze-ui/heroicons';
-	import ConnectionIndicator from './ConnectionIndicator.svelte';
 	import { onMount } from 'svelte';
 
 	let drawerToggle: HTMLInputElement;
@@ -51,7 +50,6 @@
 				<a href="/profile" class="btn-ghost btn-circle btn">
 					<Icon src={UserCircle} size="20" theme="solid" />
 				</a>
-				<ConnectionIndicator />
 			</div>
 		</div>
 
