@@ -81,7 +81,7 @@
 </script>
 
 <div
-	class="bg-triangles mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100"
+	class="mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100"
 	out:fade|global
 >
 	<!-- Stub -->
