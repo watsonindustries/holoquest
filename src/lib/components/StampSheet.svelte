@@ -2,15 +2,17 @@
 	import { fade, fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import StampComponent from '$lib/components/Stamp.svelte';
-	import type { Stamp } from '../../custom';
+	import type {Tables} from '$lib/database.types';
 	import { onMount } from 'svelte';
-	import { expectedStamps } from '../../const';
+
 	import HolomemGacha from './HolomemGacha.svelte';
 	import RoundScanButton from './RoundScanButton.svelte';
+	import { collectedStamps } from '$lib/stores/stamps';
+	import { get } from 'svelte/store';
 
-	export let stamps: Stamp[] = [];
+	export let stamps: Tables<'stamps'>[] = [];
 
-	let isStampCollected = function (_stamp: Stamp) {
+	let isStampCollected = function (_stamp: Tables<'stamps'>) {
 		return false;
 	};
 
@@ -20,15 +22,16 @@
 	let isQuestCompleted = false; // Can only be true if all stamps were collected
 
 	function isAllStampsCollected() {
-		return expectedStamps.every(isStampCollected);
+		return stamps.every(isStampCollected);
 	}
 
 	const delay = 500; // synchronized fade in delay
 	const minTouchTime = 1000; // minimum touch time in milliseconds, how long the stub of the stamp sheet should be touched
 
 	onMount(() => {
-		isStampCollected = function (stamp: Stamp) {
-			return localStorage.getItem(stamp.hash) !== null;
+		isStampCollected = function (stamp: Tables<'stamps'>) {
+			// return localStorage.getItem(stamp.hash) !== null;
+			return get(collectedStamps)[stamp.hash];
 		};
 
 		tearStampSheet = function () {
@@ -121,7 +124,7 @@
 					name={stamp.name}
 					collected={isStampCollected(stamp)}
 					id={stamp.id}
-					img={stamp.imageURL}
+					img={stamp.image_url || undefined}
 				/>
 			{/each}
 		</div>

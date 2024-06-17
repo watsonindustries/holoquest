@@ -1,10 +1,11 @@
-import { supabase } from '../supabase-client';
+import { expectedStamps } from '$lib/stores/stamps';
+import { get } from 'svelte/store';
 import type { PageLoad } from './$types';
 
 export const ssr = false;
 
 export const load = (async () => {
-	const { data } = await supabase.from('stamps').select('*');
+	const stamps = Object.values(get(expectedStamps));
 
-	return { stamps: data };
+	return { stamps };
 }) satisfies PageLoad;

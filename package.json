@@ -18,6 +18,7 @@
 		"@sveltejs/adapter-static": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/jssha": "^3.0.0",
 		"@types/phoenix": "^1.6.0",
 		"@typescript-eslint/eslint-plugin": "^5.60.0",
 		"@typescript-eslint/parser": "^5.60.0",
@@ -54,6 +55,7 @@
 		"hololive-nick-gen": "^1.0.1",
 		"jssha": "^3.3.0",
 		"phoenix": "^1.7.6",
-		"qr-scanner": "^1.4.2"
+		"qr-scanner": "^1.4.2",
+		"svelte-persisted-store": "^0.11.0"
 	}
 }

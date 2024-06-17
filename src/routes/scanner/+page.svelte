@@ -1,24 +1,25 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
-	import { setToast, userToken } from '../../store';
+	import { setToast } from '../../store';
 
 	import QrScanner from 'qr-scanner';
 
-	import { sha1 } from '../../crypto';
-	import { expectedStamps } from '../../const';
+	import { sha256 } from '../../crypto';
 	import { TOAST_TYPE, SCANNER_STATE, type ScannerState } from '../../custom';
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Ticket, QrCode, StopCircle } from '@steeze-ui/heroicons';
 	import { fade } from 'svelte/transition';
+	import { get } from 'svelte/store';
+	import { expectedStamps } from '$lib/stores/stamps';
 
 	let state: ScannerState = 'STOPPED';
 
 	let videoElem: HTMLVideoElement;
 	let qrScanner: QrScanner;
 	let token = '';
-	const expectedHashes = expectedStamps.map((stamp) => stamp.hash);
+	const expectedHashes = Object.values(get(expectedStamps)).map((stamp) => stamp.hash);
 
 	let collectedStampCount = function () {
 		return 0;
@@ -43,7 +44,7 @@
 	function onResult(result: QrScanner.ScanResult) {
 		token = result.data;
 		transitionState();
-		let hash = sha1(token);
+		let hash = sha256(token);
 
 		if (expectedHashes.includes(hash)) {
 			// Scan success

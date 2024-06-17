@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { expectedStamps } from '../const';
-
 	import StampSheet from '$lib/components/StampSheet.svelte';
+
+	export let data;
 </script>
 
-<StampSheet stamps={expectedStamps} />
+<StampSheet stamps={data.stamps} />

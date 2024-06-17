@@ -1,12 +1,3 @@
-export type Stamp = {
-	id: number;
-	name: string;
-	hash: string;
-	description: string;
-	externalURL?: string;
-	imageURL?: string;
-};
-
 export const TOAST_TYPE = {
 	SUCCESS: 'SUCCESS',
 	ERROR: 'ERROR'

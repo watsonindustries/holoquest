@@ -29,6 +29,9 @@ importers:
       qr-scanner:
         specifier: ^1.4.2
         version: 1.4.2
+      svelte-persisted-store:
+        specifier: ^0.11.0
+        version: 0.11.0(svelte@4.2.15)
     devDependencies:
       '@steeze-ui/heroicons':
         specifier: ^2.2.2
@@ -45,6 +48,9 @@ importers:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^3.0.0
         version: 3.1.0(svelte@4.2.15)(vite@5.2.11(@types/node@20.3.1))
+      '@types/jssha':
+        specifier: ^3.0.0
+        version: 3.0.0
       '@types/phoenix':
         specifier: ^1.6.0
         version: 1.6.0
@@ -510,6 +516,10 @@ packages:
 
   '@types/json-schema@7.0.12':
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
+
+  '@types/jssha@3.0.0':
+    resolution: {integrity: sha512-EfJ5RHBfB/XVl9rg12W6u6on3jEGQXYqIHlEja1/tkn2PWJg+Kz0RjMRuKmoWmDCZp5cz0jlS++XslTpRUFNvQ==}
+    deprecated: This is a stub types definition. jssha provides its own type definitions, so you do not need this installed.
 
   '@types/node@20.3.1':
     resolution: {integrity: sha512-EhcH/wvidPy1WeML3TtYFGR83UzjxeWRen9V402T8aUGYsCHOmfoisV3ZSg03gAFIbLq8TnWOJ0f4cALtnSEUg==}
@@ -1661,6 +1671,12 @@ packages:
     peerDependencies:
       svelte: ^3.19.0 || ^4.0.0
 
+  svelte-persisted-store@0.11.0:
+    resolution: {integrity: sha512-9RgJ5DrawGyyfK22A80cfu8Jose3CV8YjEZKz9Tn94rQ0tWyEmYr+XI+wrVF6wjRbW99JMDSVcFRiM3XzVJj/w==}
+    engines: {node: '>=0.14'}
+    peerDependencies:
+      svelte: ^3.48.0 || ^4.0.0 || ^5.0.0-next.0
+
   svelte-preprocess@5.0.4:
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
     engines: {node: '>= 14.10.0'}
@@ -2255,6 +2271,10 @@ snapshots:
   '@types/estree@1.0.5': {}
 
   '@types/json-schema@7.0.12': {}
+
+  '@types/jssha@3.0.0':
+    dependencies:
+      jssha: 3.3.0
 
   '@types/node@20.3.1': {}
 
@@ -3386,6 +3406,10 @@ snapshots:
       svelte: 4.2.15
 
   svelte-hmr@0.16.0(svelte@4.2.15):
+    dependencies:
+      svelte: 4.2.15
+
+  svelte-persisted-store@0.11.0(svelte@4.2.15):
     dependencies:
       svelte: 4.2.15
 
