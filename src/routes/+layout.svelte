@@ -1,14 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 
-	import {
-		nickname,
-		userToken,
-		socket,
-		notificationsChannel,
-		toastStore,
-		setToast
-	} from '../store';
+	import { setToast, toastStore } from '$lib/stores/toasts';
+	import { userToken } from '$lib/stores/userinfo';
 
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Toast from '$lib/components/Toast.svelte';
@@ -20,18 +14,11 @@
 	onMount(async () => {
 		// Initialize the stores with the nickname and user token found locally
 		// If first time using the app, generate a new nickname
-		$nickname = localStorage.getItem('nickname') || generateNickname();
 		$userToken = localStorage.getItem('userToken');
-
-		nickname.subscribe((value) => {
-			localStorage.setItem('nickname', value);
-		});
 
 		// Bind stuff to window for debugging
 		if (dev || localStorage.getItem('debug') === 'true') {
 			Object.assign(window, {
-				socket: $socket,
-				notificationsChannel: $notificationsChannel,
 				setToast: setToast
 			});
 		}

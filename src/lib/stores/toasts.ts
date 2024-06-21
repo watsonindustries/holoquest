@@ -1,11 +1,6 @@
-import type { Channel, Socket } from 'phoenix';
 import { writable } from 'svelte/store';
-import type { Toast } from './custom';
+import type { Toast } from '../../custom';
 
-export const nickname = writable<string>('anonymous');
-export const userToken = writable<string | null>(null);
-export const socket = writable<Socket | null>(null);
-export const notificationsChannel = writable<Channel | null>(null);
 export const toastStore = writable<Toast | null>(null);
 
 /**

@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	import { setToast, nickname } from '../../store';
+	import { setToast } from '$lib/stores/toasts';
+	import { nickname } from '$lib/stores/userinfo';
 	import { TOAST_TYPE } from '../../custom';
 
 	let userToken = '';
@@ -26,7 +27,7 @@
 				return;
 			}
 
-			$nickname = newNicknameValue;
+			nickname.set(newNicknameValue);
 
 			if (userToken !== '' && userToken !== null) {
 				setToast({
@@ -60,9 +61,9 @@
 		bind:value={$nickname}
 		class="input-bordered input-secondary input w-full max-w-xs"
 	/>
-	<button class="btn-secondary btn rounded-full" on:click={handleSetNickname}>
+	<!-- <button class="btn-secondary btn rounded-full" on:click={handleSetNickname}>
 		Set nickname
-	</button>
+	</button> -->
 
-	<p>Your nickname is used to identify you in the leaderboards and realtime events.</p>
+	<!-- <p>Your nickname is used to identify you in the leaderboards and realtime events.</p> -->
 </div>

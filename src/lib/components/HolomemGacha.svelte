@@ -3,7 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import { GACHA_STATE, type GachaState, type Holomem } from '../../custom';
 	import { holomemGachaPool } from '../../const';
-	import { nickname } from '../../store';
+	import { nickname } from '$lib/stores/userinfo';
 
 	let gachaState: GachaState = GACHA_STATE.NOT_PLAYED;
 	let result: Holomem;

@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
-	import { setToast } from '../../store';
-
 	import QrScanner from 'qr-scanner';
 
 	import { sha256 } from '../../crypto';
@@ -13,6 +11,7 @@
 	import { fade } from 'svelte/transition';
 	import { get } from 'svelte/store';
 	import { expectedStamps } from '$lib/stores/stamps';
+	import { setToast } from '$lib/stores/toasts';
 
 	let state: ScannerState = 'STOPPED';
 

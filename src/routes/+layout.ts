@@ -16,6 +16,8 @@ async function startupTasks() {
 	await updateExpectedStamps();
 }
 
+// Fetched expected stamp data from supabase and creates object in store
+// With hash as key and rest of stamp data as value
 async function updateExpectedStamps() {
 	console.log('Fetching stamp data...');
 	const { data } = await supabase.from('stamps').select('*');

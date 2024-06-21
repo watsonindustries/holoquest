@@ -3,7 +3,6 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Wifi } from '@steeze-ui/heroicons';
 
-	import { socket } from '../../store';
 	import { onMount } from 'svelte';
 
 	let connectionState: ConnectionState = 'connecting';
