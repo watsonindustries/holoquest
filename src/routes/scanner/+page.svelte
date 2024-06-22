@@ -3,22 +3,21 @@
 
 	import QrScanner from 'qr-scanner';
 
-	import { sha256 } from '../../crypto';
+	import { tokenHash } from '../../crypto';
 	import { TOAST_TYPE, SCANNER_STATE, type ScannerState } from '../../custom';
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Ticket, QrCode, StopCircle } from '@steeze-ui/heroicons';
 	import { fade } from 'svelte/transition';
-	import { get } from 'svelte/store';
-	import { expectedStamps } from '$lib/stores/stamps';
+	import { getExpectedStampHashes, saveStamp } from '$lib/stores/stamps';
 	import { setToast } from '$lib/stores/toasts';
+	import { minStampCountRequired } from '../../const';
 
 	let state: ScannerState = 'STOPPED';
 
 	let videoElem: HTMLVideoElement;
 	let qrScanner: QrScanner;
 	let token = '';
-	const expectedHashes = Object.values(get(expectedStamps)).map((stamp) => stamp.hash);
 
 	let collectedStampCount = function () {
 		return 0;
@@ -40,14 +39,25 @@
 		}
 	}
 
+	// Handle scan result
 	function onResult(result: QrScanner.ScanResult) {
-		token = result.data;
-		transitionState();
-		let hash = sha256(token);
+		try {
+			token = parseTokenFromScan(result.data);
+			console.log('Scanned token:', token)
+		} catch (e) {
+			setToast({
+				type: TOAST_TYPE.ERROR,
+				message: 'Invalid QR code!'
+			});
+			return;
+		}
 
-		if (expectedHashes.includes(hash)) {
+		transitionState();
+		let hash = tokenHash(token);
+
+		if (getExpectedStampHashes().includes(hash)) {
 			// Scan success
-			localStorage.setItem(hash, token);
+			saveStamp(token);
 
 			let collectedStamps = collectedStampCount();
 
@@ -56,7 +66,7 @@
 				message: 'Stamp Saved!'
 			});
 
-			if (collectedStamps == 10) {
+			if (collectedStamps == minStampCountRequired) {
 				setTimeout(() => {
 					setToast({
 						type: TOAST_TYPE.SUCCESS,
@@ -72,6 +82,16 @@
 		}
 	}
 
+	function parseTokenFromScan(data: string): string {
+		const url = new URL(data);
+		if (url.pathname.startsWith('/sc/')) {
+			const token = url.pathname.substring(4);
+			return token;
+		} else {
+			throw new Error('Invalid QR code');
+		}
+	}
+
 	onMount(() => {
 		videoElem = document.querySelector('video') as HTMLVideoElement;
 		qrScanner = new QrScanner(videoElem, onResult, {
@@ -83,9 +103,10 @@
 		videoElem.setAttribute('autoplay', 'true');
 		videoElem.setAttribute('muted', 'true');
 
-		collectedStampCount = () => {
-			return Object.keys(localStorage).filter((key) => expectedHashes.includes(key)).length;
-		};
+		// TODO: Implement collectedStampCount
+		// collectedStampCount = () => {
+		// 	return Object.keys(localStorage).filter((key) => expectedHashes.includes(key)).length;
+		// };
 	});
 
 	onDestroy(() => {

@@ -32,3 +32,7 @@ export function calculateTokenChecksum(tokens: string[]): string {
 	shaObj.update(tokens.join(''));
 	return shaObj.getHash('HEX');
 }
+
+export function tokenHash(token: string): string {
+	return sha256(token);
+}

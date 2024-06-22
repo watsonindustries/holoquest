@@ -7,19 +7,20 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Toast from '$lib/components/Toast.svelte';
 	import { onMount } from 'svelte';
-	import { generateNickname } from 'hololive-nick-gen';
 
 	import { dev } from '$app/environment';
+	import { saveStamp, collectedStamps } from '$lib/stores/stamps';
 
 	onMount(async () => {
 		// Initialize the stores with the nickname and user token found locally
-		// If first time using the app, generate a new nickname
-		$userToken = localStorage.getItem('userToken');
+		$userToken = localStorage.getItem('userToken'); // FIXME: Replace with persisted store
 
 		// Bind stuff to window for debugging
 		if (dev || localStorage.getItem('debug') === 'true') {
 			Object.assign(window, {
-				setToast: setToast
+				setToast: setToast,
+				saveStamp: saveStamp,
+				collectedStamps: collectedStamps,
 			});
 		}
 	});

@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import placeholderImg from '$lib/assets/watamesmug.jpg';
 
 	export let id: number;
 	export let name: string;
 	export let collected = false;
 	export let navURL = `/partner/${id}`;
 
-	const PLACEHOLDER_STAMP_IMG =
-		'https://4.bp.blogspot.com/-ZMzPgyP64Zg/WFuJyby0eDI/AAAAAAABAmk/I_UtFowN0ecaQiqgYGpTsKGTqFzMLESdwCLcB/s800/nenga_hanko_kingashinnen_maru.png';
+	const PLACEHOLDER_STAMP_IMG = placeholderImg;
 
 	export let img = PLACEHOLDER_STAMP_IMG;
 

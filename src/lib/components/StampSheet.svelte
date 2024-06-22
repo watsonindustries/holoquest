@@ -2,13 +2,14 @@
 	import { fade, fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import StampComponent from '$lib/components/Stamp.svelte';
-	import type {Tables} from '$lib/database.types';
+	import type { Tables } from '$lib/database.types';
 	import { onMount } from 'svelte';
 
 	import HolomemGacha from './HolomemGacha.svelte';
 	import RoundScanButton from './RoundScanButton.svelte';
 	import { collectedStamps } from '$lib/stores/stamps';
 	import { get } from 'svelte/store';
+	import { tokenHash } from '../../crypto';
 
 	export let stamps: Tables<'stamps'>[] = [];
 
@@ -22,6 +23,7 @@
 	let isQuestCompleted = false; // Can only be true if all stamps were collected
 
 	function isAllStampsCollected() {
+		// TODO: Support minimum collected stamps required
 		return stamps.every(isStampCollected);
 	}
 
@@ -29,9 +31,10 @@
 	const minTouchTime = 1000; // minimum touch time in milliseconds, how long the stub of the stamp sheet should be touched
 
 	onMount(() => {
-		isStampCollected = function (stamp: Tables<'stamps'>) {
-			// return localStorage.getItem(stamp.hash) !== null;
-			return get(collectedStamps)[stamp.hash];
+		isStampCollected = function (stamp: Tables<'stamps'>): boolean {
+			const collectedStampsObj = get(collectedStamps) as { [key: string]: boolean };
+			const stampHash = tokenHash(stamp.id);
+			return collectedStampsObj?.[stampHash];
 		};
 
 		tearStampSheet = function () {
@@ -83,6 +86,7 @@
 	}
 </script>
 
+<!-- MARK: Component body -->
 <div
 	class="mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100"
 	out:fade|global
@@ -119,11 +123,11 @@
 				? { y: 20, duration: 1200, easing: cubicOut }
 				: {}}
 		>
-			{#each stamps as stamp}
+			{#each stamps as stamp, i}
 				<StampComponent
 					name={stamp.name}
 					collected={isStampCollected(stamp)}
-					id={stamp.id}
+					id={i}
 					img={stamp.image_url || undefined}
 				/>
 			{/each}
