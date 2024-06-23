@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 
+	import { onNavigate } from '$app/navigation';
 	import { setToast, toastStore } from '$lib/stores/toasts';
 	import { userToken } from '$lib/stores/userinfo';
 
@@ -20,9 +21,20 @@
 			Object.assign(window, {
 				setToast: setToast,
 				saveStamp: saveStamp,
-				collectedStamps: collectedStamps,
+				collectedStamps: collectedStamps
 			});
 		}
+	});
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
 	});
 </script>
 
