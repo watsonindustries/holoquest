@@ -6,7 +6,7 @@ import { collectedStamps, expectedStamps } from '$lib/stores/stamps';
 import { setToast } from '$lib/stores/toasts';
 import { get } from 'svelte/store';
 import { TOAST_TYPE } from '../custom';
-import { supabase } from '../supabase-client';
+import { fetchStamps } from '../supabase-client';
 
 export const load = (async () => {
 	await startupTasks();
@@ -30,11 +30,9 @@ async function startupTasks() {
 // With hash as key and rest of stamp data as value
 async function updateExpectedStamps() {
 	console.log('Fetching stamp data...');
-	const { data } = await supabase
-		.from('stamps')
-		.select('booth_id, name, description, image_url, external_url, hash, nsfw');
+	const stamps = await fetchStamps();
 
-	const stampsData = data?.reduce((acc, stamp) => {
+	const stampsData = stamps?.reduce((acc, stamp) => {
 		const { hash, ...rest } = stamp;
 		acc[hash] = rest;
 		return acc;
