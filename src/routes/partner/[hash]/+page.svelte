@@ -5,13 +5,12 @@
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ArrowTopRightOnSquare, ChevronLeft } from '@steeze-ui/heroicons';
-	import type { Tables } from '$lib/database.types';
 
 	export let data: PageData;
 
 	const delay = 500;
 
-	const { name, external_url, image_url, description } = data.partner as unknown as Tables<'stamps'>;
+	const { name, description, image_url, external_url } = data.stamp;
 </script>
 
 <a

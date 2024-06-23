@@ -9,7 +9,7 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Ticket, QrCode, StopCircle } from '@steeze-ui/heroicons';
 	import { fade } from 'svelte/transition';
-	import { getExpectedStampHashes, saveStamp } from '$lib/stores/stamps';
+	import { getCollectedCount, getExpectedStampHashes, saveStamp } from '$lib/stores/stamps';
 	import { setToast } from '$lib/stores/toasts';
 	import { minStampCountRequired } from '../../const';
 
@@ -17,11 +17,6 @@
 
 	let videoElem: HTMLVideoElement;
 	let qrScanner: QrScanner;
-	let token = '';
-
-	let collectedStampCount = function () {
-		return 0;
-	};
 
 	function transitionState() {
 		if (state === SCANNER_STATE.SCANNING) {
@@ -41,9 +36,10 @@
 
 	// Handle scan result
 	function onResult(result: QrScanner.ScanResult) {
+		let token = '';
 		try {
 			token = parseTokenFromScan(result.data);
-			console.log('Scanned token:', token)
+			console.log('Scanned token:', token);
 		} catch (e) {
 			setToast({
 				type: TOAST_TYPE.ERROR,
@@ -59,14 +55,12 @@
 			// Scan success
 			saveStamp(token);
 
-			let collectedStamps = collectedStampCount();
-
 			setToast({
 				type: TOAST_TYPE.SUCCESS,
 				message: 'Stamp Saved!'
 			});
 
-			if (collectedStamps == minStampCountRequired) {
+			if (getCollectedCount() >= minStampCountRequired) {
 				setTimeout(() => {
 					setToast({
 						type: TOAST_TYPE.SUCCESS,
@@ -102,11 +96,6 @@
 		videoElem.setAttribute('playsinline', 'true');
 		videoElem.setAttribute('autoplay', 'true');
 		videoElem.setAttribute('muted', 'true');
-
-		// TODO: Implement collectedStampCount
-		// collectedStampCount = () => {
-		// 	return Object.keys(localStorage).filter((key) => expectedHashes.includes(key)).length;
-		// };
 	});
 
 	onDestroy(() => {

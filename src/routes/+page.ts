@@ -5,7 +5,10 @@ import type { PageLoad } from './$types';
 export const ssr = false;
 
 export const load = (async () => {
-	const stamps = Object.values(get(expectedStamps));
+	const stamps = Object.entries(get(expectedStamps)).map(([key, value]) => ({
+		...value,
+		hash: key
+	}));
 
 	return { stamps };
 }) satisfies PageLoad;

@@ -15,3 +15,7 @@ export function saveStamp(token: string) {
 	newCollectedStamps[hash] = token;
 	collectedStamps.set(newCollectedStamps);
 }
+
+export function getCollectedCount() {
+	return Object.keys(get(collectedStamps)).length;
+}

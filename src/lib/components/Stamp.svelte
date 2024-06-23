@@ -2,10 +2,11 @@
 	import { fade } from 'svelte/transition';
 	import placeholderImg from '$lib/assets/watamesmug.jpg';
 
-	export let id: number;
+	export let hash: string;
+	export let index: number;
 	export let name: string;
 	export let collected = false;
-	export let navURL = `/partner/${id}`;
+	export let navURL = `/partner/${hash}`;
 
 	const PLACEHOLDER_STAMP_IMG = placeholderImg;
 
@@ -17,7 +18,7 @@
 <a href={navURL}>
 	<div
 		class="flex flex-col items-center"
-		in:fade|global={{ duration: fadeDuration, delay: 150 * id + 500 }}
+		in:fade|global={{ duration: fadeDuration, delay: 150 * index + 500 }}
 	>
 		<div
 			class="flex h-28 w-28 items-center justify-center rounded-full {collected

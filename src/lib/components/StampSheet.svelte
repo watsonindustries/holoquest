@@ -7,9 +7,9 @@
 
 	import HolomemGacha from './HolomemGacha.svelte';
 	import RoundScanButton from './RoundScanButton.svelte';
-	import { collectedStamps } from '$lib/stores/stamps';
+	import { collectedStamps, getCollectedCount } from '$lib/stores/stamps';
 	import { get } from 'svelte/store';
-	import { tokenHash } from '../../crypto';
+	import { minStampCountRequired } from '../../const';
 
 	export let stamps: Tables<'stamps'>[] = [];
 
@@ -22,19 +22,18 @@
 	let isStampSheetTorn = true; // Can only be true if the quest was completed
 	let isQuestCompleted = false; // Can only be true if all stamps were collected
 
-	function isAllStampsCollected() {
-		// TODO: Support minimum collected stamps required
-		return stamps.every(isStampCollected);
+	function isMinStampAmountCollected() {
+		return getCollectedCount() >= minStampCountRequired;
 	}
 
 	const delay = 500; // synchronized fade in delay
 	const minTouchTime = 1000; // minimum touch time in milliseconds, how long the stub of the stamp sheet should be touched
 
 	onMount(() => {
+		// We check if the stamp hash is in the collected stamps
 		isStampCollected = function (stamp: Tables<'stamps'>): boolean {
 			const collectedStampsObj = get(collectedStamps) as { [key: string]: boolean };
-			const stampHash = tokenHash(stamp.id);
-			return collectedStampsObj?.[stampHash];
+			return collectedStampsObj?.[stamp.hash || ''];
 		};
 
 		tearStampSheet = function () {
@@ -42,7 +41,7 @@
 			isStampSheetTorn = true;
 		};
 
-		if (isAllStampsCollected()) {
+		if (isMinStampAmountCollected()) {
 			console.log('All stamps collected!');
 			isQuestCompleted = true;
 		}
@@ -127,7 +126,8 @@
 				<StampComponent
 					name={stamp.name}
 					collected={isStampCollected(stamp)}
-					id={i}
+					index={i}
+					hash={stamp.hash || ''}
 					img={stamp.image_url || undefined}
 				/>
 			{/each}
