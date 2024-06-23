@@ -6,7 +6,6 @@
 		QuestionMarkCircle,
 		UserCircle,
 		BugAnt,
-		Trophy
 	} from '@steeze-ui/heroicons';
 	import { onMount } from 'svelte';
 
@@ -46,7 +45,7 @@
 					class="btn-ghost btn bg-gradient-to-br from-primary to-secondary bg-clip-text font-geologica text-xl normal-case text-transparent"
 					href="/"
 				>
-					HoloQuest
+					holoquest
 				</a>
 			</div>
 			<div class="absolute right-1 flex">

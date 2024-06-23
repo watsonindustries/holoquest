@@ -6,30 +6,44 @@
 
 	export let data: PageData;
 
-	const { name, description, image_url, external_url } = data.stamp;
+	const { name, description, image_url, external_url, booth_id } = data.stamp;
 </script>
 
-<a
-	href="/"
-	class="btn-ghost btn mb-4 w-fit justify-start gap-2 rounded-full"
+<a href="/" id="back-button" class="btn-ghost btn mb-4 w-fit justify-start gap-2 rounded-full"
 	><Icon src={ChevronLeft} theme="solid" class="color-gray-900" size="20px" /> Back</a
 >
 
-<div class="mx-4 space-y-6">
-	<img src={image_url} class="mask mask-squircle w-6/12" alt={name + ' promo image.'} />
+<div
+	class="mx-4 flex flex-col items-center justify-center space-y-4 align-middle font-geologica"
+	id="stamp-info"
+>
+	<div class="avatar">
+		<div
+			class="mx-auto w-6/12 rounded-full ring-4 ring-secondary ring-offset-2 ring-offset-base-100"
+		>
+			<img src={image_url} alt={name + 'promo image.'} />
+		</div>
+	</div>
 
-	<h1 class="break-all font-geologica text-4xl font-bold text-primary">{name}</h1>
+	<h1 class="break-all text-4xl font-bold text-primary tracking-tighter" id="stamp-name">{name}</h1>
+	<h2 id="booth-id" class="text-2xl text-secondary tracking-wide">{booth_id ?? 'ask for booth number'}</h2>
 
-	<p class="font-geologica">
-		{description}
-	</p>
+	{#if description}
+		<p class="">
+			{description}
+		</p>
+	{/if}
 
-	<a href={external_url} class="btn-secondary btn max-w-screen-lg gap-2 rounded-full text-white"
-		>Open in DoKomi app <Icon
-			src={ArrowTopRightOnSquare}
-			theme="solid"
-			class="color-gray-900"
-			size="20px"
-		/></a
-	>
+	{#if external_url}
+		<a
+			href={external_url}
+			class="btn-secondary btn max-w-screen-lg gap-2 rounded-full text-white shadow-lg"
+			>Open in DoKomi app <Icon
+				src={ArrowTopRightOnSquare}
+				theme="solid"
+				class="color-gray-900"
+				size="20px"
+			/></a
+		>
+	{/if}
 </div>

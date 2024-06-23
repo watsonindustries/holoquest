@@ -2,11 +2,11 @@ export const csr = true;
 
 import type { LayoutLoad } from './$types';
 
-import { collectedStamps, expectedStamps } from '$lib/stores/stamps';
+import { collectedStamps } from '$lib/stores/stamps';
 import { setToast } from '$lib/stores/toasts';
 import { get } from 'svelte/store';
 import { TOAST_TYPE } from '../custom';
-import { fetchStamps } from '../supabase-client';
+import { updateExpectedStamps } from '../stamps';
 
 export const load = (async () => {
 	await startupTasks();
@@ -24,18 +24,4 @@ async function startupTasks() {
 		setToast({ message: 'Error fetching stamp data', type: TOAST_TYPE.ERROR });
 	}
 	setToast({ message: 'Updated stamp data', type: TOAST_TYPE.SUCCESS });
-}
-
-// Fetched expected stamp data from supabase and creates object in store
-// With hash as key and rest of stamp data as value
-async function updateExpectedStamps() {
-	console.log('Fetching stamp data...');
-	const stamps = await fetchStamps();
-
-	const stampsData = stamps?.reduce((acc, stamp) => {
-		const { hash, ...rest } = stamp;
-		acc[hash] = rest;
-		return acc;
-	}, {});
-	expectedStamps.set(stampsData || {});
 }
