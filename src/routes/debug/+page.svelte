@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import QrScanner from 'qr-scanner';
-	import { nickname, userToken } from '../../store';
+	import { userToken, nickname } from '$lib/stores/userinfo';
 	let availableCameras = [] as ArrayLike<QrScanner.Camera>;
 	let sheetTorn = false;
 

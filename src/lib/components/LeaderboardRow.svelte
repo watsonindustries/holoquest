@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { nickname } from '../../store';
+	import { nickname } from '$lib/stores/userinfo';
 	export let rank: number;
 	export let entryNickname: string;
 	export let stamps_collected: number;
