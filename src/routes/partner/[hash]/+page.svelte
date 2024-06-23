@@ -6,7 +6,7 @@
 
 	export let data: PageData;
 
-	const { name, description, image_url, external_url, booth_id } = data.stamp;
+	const { name, description, image_url, external_url, booth_id, nsfw } = data.stamp;
 </script>
 
 <a href="/" id="back-button" class="btn-ghost btn mb-4 w-fit justify-start gap-2 rounded-full"
@@ -25,8 +25,15 @@
 		</div>
 	</div>
 
-	<h1 class="break-all text-4xl font-bold text-primary tracking-tighter" id="stamp-name">{name}</h1>
-	<h2 id="booth-id" class="text-2xl text-secondary tracking-wide">{booth_id ?? 'ask for booth number'}</h2>
+	<h1 class="break-all text-4xl font-bold tracking-tighter text-primary" id="stamp-name">
+		{name}
+		{#if nsfw}
+			<span class="rounded-full bg-error px-1 py-0.5 align-middle text-xs text-white"> 18+ </span>
+		{/if}
+	</h1>
+	<h2 id="booth-id" class="text-2xl tracking-wide text-secondary">
+		{booth_id ?? 'ask for booth number'}
+	</h2>
 
 	{#if description}
 		<p class="">

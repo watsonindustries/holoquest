@@ -87,7 +87,7 @@
 
 <!-- MARK: Component body -->
 <div
-	class="mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100"
+	class="mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100 bg-gradient-to-b font-geologica"
 >
 	<!-- Stub -->
 	<div
@@ -100,10 +100,13 @@
 		on:touchend={handleTouchEnd}
 		on:touchcancel={handleTouchCancel}
 	>
-		<h1 class="text-center font-geologica text-4xl font-bold text-primary">Stamps</h1>
+		<h1 class="text-center text-4xl font-bold tracking-tight text-primary">Stamps</h1>
+		<h2 class="mx-auto text-xl font-semibold text-secondary">
+			Collected {getCollectedCount()} / {minStampCountRequired}
+		</h2>
 
 		{#if isQuestCompleted}
-			<h2 class="text-center font-geologica text-xl font-semibold text-secondary">
+			<h2 class="text-center text-xl font-semibold text-secondary">
 				Show sheet to staff at the booth!
 			</h2>
 		{:else}
@@ -126,10 +129,13 @@
 					collected={isStampCollected(stamp)}
 					index={i}
 					hash={stamp.hash || ''}
+					nsfw={stamp.nsfw}
 					img={stamp.image_url || undefined}
 				/>
 			{/each}
 		</div>
+
+		<!-- <div id="stamp-sheet-footer"></div> -->
 	{/if}
 </div>
 
