@@ -88,7 +88,6 @@
 <!-- MARK: Component body -->
 <div
 	class="mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100"
-	out:fade|global
 >
 	<!-- Stub -->
 	<div
@@ -97,7 +96,6 @@
 		class:border-b-2={isStampSheetTorn}
 		class:border-dashed={isStampSheetTorn}
 		class:border-slate-900={isStampSheetTorn}
-		in:fade|global={{ delay }}
 		on:touchstart={handleTouchStart}
 		on:touchend={handleTouchEnd}
 		on:touchcancel={handleTouchCancel}

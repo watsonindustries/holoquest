@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import { setToast } from '$lib/stores/toasts';
 	import { nickname } from '$lib/stores/userinfo';
@@ -46,12 +45,11 @@
 
 <h1
 	class="mx-4 my-4 font-geologica text-4xl font-bold text-primary"
-	in:fade|global={{ delay: 500 }}
 >
 	Profile
 </h1>
 
-<div class="mx-4 my-4 space-y-4" in:fade|global={{ delay: 500 }}>
+<div class="mx-4 my-4 space-y-4">
 	<label class="font-geologica text-xl font-bold text-secondary" for="nickname">Nickname</label>
 	<input
 		type="text"

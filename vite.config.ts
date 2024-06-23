@@ -8,8 +8,7 @@ export default defineConfig({
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	},
 	server: {
-		host: true,
-		https: false
+		host: true
 	},
 	preview: {
 		host: true

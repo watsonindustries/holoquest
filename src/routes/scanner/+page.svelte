@@ -8,7 +8,6 @@
 
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { Ticket, QrCode, StopCircle } from '@steeze-ui/heroicons';
-	import { fade } from 'svelte/transition';
 	import { getCollectedCount, getExpectedStampHashes, saveStamp } from '$lib/stores/stamps';
 	import { setToast } from '$lib/stores/toasts';
 	import { minStampCountRequired } from '../../const';
@@ -104,7 +103,7 @@
 	});
 </script>
 
-<div class="space-y-4" in:fade|global={{ delay: 500 }}>
+<div class="space-y-4">
 	<h1 class="text-center font-geologica text-4xl font-bold text-primary">Scanner</h1>
 	<p class="px-2 text-center text-xl">Press Scan, and scan the QR code of the stamp!</p>
 
@@ -129,7 +128,6 @@
 		id="scanner-preview-area"
 		class="h-96"
 		class:hidden={state === SCANNER_STATE.STOPPED}
-		transition:fade|global
 	>
 		<!-- svelte-ignore a11y-media-has-caption -->
 		<video />
