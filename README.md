@@ -2,7 +2,6 @@
   - [Building](#building)
   - [Setup](#setup)
     - [Stamps](#stamps)
-    - [Server](#server)
   - [Events](#events)
   - [Gacha game](#gacha-game)
     - [State diagram](#state-diagram)
@@ -40,40 +39,9 @@ You can preview the production build with `pnpm run preview`.
 
 ### Stamps
 
-The way the quest works, is that the app has a hardcoded array of stamps `expectedStamps` to be collected in `const.ts`. Those stamps are then displayed in the root view.
-
-Each Stamp in the real world is a **UUID token** encoded as a **QR code**. The expected stamps contain the **SHA256 hashes** of the UUIDs, so that the app can verify that the scanned stamp is the correct one.
-
-If you want stamps to have an image, add the optimized asset to `src/lib/assets` and reference it using a SvelteKit import.
-
-For example, a stamp might look like this:
-
-```javascript
-{
-		hash: '37d895725ad8aa8bba87a139710e909b46cb753e',
-		id: 'some uuid',
-		name: 'Hasuke はすけ 4C16',
-		description: `
-		Digital Artist & V-Tuber | 🇩🇪🇺🇸🇯🇵 |
-| Graphic Art | Illustration | Gamedev |
-Certified Hololive Simp
-Modell & Banner by me.`,
-		externalURL: 'https://webapp.dokomi.de/explore/c/108511',
-		imageURL: hasukeProfilePic
-	},
-```
-
-And you import the image like this:
-
-```javascript
-import hasukeProfilePic from '$lib/assets/hasuke-profile.png';
-```
+WIP
 
 The `externalURL` is a generic link to some external URL (this might be a link to a partner's homepage, a deep link in a convention's app etc.).
-
-### Server
-
-The server implementation and documentation is available [HERE](https://github.com/watsonindustries/tako).
 
 ## Events
 
