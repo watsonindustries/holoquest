@@ -45,7 +45,13 @@ The `externalURL` is a generic link to some external URL (this might be a link t
 
 ## Events
 
-WIP
+Events are managed in Supabase. Each event has an `id`. This ID is later used in a link to holoquest so the app knows which event to load.
+
+E.g. if the event ID is `1`, the link to the event in holoquest is `https://app.holoquest.app/?eventId=1`.
+
+This will fetch and store the data for that event locally.
+
+If there is no event data locally and it's ID is not supplied as a parameter, the app will fetch the events from Supabase and display them in a list.
 
 ## Gacha game
 
