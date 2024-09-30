@@ -7,9 +7,9 @@ import { fetchStamps } from './supabase-client';
  * The updated stamps data is then set in the expectedStamps store.
  */
 
-export async function updateExpectedStamps(): Promise<void> {
+export async function updateExpectedStamps(eventId = 1): Promise<void> {
 	console.log('Fetching stamp data...');
-	const stamps = await fetchStamps();
+	const stamps = await fetchStamps(eventId);
 
 	const stampsData = stamps?.reduce((acc, stamp) => {
 		const { hash, ...rest } = stamp;

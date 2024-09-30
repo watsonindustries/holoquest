@@ -2,26 +2,53 @@ export const csr = true;
 
 import type { LayoutLoad } from './$types';
 
-import { collectedStamps } from '$lib/stores/stamps';
 import { setToast } from '$lib/stores/toasts';
-import { get } from 'svelte/store';
 import { TOAST_TYPE } from '../custom';
 import { updateExpectedStamps } from '../stamps';
-import { supabase } from '../supabase-client';
+import { supabase, fetchEvents } from '../supabase-client';
+import { eventInfo } from '$lib/stores/event';
+import { get } from 'svelte/store';
 
-export const load = (async () => {
+export const load = (async ({ url }) => {
+	let res;
+
+	const eventId = url.searchParams.get('eventId');
+	if (eventId) {
+		res = await startupTasks(parseInt(eventId));
+	} else {
+		res = await startupTasks();
+	}
+
 	setupPresence();
-	await startupTasks();
 
-	return {};
+	return res;
 }) satisfies LayoutLoad;
 
 // Startup tasks
-async function startupTasks() {
+async function startupTasks(eventId = 0) {
 	console.log('Running startup tasks...');
-	get(collectedStamps);
+
 	try {
-		await updateExpectedStamps();
+		// External link with included event ID
+		if (eventId > 0) {
+			const {data: event} = await supabase.from('events').select('id, name, metadata').eq('id', eventId).single();
+			console.log('Setting event:', event);
+			eventInfo.set(event || {});
+			return
+		}
+
+		// Still no event data locally
+		if (Object.keys(get(eventInfo)).length === 0) {
+			const events = await fetchEvents();
+			return { events };
+		}
+	} catch (error) {
+		console.error('Error fetching event data:', error);
+		setToast({ message: 'Error fetching event data', type: TOAST_TYPE.ERROR });
+	}
+
+	try {
+		await updateExpectedStamps(get(eventInfo).id);
 	} catch (error) {
 		console.error('Error fetching stamp data:', error);
 		setToast({ message: 'Error fetching stamp data', type: TOAST_TYPE.ERROR });

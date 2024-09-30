@@ -7,10 +7,11 @@ const supabaseKey =
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
-export async function fetchStamps(): Promise<Tables<'stamps'>[]> {
+export async function fetchStamps(eventId = 1): Promise<Tables<'stamps'>[]> {
 	const { data: stamps, error } = await supabase
 		.from('stamps')
-		.select('booth_id, name, description, image_url, external_url, hash, nsfw');
+		.select('event_id, booth_id, name, description, image_url, external_url, hash, nsfw')
+		.eq('event_id', eventId);
 
 	if (error) {
 		console.error('Error fetching stamp data:', error);
@@ -18,4 +19,15 @@ export async function fetchStamps(): Promise<Tables<'stamps'>[]> {
 	}
 
 	return stamps as Tables<'stamps'>[];
+}
+
+export async function fetchEvents(): Promise<Tables<'events'>[]> {
+	const { data: events, error } = await supabase.from('events').select('id, name, metadata');
+
+	if (error) {
+		console.error('Error fetching event data:', error);
+		throw new Error('Error fetching event data');
+	}
+
+	return events as Tables<'events'>[];
 }
