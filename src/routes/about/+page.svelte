@@ -90,7 +90,7 @@
 		nickname, tap <b>Profile</b>, set your desired nickname, and press <b>Set Nickname</b>.
 	</p>
 	<h2 class="text-2xl text-secondary">Tips & Troubleshooting</h2>
-	<p />
+	<p></p>
 	<ul class="ml-4 list-disc">
 		<li class="list-item">
 			Do not clear the browser's cache manually, or use a "privacy browser" like e.g. DuckDuckGo.

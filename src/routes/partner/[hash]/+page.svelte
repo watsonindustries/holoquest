@@ -4,7 +4,11 @@
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import { ArrowTopRightOnSquare, ChevronLeft } from '@steeze-ui/heroicons';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const { name, description, image_url, external_url, booth_id, nsfw } = data.stamp;
 </script>

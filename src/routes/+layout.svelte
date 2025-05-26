@@ -11,6 +11,11 @@
 
 	import { dev } from '$app/environment';
 	import { saveStamp, collectedStamps } from '$lib/stores/stamps';
+	interface Props {
+		children?: import('svelte').Snippet<[any]>;
+	}
+
+	let { children }: Props = $props();
 
 	onMount(async () => {
 		// Initialize the stores with the nickname and user token found locally
@@ -45,5 +50,5 @@
 		{/if}
 	</div>
 
-	<slot class="overscroll-y-none" />
+	{@render children?.({ class: "overscroll-y-none", })}
 </Navigation>

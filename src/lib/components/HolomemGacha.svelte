@@ -1,13 +1,15 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { GACHA_STATE, type GachaState, type Holomem } from '../../custom';
 	import { holomemGachaPool } from '../../const';
 	import { nickname } from '$lib/stores/userinfo';
 
-	let gachaState: GachaState = GACHA_STATE.NOT_PLAYED;
-	let result: Holomem;
-	let resultIndex: number;
+	let gachaState: GachaState = $state(GACHA_STATE.NOT_PLAYED);
+	let result: Holomem = $state();
+	let resultIndex: number = $state();
 	const gachaPullDuration = 3000; // ms
 
 	function pickMemberIndex(): number {
@@ -35,11 +37,13 @@
 		}
 	});
 
-	$: if (gachaState === GACHA_STATE.PLAYED) {
-		// Dump state to localStorage
-		localStorage.setItem('gachaPlayed', 'yes');
-		localStorage.setItem('gachaResultIndex', resultIndex.toString());
-	}
+	run(() => {
+		if (gachaState === GACHA_STATE.PLAYED) {
+			// Dump state to localStorage
+			localStorage.setItem('gachaPlayed', 'yes');
+			localStorage.setItem('gachaResultIndex', resultIndex.toString());
+		}
+	});
 </script>
 
 <h1 class="text-center font-geologica text-4xl font-bold text-primary">Thank you!</h1>
@@ -48,11 +52,11 @@
 </h2>
 
 {#if gachaState === GACHA_STATE.NOT_PLAYED}
-	<button class="btn-secondary btn animate-pulse rounded-full" on:click={handlePlayGacha}
+	<button class="btn-secondary btn animate-pulse rounded-full" onclick={handlePlayGacha}
 		>Play Gacha</button
 	>
 {:else if gachaState === GACHA_STATE.PLAYING}
-	<span class="loading-xl loading loading-dots" />
+	<span class="loading-xl loading loading-dots"></span>
 	<p class="font-geologica">Warming up the gacha...</p>
 {:else if gachaState === GACHA_STATE.PLAYED}
 	{#if result}

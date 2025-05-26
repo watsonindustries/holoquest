@@ -6,12 +6,16 @@
 	import { get } from 'svelte/store';
 	import type { PageData } from './$types';
 
-	$: stampsCollection = Object.entries($expectedStamps).map(([key, value]) => ({
+	let stampsCollection = $derived(Object.entries($expectedStamps).map(([key, value]) => ({
 		...(value as Object),
 		hash: key
-	})) as Tables<'stamps'>[];
+	})) as Tables<'stamps'>[]);
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	let event = get(eventInfo);
 </script>

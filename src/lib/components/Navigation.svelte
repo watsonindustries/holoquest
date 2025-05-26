@@ -8,9 +8,14 @@
 		BugAnt,
 	} from '@steeze-ui/heroicons';
 	import { onMount } from 'svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-	let drawerToggle: HTMLInputElement;
-	let isDebug = true;
+	let { children }: Props = $props();
+
+	let drawerToggle: HTMLInputElement = $state();
+	let isDebug = $state(true);
 
 	onMount(() => {
 		drawerToggle = document.querySelector('.drawer-toggle') as HTMLInputElement;
@@ -56,16 +61,16 @@
 		</div>
 
 		<!-- Page content here -->
-		<slot />
+		{@render children?.()}
 	</div>
 	<div class="drawer-side">
-		<label for="drawer-nav" class="drawer-overlay" />
+		<label for="drawer-nav" class="drawer-overlay"></label>
 		<ul class="menu h-full w-60 bg-base-200 p-4 text-xl">
 			<!-- Sidebar content here -->
 			<li>
 				<a
 					href="/"
-					on:click={() => {
+					onclick={() => {
 						drawerToggle.checked = false;
 					}}><Icon src={Ticket} theme="solid" class="color-gray-900" size="20" />Stamp Sheet</a
 				>
@@ -73,7 +78,7 @@
 			<li>
 				<a
 					href="/scanner"
-					on:click={() => {
+					onclick={() => {
 						drawerToggle.checked = false;
 					}}
 				>
@@ -83,7 +88,7 @@
 			<li>
 				<a
 					href="/profile"
-					on:click={() => {
+					onclick={() => {
 						drawerToggle.checked = false;
 					}}
 				>
@@ -93,7 +98,7 @@
 			<li>
 				<a
 					href="/about"
-					on:click={() => {
+					onclick={() => {
 						drawerToggle.checked = false;
 					}}
 				>
@@ -104,7 +109,7 @@
 				<li>
 					<a
 						href="/debug"
-						on:click={() => {
+						onclick={() => {
 							drawerToggle.checked = false;
 						}}
 					>

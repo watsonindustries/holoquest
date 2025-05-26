@@ -3,8 +3,12 @@
 	import { TOAST_TYPE } from '../../custom';
 	import type { ToastType } from '../../custom';
 
-	export let type: ToastType = TOAST_TYPE.SUCCESS;
-	export let message: string;
+	interface Props {
+		type?: ToastType;
+		message: string;
+	}
+
+	let { type = TOAST_TYPE.SUCCESS, message }: Props = $props();
 </script>
 
 <div class="toast-center toast-bottom toast -z-50 w-60">

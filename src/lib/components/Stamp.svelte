@@ -2,16 +2,28 @@
 	import { fade } from 'svelte/transition';
 	import placeholderImg from '$lib/assets/watamesmug.jpg';
 
-	export let hash: string;
-	export let index: number;
-	export let name: string;
-	export let collected = false;
-	export let navURL = `/partner/${hash}`;
-	export let nsfw = false;
 
 	const PLACEHOLDER_STAMP_IMG = placeholderImg;
 
-	export let img = PLACEHOLDER_STAMP_IMG;
+	interface Props {
+		hash: string;
+		index: number;
+		name: string;
+		collected?: boolean;
+		navURL?: any;
+		nsfw?: boolean;
+		img?: any;
+	}
+
+	let {
+		hash,
+		index,
+		name,
+		collected = false,
+		navURL = `/partner/${hash}`,
+		nsfw = false,
+		img = PLACEHOLDER_STAMP_IMG
+	}: Props = $props();
 
 	export const fadeDuration = 50;
 </script>

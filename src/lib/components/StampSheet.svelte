@@ -11,16 +11,20 @@
 	import { get } from 'svelte/store';
 	import { minStampCountRequired } from '../../const';
 
-	export let stamps: Tables<'stamps'>[] = [];
+	interface Props {
+		stamps?: Tables<'stamps'>[];
+	}
 
-	let isStampCollected = function (_stamp: Tables<'stamps'>) {
+	let { stamps = [] }: Props = $props();
+
+	let isStampCollected = $state(function (_stamp: Tables<'stamps'>) {
 		return false;
-	};
+	});
 
 	let tearStampSheet = function (): void {};
 
-	let isStampSheetTorn = true; // Can only be true if the quest was completed
-	let isQuestCompleted = false; // Can only be true if all stamps were collected
+	let isStampSheetTorn = $state(true); // Can only be true if the quest was completed
+	let isQuestCompleted = $state(false); // Can only be true if all stamps were collected
 
 	function isMinStampAmountCollected() {
 		return getCollectedCount() >= minStampCountRequired;
@@ -52,7 +56,7 @@
 	let touchStartTime: number;
 	let touchEndTime: number;
 	let touchCount: number;
-	let isTouching = false;
+	let isTouching = $state(false);
 	let timeoutId: any;
 
 	function handleTouchStart(event: TouchEvent) {
@@ -96,9 +100,9 @@
 		class:border-b-2={isStampSheetTorn}
 		class:border-dashed={isStampSheetTorn}
 		class:border-slate-900={isStampSheetTorn}
-		on:touchstart={handleTouchStart}
-		on:touchend={handleTouchEnd}
-		on:touchcancel={handleTouchCancel}
+		ontouchstart={handleTouchStart}
+		ontouchend={handleTouchEnd}
+		ontouchcancel={handleTouchCancel}
 	>
 		<h1 class="text-center text-4xl font-bold tracking-tight text-primary">Stamps</h1>
 		<h2 class="mx-auto text-xl font-semibold text-secondary">
