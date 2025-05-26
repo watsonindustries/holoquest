@@ -65,6 +65,7 @@ export type Database = {
           hash: string | null
           id: string
           image_url: string | null
+          is_visible: boolean
           name: string
           nsfw: boolean
         }
@@ -77,6 +78,7 @@ export type Database = {
           hash?: string | null
           id?: string
           image_url?: string | null
+          is_visible?: boolean
           name: string
           nsfw?: boolean
         }
@@ -89,6 +91,7 @@ export type Database = {
           hash?: string | null
           id?: string
           image_url?: string | null
+          is_visible?: boolean
           name?: string
           nsfw?: boolean
         }

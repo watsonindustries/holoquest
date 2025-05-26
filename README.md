@@ -2,6 +2,9 @@
   - [Building](#building)
   - [Setup](#setup)
     - [Stamps](#stamps)
+      - [Database Schema](#database-schema)
+      - [Setup Process](#setup-process)
+      - [Security Model](#security-model)
   - [Events](#events)
   - [Gacha game](#gacha-game)
     - [State diagram](#state-diagram)
@@ -39,9 +42,51 @@ You can preview the production build with `pnpm run preview`.
 
 ### Stamps
 
-WIP
+Stamps are the collectible items in the stamp rally system. Each stamp represents an artist or booth at an event and contains the following data:
 
-The `externalURL` is a generic link to some external URL (this might be a link to a partner's homepage, a deep link in a convention's app etc.).
+#### Database Schema
+
+- `name`: Artist/booth name
+- `hash`: SHA-256 hash of the secret token (used for verification)
+- `description`: Social media link or description
+- `external_url`: Link to external resources (partner homepage, convention app, etc.)
+- `event_id`: Foreign key linking to the event
+- `nsfw`: Boolean flag for adult content
+- `booth_id`: Physical booth location identifier
+- `is_visible`: Boolean flag to control stamp visibility
+
+#### Setup Process
+
+1. **Prepare stamp data**: Create a CSV file with stamp information (see `2025.csv` as example)
+
+2. **Generate tokens and hashes**: 
+   ```bash
+   # Create a script to generate random tokens and SHA-256 hashes
+   node generate_tokens.js
+   ```
+   This creates:
+   - `artist_tokens.txt`: Secret tokens for QR code generation
+   - `updated.csv`: CSV with real hash values
+
+3. **Create migration**: Use Supabase CLI to create and apply migrations
+   ```bash
+   supabase migration new upsert_stamps
+   supabase db push
+   ```
+
+4. **Token distribution**: 
+   - Generate QR codes from the secret tokens in `artist_tokens.txt`
+   - Distribute QR codes to artists/booths
+   - Users scan QR codes to collect stamps
+
+#### Security Model
+
+- **Secret tokens**: Only known to the system and distributed via QR codes
+- **Hash storage**: Only SHA-256 hashes are stored in the database
+- **Verification**: When users scan a QR code, the token is hashed and compared against stored hashes
+- **No reverse engineering**: Hashes cannot be used to derive original tokens
+
+The `external_url` field is a generic link to external resources (partner homepage, convention app deep links, etc.).
 
 ## Events
 

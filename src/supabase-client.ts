@@ -10,8 +10,9 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 export async function fetchStamps(eventId = 1): Promise<Tables<'stamps'>[]> {
 	const { data: stamps, error } = await supabase
 		.from('stamps')
-		.select('event_id, booth_id, name, description, image_url, external_url, hash, nsfw')
-		.eq('event_id', eventId);
+		.select('event_id, booth_id, name, description, image_url, external_url, hash, nsfw, is_visible')
+		.eq('event_id', eventId)
+		.eq('is_visible', true);
 
 	if (error) {
 		console.error('Error fetching stamp data:', error);
