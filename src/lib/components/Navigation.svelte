@@ -9,7 +9,6 @@
 		Trash
 	} from '@steeze-ui/heroicons';
 	import { onMount } from 'svelte';
-	import { collectedStamps } from '$lib/stores/stamps';
 	import { setToast } from '$lib/stores/toasts';
 	import { TOAST_TYPE } from '../../custom';
 
@@ -27,14 +26,14 @@
 		isDebug = localStorage.getItem('debug') === 'true';
 	});
 
-	function handleClearAllStamps() {
-		const confirmed = confirm('Are you sure you want to clear all collected stamps? This action cannot be undone.');
+	function handleClearCache() {
+		const confirmed = confirm('Are you sure you want to clear the cache? This action cannot be undone.');
 		
 		if (confirmed) {
-			collectedStamps.reset();
+			localStorage.clear();
 			setToast({
 				type: TOAST_TYPE.SUCCESS,
-				message: 'All stamps cleared successfully!'
+				message: 'Cache cleared successfully!'
 			});
 			if (drawerToggle) {
 				drawerToggle.checked = false; // Close the drawer
@@ -139,10 +138,10 @@
 			{/if}
 			<li>
 				<button
-					onclick={handleClearAllStamps}
+					onclick={handleClearCache}
 				>
 					<Icon src={Trash} theme="solid" class="color-red-600" size="20" />
-					Clear Stamps
+					Clear Cache
 				</button>
 			</li>
 		</ul>
