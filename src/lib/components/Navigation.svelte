@@ -6,21 +6,41 @@
 		QuestionMarkCircle,
 		UserCircle,
 		BugAnt,
+		Trash
 	} from '@steeze-ui/heroicons';
 	import { onMount } from 'svelte';
+	import { collectedStamps } from '$lib/stores/stamps';
+	import { setToast } from '$lib/stores/toasts';
+	import { TOAST_TYPE } from '../../custom';
+
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
 
 	let { children }: Props = $props();
 
-	let drawerToggle: HTMLInputElement = $state();
+	let drawerToggle: HTMLInputElement | null = $state(null);
 	let isDebug = $state(true);
 
 	onMount(() => {
 		drawerToggle = document.querySelector('.drawer-toggle') as HTMLInputElement;
 		isDebug = localStorage.getItem('debug') === 'true';
 	});
+
+	function handleClearAllStamps() {
+		const confirmed = confirm('Are you sure you want to clear all collected stamps? This action cannot be undone.');
+		
+		if (confirmed) {
+			collectedStamps.reset();
+			setToast({
+				type: TOAST_TYPE.SUCCESS,
+				message: 'All stamps cleared successfully!'
+			});
+			if (drawerToggle) {
+				drawerToggle.checked = false; // Close the drawer
+			}
+		}
+	}
 </script>
 
 <div class="drawer">
@@ -71,7 +91,7 @@
 				<a
 					href="/"
 					onclick={() => {
-						drawerToggle.checked = false;
+						if (drawerToggle) drawerToggle.checked = false;
 					}}><Icon src={Ticket} theme="solid" class="color-gray-900" size="20" />Stamp Sheet</a
 				>
 			</li>
@@ -79,7 +99,7 @@
 				<a
 					href="/scanner"
 					onclick={() => {
-						drawerToggle.checked = false;
+						if (drawerToggle) drawerToggle.checked = false;
 					}}
 				>
 					<Icon src={QrCode} theme="solid" class="color-gray-900" size="20" />Scanner
@@ -89,7 +109,7 @@
 				<a
 					href="/profile"
 					onclick={() => {
-						drawerToggle.checked = false;
+						if (drawerToggle) drawerToggle.checked = false;
 					}}
 				>
 					<Icon src={UserCircle} theme="solid" class="color-gray-900" size="20" />Profile
@@ -99,7 +119,7 @@
 				<a
 					href="/about"
 					onclick={() => {
-						drawerToggle.checked = false;
+						if (drawerToggle) drawerToggle.checked = false;
 					}}
 				>
 					<Icon src={QuestionMarkCircle} theme="solid" class="color-gray-900" size="20" />About
@@ -110,13 +130,21 @@
 					<a
 						href="/debug"
 						onclick={() => {
-							drawerToggle.checked = false;
+							if (drawerToggle) drawerToggle.checked = false;
 						}}
 					>
 						<Icon src={BugAnt} theme="solid" class="color-gray-900" size="20" />Debug
 					</a>
 				</li>
 			{/if}
+			<li>
+				<button
+					onclick={handleClearAllStamps}
+				>
+					<Icon src={Trash} theme="solid" class="color-red-600" size="20" />
+					Clear Stamps
+				</button>
+			</li>
 		</ul>
 	</div>
 </div>
