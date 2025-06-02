@@ -21,14 +21,23 @@
 	});
 
 	let tearStampSheet = function (): void {};
-	let viewStampCollection = function (): void {};
 
-	let isStampSheetTorn = $state(true); // Can only be true if the quest was completed
+	let isStampSheetTorn = $state(false); // Initialize as false, will be set in onMount
 	let isQuestCompleted = $state(false); // Can only be true if all stamps were collected
 	let showingCollection = $state(false); // New state for showing collection view
 
 	function isMinStampAmountCollected() {
 		return getCollectedCount() >= minStampCountRequired;
+	}
+
+	function viewStampCollection() {
+		console.log('View stamps clicked, current states:', {
+			isStampSheetTorn,
+			isQuestCompleted,
+			showingCollection
+		});
+		showingCollection = true;
+		console.log('Updated showingCollection to:', showingCollection);
 	}
 
 	const delay = 500; // synchronized fade in delay
@@ -46,16 +55,19 @@
 			isStampSheetTorn = true;
 		};
 
-		viewStampCollection = function () {
-			showingCollection = true;
-		};
-
 		if (isMinStampAmountCollected()) {
 			console.log('All stamps collected!');
 			isQuestCompleted = true;
 		}
 
 		isStampSheetTorn = localStorage.getItem('isStampSheetTorn') === 'yes';
+		
+		console.log('Initial states:', {
+			isStampSheetTorn,
+			isQuestCompleted,
+			showingCollection,
+			stampCount: getCollectedCount()
+		});
 	});
 
 	let touchStartTime: number;
@@ -95,6 +107,11 @@
 </script>
 
 <!-- MARK: Component body -->
+<!-- Debug info for troubleshooting -->
+<div class="text-xs text-gray-500 p-2 bg-yellow-100 mb-2">
+	Debug: torn={isStampSheetTorn}, completed={isQuestCompleted}, showing={showingCollection}, stamps={getCollectedCount()}
+</div>
+
 <div
 	class="mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100 bg-gradient-to-b font-geologica"
 >
@@ -125,11 +142,26 @@
 		</div>
 	{/if}
 
+	<!-- Collection view header with back button -->
+	{#if showingCollection}
+		<div class="flex items-center justify-between p-4 pt-6">
+			<button 
+				class="btn btn-ghost btn-sm rounded-full"
+				onclick={() => { showingCollection = false; }}
+			>
+				← Back
+			</button>
+			<h1 class="text-2xl font-bold text-primary">My Stamp Collection</h1>
+			<div></div> <!-- Spacer for centering -->
+		</div>
+	{/if}
+
 	<!-- Stamp grid, show when not torn OR when showing collection -->
 	{#if !isStampSheetTorn || showingCollection}
 		<div
 			class="z-30 grid grid-cols-2 gap-4 rounded-b-xl p-4 pt-8 shadow-md"
 			class:rounded-t-xl={showingCollection}
+			class:pt-2={showingCollection}
 			in:fade|global={{ delay }}
 			out:fly|global={isStampSheetTorn && isQuestCompleted && !showingCollection
 				? { y: 20, duration: 1200, easing: cubicOut }
