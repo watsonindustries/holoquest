@@ -31,6 +31,13 @@ registerRoute(/\/api\/.*\/*.json/, networkOnly, 'POST');
 
 registerRoute(/\/api\/.*\/*.json/, networkOnly, 'PATCH');
 
+// Handle messages from the client
+sw.addEventListener('message', (event) => {
+	if (event.data && event.data.type === 'SKIP_WAITING') {
+		sw.skipWaiting();
+	}
+});
+
 sw.addEventListener('install', (event) => {
 	// forces a service worker to activate immediately
 	console.log('installing service worker version: ', version);

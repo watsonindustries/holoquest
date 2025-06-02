@@ -6,6 +6,8 @@
 	import { setToast } from '$lib/stores/toasts';
 	import { TOAST_TYPE } from '../../custom';
 	import { collectedStamps } from '$lib/stores/stamps';
+	import { checkForUpdates } from '$lib/service-worker-registration';
+
 	let availableCameras = $state([] as ArrayLike<QrScanner.Camera>);
 	let sheetTorn = $state(false);
 
@@ -13,6 +15,11 @@
 		availableCameras = await QrScanner.listCameras(true);
 		sheetTorn = localStorage.getItem('isStampSheetTorn') === 'yes';
 	});
+
+	function handleCheckForUpdates() {
+		checkForUpdates();
+		setToast({ message: 'Checking for updates...', type: TOAST_TYPE.SUCCESS });
+	}
 </script>
 
 <div class="mx-4 space-y-4">
@@ -55,4 +62,12 @@
 			setToast({ message: 'Collected stamps reset', type: TOAST_TYPE.SUCCESS });
 		}}>Reset collected stamps</button
 	>
+
+	<p class="text-xl font-bold">App Updates</p>
+	<button
+		onclick={handleCheckForUpdates}
+		class="btn-secondary btn mx-auto w-8/12 gap-2 rounded-full text-white"
+	>
+		Check for Updates
+	</button>
 </div>
