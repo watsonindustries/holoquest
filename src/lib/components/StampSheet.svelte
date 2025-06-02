@@ -5,7 +5,6 @@
 	import type { Tables } from '$lib/database.types';
 	import { onMount } from 'svelte';
 
-	import HolomemGacha from './HolomemGacha.svelte';
 	import RoundScanButton from './RoundScanButton.svelte';
 	import { collectedStamps, getCollectedCount } from '$lib/stores/stamps';
 	import { get } from 'svelte/store';
@@ -17,14 +16,16 @@
 
 	let { stamps = [] }: Props = $props();
 
-	let isStampCollected = $state(function (_stamp: Tables<'stamps'>) {
+	let isStampCollected = $state(function (_stamp: Tables<'stamps'>): boolean {
 		return false;
 	});
 
 	let tearStampSheet = function (): void {};
+	let viewStampCollection = function (): void {};
 
 	let isStampSheetTorn = $state(true); // Can only be true if the quest was completed
 	let isQuestCompleted = $state(false); // Can only be true if all stamps were collected
+	let showingCollection = $state(false); // New state for showing collection view
 
 	function isMinStampAmountCollected() {
 		return getCollectedCount() >= minStampCountRequired;
@@ -43,6 +44,10 @@
 		tearStampSheet = function () {
 			localStorage.setItem('isStampSheetTorn', 'yes');
 			isStampSheetTorn = true;
+		};
+
+		viewStampCollection = function () {
+			showingCollection = true;
 		};
 
 		if (isMinStampAmountCollected()) {
@@ -93,37 +98,40 @@
 <div
 	class="mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100 bg-gradient-to-b font-geologica"
 >
-	<!-- Stub -->
-	<div
-		class="flex flex-col justify-center space-y-6 pb-8 pt-4 shadow-md"
-		class:animate-pulse={isTouching && isQuestCompleted}
-		class:border-b-2={isStampSheetTorn}
-		class:border-dashed={isStampSheetTorn}
-		class:border-slate-900={isStampSheetTorn}
-		ontouchstart={handleTouchStart}
-		ontouchend={handleTouchEnd}
-		ontouchcancel={handleTouchCancel}
-	>
-		<h1 class="text-center text-4xl font-bold tracking-tight text-primary">Stamps</h1>
-		<h2 class="mx-auto text-xl font-semibold text-secondary">
-			Collected {getCollectedCount()} / {minStampCountRequired}
-		</h2>
-
-		{#if isQuestCompleted}
-			<h2 class="text-center text-xl font-semibold text-secondary">
-				Show sheet to staff at the booth!
+	<!-- Stub - only show if quest not completed or not showing collection -->
+	{#if !isQuestCompleted || (!isStampSheetTorn && !showingCollection)}
+		<div
+			class="flex flex-col justify-center space-y-6 pb-8 pt-4 shadow-md"
+			class:animate-pulse={isTouching && isQuestCompleted}
+			class:border-b-2={isStampSheetTorn}
+			class:border-dashed={isStampSheetTorn}
+			class:border-slate-900={isStampSheetTorn}
+			ontouchstart={handleTouchStart}
+			ontouchend={handleTouchEnd}
+			ontouchcancel={handleTouchCancel}
+		>
+			<h1 class="text-center text-4xl font-bold tracking-tight text-primary">Stamps</h1>
+			<h2 class="mx-auto text-xl font-semibold text-secondary">
+				Collected {getCollectedCount()} / {minStampCountRequired}
 			</h2>
-		{:else}
-			<RoundScanButton />
-		{/if}
-	</div>
 
-	<!-- Stamp grid, only rendered when the stamp sheet is not torn -->
-	{#if !isStampSheetTorn}
+			{#if isQuestCompleted}
+				<h2 class="text-center text-xl font-semibold text-secondary">
+					Show sheet to staff at the booth!
+				</h2>
+			{:else}
+				<RoundScanButton />
+			{/if}
+		</div>
+	{/if}
+
+	<!-- Stamp grid, show when not torn OR when showing collection -->
+	{#if !isStampSheetTorn || showingCollection}
 		<div
 			class="z-30 grid grid-cols-2 gap-4 rounded-b-xl p-4 pt-8 shadow-md"
+			class:rounded-t-xl={showingCollection}
 			in:fade|global={{ delay }}
-			out:fly|global={isStampSheetTorn && isQuestCompleted
+			out:fly|global={isStampSheetTorn && isQuestCompleted && !showingCollection
 				? { y: 20, duration: 1200, easing: cubicOut }
 				: {}}
 		>
@@ -138,13 +146,22 @@
 				/>
 			{/each}
 		</div>
-
-		<!-- <div id="stamp-sheet-footer"></div> -->
 	{/if}
 </div>
 
-{#if isStampSheetTorn}
+<!-- Completion message and stamp collection button -->
+{#if isStampSheetTorn && !showingCollection}
 	<div class="my-auto mt-4 flex flex-col items-center justify-end space-y-4">
-		<HolomemGacha />
+		<h1 class="text-center font-geologica text-4xl font-bold text-primary">Thank you!</h1>
+		<h2 class="text-center font-geologica text-xl font-semibold text-secondary">
+			You have completed the quest!
+		</h2>
+		
+		<button 
+			class="btn-secondary btn rounded-full" 
+			onclick={viewStampCollection}
+		>
+			View My Stamps
+		</button>
 	</div>
 {/if}
