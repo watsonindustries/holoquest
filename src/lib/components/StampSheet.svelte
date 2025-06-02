@@ -31,13 +31,7 @@
 	}
 
 	function viewStampCollection() {
-		console.log('View stamps clicked, current states:', {
-			isStampSheetTorn,
-			isQuestCompleted,
-			showingCollection
-		});
 		showingCollection = true;
-		console.log('Updated showingCollection to:', showingCollection);
 	}
 
 	const delay = 500; // synchronized fade in delay
@@ -56,18 +50,10 @@
 		};
 
 		if (isMinStampAmountCollected()) {
-			console.log('All stamps collected!');
 			isQuestCompleted = true;
 		}
 
 		isStampSheetTorn = localStorage.getItem('isStampSheetTorn') === 'yes';
-		
-		console.log('Initial states:', {
-			isStampSheetTorn,
-			isQuestCompleted,
-			showingCollection,
-			stampCount: getCollectedCount()
-		});
 	});
 
 	let touchStartTime: number;
@@ -107,11 +93,6 @@
 </script>
 
 <!-- MARK: Component body -->
-<!-- Debug info for troubleshooting -->
-<div class="text-xs text-gray-500 p-2 bg-yellow-100 mb-2">
-	Debug: torn={isStampSheetTorn}, completed={isQuestCompleted}, showing={showingCollection}, stamps={getCollectedCount()}
-</div>
-
 <div
 	class="mx-8 my-4 mb-8 divide-y-2 divide-dashed divide-slate-900 rounded-xl bg-slate-100 bg-gradient-to-b font-geologica"
 >
