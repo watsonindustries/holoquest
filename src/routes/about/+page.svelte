@@ -3,7 +3,7 @@
 
 	const coverCorpURL = 'https://cover-corp.com';
 	const hololiveURL = 'https://hololive.hololivepro.com/en';
-	const daniruKunDiscordURL = 'http://discordapp.com/users/511267995214151721';
+	const holofanboothURL = 'https://x.com/holofanbooth';
 </script>
 
 <svelte:head>
@@ -21,8 +21,8 @@
 	<p>Build version <span class="font-mono">{version}</span></p>
 
 	<p>
-		Created by <a href="https://watsonindustries.live" class="link-primary link"
-			>Watson Industries</a
+		Created by <a href="https://x.com/danirukun" class="link-primary link"
+			>danirukun</a
 		> in 🇦🇹
 	</p>
 
@@ -71,12 +71,8 @@
 	</svg>
 
 	<p>
-		Reach out to <a href={daniruKunDiscordURL} class="link-secondary link">@danirukun</a> for inquiries.
+		Reach out to <a href={holofanboothURL} class="link-secondary link">@holofanbooth</a> for inquiries.
 	</p>
-
-	<a href="https://forms.gle/K744AfWbi2HSKdzU6" class="btn-secondary btn rounded-full text-white"
-		>Support Form</a
-	>
 
 	<h2 class=" text-2xl text-secondary">Help</h2>
 	<p>
