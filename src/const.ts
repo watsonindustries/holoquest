@@ -12,7 +12,7 @@ export const apiServerURL = dev
 	? 'http://localhost:4000/api/json'
 	: 'https://api.hololivefanbooth.com/api/json';
 
-export const minStampCountRequired = 7;
+export const minStampCountRequired = 8;
 
 export const holomemGachaPool = [
 	{
